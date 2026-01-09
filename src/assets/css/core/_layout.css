@@ -1,0 +1,254 @@
+/* ==========================================================================
+   LAYOUT SYSTEM
+   4 Layout-Varianten via data-layout Attribut am body
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CSS Variables
+   -------------------------------------------------------------------------- */
+:root {
+    --layout-sidebar-width: 280px;
+    --layout-spacing: 1rem;
+    --layout-radius: 0.75rem;
+    --layout-header-height: 55px;
+}
+
+/* --------------------------------------------------------------------------
+   Base Styles (alle Layouts)
+   -------------------------------------------------------------------------- */
+body {
+    background-image:
+        linear-gradient(var(--layout-grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--layout-grid-color) 1px, transparent 1px);
+    background-size: var(--layout-grid-size) var(--layout-grid-size);
+    background-attachment: fixed;
+}
+
+/* --------------------------------------------------------------------------
+   Cursor Glow Effect
+   -------------------------------------------------------------------------- */
+.cursor-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.03) 30%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.layout-wrapper {
+    display: grid;
+}
+
+.layout-sidebar {
+    grid-area: sidebar;
+    width: var(--layout-sidebar-width);
+    background-color: var(--bs-tertiary-bg);
+    overflow-y: auto;
+}
+
+.layout-header {
+    grid-area: header;
+    background-color: var(--bs-tertiary-bg);
+}
+
+.layout-header-inner {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.layout-header-inner .navbar {
+    flex: 1;
+}
+
+.layout-header-inner .navbar .container-fluid {
+    justify-content: space-between;
+}
+
+/* Navbar Icon Touch Targets (min 48x48px for accessibility) */
+.layout-header .navbar-nav .nav-link {
+    min-width: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.layout-main {
+    grid-area: main;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+/* ==========================================================================
+   LAYOUT 1: MARGINS + ROUNDED, Sidebar links, Header rechts daneben
+   - Sidebar als Card-Panel (scrollt mit der Seite, nicht sticky)
+   - Header + Main rechts daneben
+   - Alles scrollt zusammen
+   ========================================================================== */
+[data-layout="1"] {
+    background-color: var(--bs-secondary-bg);
+}
+
+[data-layout="1"] .layout-wrapper {
+    display: grid;
+    grid-template-columns: var(--layout-sidebar-width) 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main";
+    padding: var(--layout-spacing);
+    gap: var(--layout-spacing);
+    /* No min-height to allow natural scrolling */
+}
+
+[data-layout="1"] .layout-sidebar {
+    border-radius: var(--layout-radius);
+    box-shadow: var(--bs-box-shadow-sm);
+    height: calc(100vh - 2 * var(--layout-spacing));
+    position: sticky;
+    top: var(--layout-spacing);
+    z-index: 1020;
+}
+
+[data-layout="1"] .layout-header {
+    border-radius: var(--layout-radius);
+    box-shadow: var(--bs-box-shadow-sm);
+    position: sticky;
+    top: var(--layout-spacing);
+    z-index: 1020;
+}
+
+[data-layout="1"] .layout-main {
+    border-radius: var(--layout-radius);
+    box-shadow: var(--bs-box-shadow-sm);
+    overflow: visible;
+}
+
+/* ==========================================================================
+   LAYOUT 2: MARGINS + ROUNDED, Header oben volle Breite, Sidebar darunter links
+   - Header als Card-Panel oben (volle Breite)
+   - Darunter: Sidebar + Main nebeneinander als Cards
+   ========================================================================== */
+[data-layout="2"] {
+    background-color: var(--bs-secondary-bg);
+}
+
+[data-layout="2"] .layout-wrapper {
+    display: grid;
+    grid-template-columns: var(--layout-sidebar-width) 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header header"
+        "sidebar main";
+    padding: var(--layout-spacing);
+    gap: var(--layout-spacing);
+}
+
+[data-layout="2"] .layout-sidebar {
+    border-radius: var(--layout-radius);
+    box-shadow: var(--bs-box-shadow-sm);
+    height: calc(100vh - var(--layout-header-height) - 3 * var(--layout-spacing));
+    position: sticky;
+    top: calc(var(--layout-header-height) + 2 * var(--layout-spacing));
+    z-index: 1020;
+}
+
+[data-layout="2"] .layout-header {
+    border-radius: var(--layout-radius);
+    box-shadow: var(--bs-box-shadow-sm);
+    position: sticky;
+    top: var(--layout-spacing);
+    z-index: 1030;
+}
+
+[data-layout="2"] .layout-main {
+    border-radius: var(--layout-radius);
+    box-shadow: var(--bs-box-shadow-sm);
+}
+
+/* ==========================================================================
+   LAYOUT 3: FLUSH/EDGE-TO-EDGE, Sidebar links 100% Höhe, Header rechts daneben
+   - Keine Margins, keine Rundungen
+   - Sidebar links volle Höhe, Header + Main rechts
+   ========================================================================== */
+[data-layout="3"] .layout-wrapper {
+    display: grid;
+    grid-template-columns: var(--layout-sidebar-width) 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main";
+    min-height: 100vh;
+}
+
+[data-layout="3"] .layout-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+[data-layout="3"] .layout-header {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+/* ==========================================================================
+   LAYOUT 4: FLUSH/EDGE-TO-EDGE, Header oben volle Breite, Sidebar darunter
+   - Keine Margins, keine Rundungen
+   - Header oben sticky, darunter Sidebar + Main
+   ========================================================================== */
+[data-layout="4"] .layout-wrapper {
+    display: grid;
+    grid-template-columns: var(--layout-sidebar-width) 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header header"
+        "sidebar main";
+    min-height: 100vh;
+}
+
+[data-layout="4"] .layout-sidebar {
+    position: sticky;
+    top: var(--layout-header-height);
+    height: calc(100vh - var(--layout-header-height));
+}
+
+[data-layout="4"] .layout-header {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+/* ==========================================================================
+   MOBILE: Responsive Layout
+   ========================================================================== */
+@media (max-width: 991.98px) {
+    /* Sidebar wird via _sidenav.css als fixed Slide-In positioniert */
+    .layout-wrapper {
+        grid-template-columns: 1fr !important;
+        grid-template-areas:
+            "header"
+            "main" !important;
+    }
+
+    [data-layout="1"] .layout-wrapper,
+    [data-layout="2"] .layout-wrapper {
+        padding: var(--layout-spacing);
+    }
+
+    .layout-main {
+        min-height: calc(100vh - var(--layout-header-height));
+    }
+}
+

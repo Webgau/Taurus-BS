@@ -1,0 +1,14 @@
+/**
+ * Taurus App Styles
+ * Main entry point for custom CSS
+ */
+
+/* Core */
+@import "core/_theme.css";
+@import "core/_layout.css";
+@import "core/_sidebar.css";
+@import "core/_sidenav.css";
+@import "core/_dev-panel.css";
+
+/* Apps */
+/* @import "apps/_example.css"; */

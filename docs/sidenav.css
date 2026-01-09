@@ -1,0 +1,818 @@
+/**
+ * FeuerwehrManager Sidebar/Sidenav CSS
+ * Extracted for reuse in other projects
+ *
+ * Requires:
+ * - Bootstrap 5.x (for CSS variables and base styles)
+ * - Font Awesome (for icons)
+ * - PerfectScrollbar (optional, for custom scrollbars)
+ */
+
+/* ============================================================
+   CSS Variables - Light Mode (Default)
+   ============================================================ */
+:root, [data-bs-theme=light] {
+    --bs-app-sidebar-bg: #FFFFFF;
+    --bs-app-sidebar-bg-rgb: 255, 255, 255;
+    --bs-app-sidebar-bg-transparent: url(images/cover-sidebar.jpg);
+    --bs-app-sidebar-profile-bg: #20252a;
+    --bs-app-sidebar-profile-bg-rgb: 32, 37, 42;
+    --bs-app-sidebar-profile-color: #FFFFFF;
+    --bs-app-sidebar-profile-color-rgb: 255, 255, 255;
+    --bs-app-sidebar-component-color: #2d353c;
+    --bs-app-sidebar-component-color-rgb: 45, 53, 60;
+    --bs-app-sidebar-component-active-bg: #f0f2f4;
+    --bs-app-sidebar-component-active-color: #20252a;
+    --bs-app-sidebar-menu-header-color: #adb5bd;
+    --bs-app-sidebar-menu-divider-bg: #dee2e6;
+    --bs-app-sidebar-menu-icon-color: inherit;
+    --bs-app-sidebar-menu-badge-bg: #dee2e6;
+    --bs-app-sidebar-menu-badge-color: #2d353c;
+    --bs-app-sidebar-menu-badge-font-weight: 700;
+    --bs-app-sidebar-menu-link-color: #6c757d;
+    --bs-app-sidebar-menu-link-hover-color: #20252a;
+    --bs-app-sidebar-menu-link-font-weight: 600;
+    --bs-app-sidebar-menu-submenu-bg: none;
+    --bs-app-sidebar-menu-submenu-link-color: #6c757d;
+    --bs-app-sidebar-menu-submenu-link-hover-color: #20252a;
+    --bs-app-sidebar-menu-submenu-link-font-weight: 600;
+    --bs-app-sidebar-menu-grid-bg: #dee2e6;
+    --bs-app-sidebar-menu-grid-border-width: 2px;
+    --bs-app-sidebar-menu-grid-border-color: #dee2e6;
+    --bs-app-sidebar-grid-border-color: #dee2e6;
+    --bs-app-sidebar-minify-btn-bg: #e9ecef;
+    --bs-app-sidebar-minify-btn-hover-bg: #ced4da;
+    --bs-app-sidebar-float-submenu-bg: #f8f9fa;
+    --bs-app-sidebar-float-submenu-grid-border-color: #dee2e6;
+}
+
+/* ============================================================
+   CSS Variables - Dark Mode
+   ============================================================ */
+[data-bs-theme=dark] {
+    --bs-app-sidebar-bg: #2d353c;
+    --bs-app-sidebar-bg-rgb: 45, 53, 60;
+    --bs-app-sidebar-profile-bg: #20252a;
+    --bs-app-sidebar-profile-bg-rgb: 32, 37, 42;
+    --bs-app-sidebar-profile-color: #FFFFFF;
+    --bs-app-sidebar-profile-color-rgb: 255, 255, 255;
+    --bs-app-sidebar-component-color: #FFFFFF;
+    --bs-app-sidebar-component-color-rgb: 255, 255, 255;
+    --bs-app-sidebar-component-active-bg: #20252a;
+    --bs-app-sidebar-component-active-color: #FFFFFF;
+    --bs-app-sidebar-menu-header-color: rgba(255, 255, 255, 0.45);
+    --bs-app-sidebar-menu-divider-bg: #20252a;
+    --bs-app-sidebar-menu-icon-color: inherit;
+    --bs-app-sidebar-menu-badge-bg: #20252a;
+    --bs-app-sidebar-menu-badge-color: #FFFFFF;
+    --bs-app-sidebar-menu-badge-font-weight: 400;
+    --bs-app-sidebar-menu-link-font-weight: 400;
+    --bs-app-sidebar-menu-link-color: rgba(255, 255, 255, 0.6);
+    --bs-app-sidebar-menu-link-hover-color: #FFFFFF;
+    --bs-app-sidebar-menu-submenu-bg: none;
+    --bs-app-sidebar-menu-submenu-link-color: rgba(255, 255, 255, 0.45);
+    --bs-app-sidebar-menu-submenu-link-hover-color: #FFFFFF;
+    --bs-app-sidebar-menu-submenu-link-font-weight: 400;
+    --bs-app-sidebar-menu-grid-bg: #20252a;
+    --bs-app-sidebar-menu-grid-border-width: 1px;
+    --bs-app-sidebar-menu-grid-border-color: rgba(255, 255, 255, 0.6);
+    --bs-app-sidebar-grid-border-color: #3d4852;
+    --bs-app-sidebar-float-submenu-bg: #20252a;
+    --bs-app-sidebar-float-submenu-grid-border-color: #2d353c;
+    --bs-app-sidebar-minify-btn-bg: #242b30;
+    --bs-app-sidebar-minify-btn-hover-bg: #20252a;
+}
+
+/* ============================================================
+   App Container Base Styles
+   ============================================================ */
+.app {
+    min-height: 100vh;
+}
+
+.app-header-fixed .app-sidebar {
+    padding-top: 50px;
+}
+
+.app-sidebar-fixed .app-sidebar {
+    position: fixed;
+}
+
+/* ============================================================
+   Sidebar Base Styles
+   ============================================================ */
+.app-sidebar {
+    width: 220px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding-top: 50px;
+    background: var(--bs-app-sidebar-bg);
+    z-index: 1010;
+    left: 0;
+}
+
+@media (max-width: 767.98px) {
+    .app-sidebar {
+        position: fixed;
+        padding-top: 0;
+        left: -220px;
+        z-index: 1021;
+    }
+}
+
+/* Sidebar Background (Fixed positioning) */
+.app-sidebar-bg {
+    background: var(--bs-app-sidebar-bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 220px;
+    z-index: 1000;
+}
+
+@media (max-width: 767.98px) {
+    .app-sidebar-bg {
+        padding-top: 0;
+        left: -220px;
+        z-index: 1020;
+    }
+}
+
+/* Mobile Backdrop */
+.app-sidebar-mobile-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1020;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    outline: 0;
+    display: none;
+    background: var(--bs-app-sidebar-bg-mobile-backdrop);
+}
+
+/* ============================================================
+   Menu Container
+   ============================================================ */
+.app-sidebar .menu {
+    /* Menu base styles */
+}
+
+/* ============================================================
+   Menu Profile Section
+   ============================================================ */
+.app-sidebar .menu .menu-profile {
+    padding: 20px;
+    color: var(--bs-app-sidebar-profile-color);
+    background: var(--bs-app-sidebar-profile-bg);
+    overflow: hidden;
+    position: relative;
+}
+
+.app-sidebar .menu .menu-profile .menu-profile-link {
+    margin: -20px;
+    padding: 20px;
+    display: block;
+    color: var(--bs-app-sidebar-profile-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.app-sidebar .menu .menu-profile .menu-profile-link:hover .menu-profile-cover.with-shadow:before {
+    opacity: .75;
+}
+
+.app-sidebar .menu .menu-profile .menu-profile-image {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+}
+
+.app-sidebar .menu .menu-profile .menu-profile-image img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.app-sidebar .menu .menu-profile .menu-profile-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.app-sidebar .menu .menu-profile .menu-profile-cover.with-shadow:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(var(--bs-app-sidebar-profile-bg-rgb), .75);
+    transition: all .2s linear;
+}
+
+.app-sidebar .menu .menu-profile .menu-profile-info {
+    font-size: .875rem;
+    position: relative;
+}
+
+.app-sidebar .menu .menu-profile .menu-profile-info small {
+    display: block;
+    font-weight: 400;
+    color: rgba(var(--bs-app-sidebar-profile-color-rgb), .75);
+    font-size: .75rem;
+    margin-bottom: -5px;
+}
+
+/* ============================================================
+   Menu Header and Divider
+   ============================================================ */
+.app-sidebar .menu .menu-header {
+    margin: 0;
+    padding: 15px 20px 3px;
+    line-height: 20px;
+    font-size: 11px;
+    color: var(--bs-app-sidebar-menu-header-color);
+    font-weight: 600;
+}
+
+.app-sidebar .menu .menu-divider {
+    height: 1px;
+    background-color: var(--bs-app-sidebar-menu-divider-bg);
+    margin: 7px 0;
+}
+
+/* ============================================================
+   Menu Caret (Expand/Collapse Icon)
+   ============================================================ */
+.app-sidebar .menu .menu-caret {
+    display: block;
+    width: 20px;
+    text-align: center;
+    font-size: .6875rem;
+    border: none;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", FontAwesome !important;
+    font-weight: 900;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    margin-left: auto;
+}
+
+.app-sidebar .menu .menu-caret:before {
+    content: "\f054";
+    display: block;
+    text-align: center;
+    opacity: .5;
+    transition: all .2s linear;
+}
+
+.app-sidebar .menu .active:not(.closed):not(.closing) > a .menu-caret:before,
+.app-sidebar .menu .expand > a .menu-caret:before,
+.app-sidebar .menu .expanding > a .menu-caret:before {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+/* ============================================================
+   Menu Items and Links
+   ============================================================ */
+.app-sidebar .menu .menu-item {
+    position: relative;
+}
+
+.app-sidebar .menu .menu-item .menu-link {
+    padding: 7px 20px;
+    line-height: 20px;
+    color: var(--bs-app-sidebar-menu-link-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-weight: var(--bs-app-sidebar-menu-link-font-weight);
+}
+
+.app-sidebar .menu .menu-item .menu-link .menu-text {
+    flex: 1;
+}
+
+.app-sidebar .menu .menu-item .menu-link:focus,
+.app-sidebar .menu .menu-item .menu-link:hover {
+    background: 0 0;
+    color: var(--bs-app-sidebar-menu-link-hover-color);
+}
+
+/* Menu Icons */
+.app-sidebar .menu .menu-item .menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .875rem;
+    color: var(--bs-app-sidebar-menu-icon-color);
+    width: 14px;
+    height: 14px;
+    border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.app-sidebar .menu .menu-item .menu-icon img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Menu Badge */
+.app-sidebar .menu .menu-item .menu-link .menu-badge {
+    padding: 0 .975em;
+    background: var(--bs-app-sidebar-menu-badge-bg);
+    color: var(--bs-app-sidebar-menu-badge-color);
+    font-weight: var(--bs-app-sidebar-menu-badge-font-weight);
+    font-size: 10px;
+    border-radius: 12px;
+}
+
+/* Menu Label */
+.app-sidebar .menu .menu-item .menu-link .menu-label {
+    padding: .35em .65em;
+    font-size: 75%;
+    font-weight: 600;
+    color: var(--bs-app-theme-color);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: var(--bs-app-theme);
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+/* ============================================================
+   Active Menu Item
+   ============================================================ */
+.app-sidebar .menu .menu-item.active > .menu-link {
+    position: relative;
+    z-index: 10;
+    color: var(--bs-app-sidebar-component-active-color);
+    background-color: var(--bs-app-sidebar-component-active-bg);
+}
+
+.app-sidebar .menu .menu-item.active > .menu-link .menu-icon {
+    color: var(--bs-app-theme);
+}
+
+/* ============================================================
+   Submenu Styles
+   ============================================================ */
+.app-sidebar .menu .menu-item .menu-submenu {
+    padding: 5px 0 10px 39px;
+    margin: 0;
+    position: relative;
+    display: none;
+    background: var(--bs-app-sidebar-menu-submenu-bg);
+}
+
+.app-sidebar .menu .menu-item .menu-submenu .menu-item .menu-link {
+    padding: 3px 20px 3px 15px;
+    text-decoration: none;
+    position: relative;
+    line-height: 18px;
+    color: var(--bs-app-sidebar-menu-submenu-link-color);
+    font-weight: var(--bs-app-sidebar-menu-submenu-link-font-weight);
+}
+
+.app-sidebar .menu .menu-item .menu-submenu .menu-item .menu-link:focus,
+.app-sidebar .menu .menu-item .menu-submenu .menu-item .menu-link:hover {
+    background: 0 0;
+    color: var(--bs-app-sidebar-menu-submenu-link-hover-color);
+}
+
+/* Submenu Grid Lines */
+.app-sidebar .menu .menu-item .menu-submenu .menu-item .menu-link:after {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: 11px;
+    width: 11px;
+    height: 2px;
+    background: var(--bs-app-sidebar-menu-grid-bg);
+}
+
+.app-sidebar .menu .menu-item .menu-submenu .menu-item:before {
+    content: "";
+    position: absolute;
+    left: -13px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--bs-app-sidebar-menu-grid-bg);
+}
+
+.app-sidebar .menu .menu-item .menu-submenu .menu-item:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border: var(--bs-app-sidebar-menu-grid-border-width) solid var(--bs-app-sidebar-menu-grid-border-color);
+    top: 11px;
+    margin-top: -2px;
+    z-index: 10;
+    background: var(--bs-app-sidebar-bg);
+    border-radius: 4px;
+}
+
+.app-sidebar .menu .menu-item .menu-submenu .menu-item:first-child:before {
+    top: -14px;
+}
+
+.app-sidebar .menu .menu-item .menu-submenu .menu-item:first-child:last-child:before {
+    height: 27px;
+}
+
+.app-sidebar .menu .menu-item .menu-submenu .menu-item:last-child:before {
+    bottom: auto;
+    height: 13px;
+}
+
+.app-sidebar .menu .menu-item .menu-submenu .menu-item.active > .menu-link {
+    background: 0 0;
+    color: var(--bs-app-sidebar-component-color);
+}
+
+.app-sidebar .menu .menu-item .menu-submenu .menu-item.active:after {
+    border-color: var(--bs-app-theme);
+}
+
+/* Nested Submenu */
+.app-sidebar .menu .menu-item .menu-submenu .menu-item .menu-submenu {
+    padding: 0 0 0 15px;
+    background: 0 0;
+}
+
+.app-sidebar .menu .menu-item.active.has-sub > .menu-submenu {
+    display: block;
+}
+
+/* ============================================================
+   Minify Button
+   ============================================================ */
+.app-sidebar .app-sidebar-content {
+    position: relative;
+}
+
+.app-sidebar .app-sidebar-minify-btn {
+    margin: 10px 0;
+    padding: 5px 20px 5px 10px !important;
+    background: var(--bs-app-sidebar-minify-btn-bg);
+    color: var(--bs-app-sidebar-component-color);
+    border-radius: 20px 0 0 20px;
+}
+
+.app-sidebar .app-sidebar-minify-btn i {
+    margin: 0 !important;
+    color: var(--bs-app-sidebar-component-color);
+}
+
+.app-sidebar .app-sidebar-minify-btn:focus,
+.app-sidebar .app-sidebar-minify-btn:hover {
+    background: var(--bs-app-sidebar-minify-btn-hover-bg);
+}
+
+/* ============================================================
+   Minified Sidebar State
+   ============================================================ */
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) {
+    width: 60px;
+}
+
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu > .menu-item > .menu-link {
+    padding: 10px 20px;
+}
+
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu > .menu-item > .menu-link .menu-badge,
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu > .menu-item > .menu-link .menu-label,
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu > .menu-item > .menu-link .menu-text {
+    display: none;
+}
+
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu > .menu-item > .menu-link .menu-icon {
+    margin: 0;
+}
+
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu > .menu-item.has-sub > .menu-submenu {
+    display: none !important;
+}
+
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu-header,
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu-profile,
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu-search {
+    display: none !important;
+}
+
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu-caret {
+    margin-right: -15px;
+}
+
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar:not(.app-sidebar-end) .menu-caret:before {
+    transform: rotate(0) !important;
+}
+
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar-bg:not(.app-sidebar-end) {
+    width: 60px;
+}
+
+.app-sidebar-minified:not(.app-without-sidebar) .app-sidebar-minify-btn i:before {
+    content: "\f101";
+}
+
+@media (min-width: 768px) {
+    .app-sidebar-minified:not(.app-without-sidebar) .app-content {
+        margin-left: 60px;
+    }
+}
+
+/* ============================================================
+   Float Submenu (for minified sidebar)
+   ============================================================ */
+.app-sidebar-float-submenu-container {
+    position: fixed;
+    width: 220px;
+    margin: 0;
+    background: var(--bs-app-sidebar-float-submenu-bg);
+    z-index: 1020;
+}
+
+.app-sidebar-float-submenu-container .app-sidebar-float-submenu {
+    padding: 9px 0 9px 39px;
+}
+
+.app-sidebar-float-submenu-container .app-sidebar-float-submenu .menu-item {
+    position: relative;
+}
+
+.app-sidebar-float-submenu-container .app-sidebar-float-submenu .menu-item .menu-link {
+    padding: 3px 20px 3px 15px;
+    line-height: 18px;
+    color: var(--bs-app-sidebar-menu-submenu-link-color);
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    font-weight: var(--bs-app-sidebar-menu-submenu-link-font-weight);
+}
+
+.app-sidebar-float-submenu-container .app-sidebar-float-submenu .menu-item .menu-link .menu-text {
+    flex: 1;
+}
+
+.app-sidebar-float-submenu-container .app-sidebar-float-submenu .menu-item .menu-link:focus,
+.app-sidebar-float-submenu-container .app-sidebar-float-submenu .menu-item .menu-link:hover {
+    background: 0 0;
+    color: var(--bs-app-sidebar-menu-submenu-link-hover-color);
+}
+
+.app-sidebar-float-submenu-container .app-sidebar-float-submenu-arrow {
+    position: absolute;
+    top: 20px;
+    width: 28px;
+    height: 2px;
+    background: var(--bs-app-sidebar-float-submenu-grid-border-color);
+    left: 0;
+}
+
+.app-sidebar-float-submenu-container .app-sidebar-float-submenu-line {
+    position: absolute;
+    top: 20px;
+    width: 2px;
+    background: var(--bs-app-sidebar-float-submenu-grid-border-color);
+    left: 26px;
+}
+
+/* ============================================================
+   Mobile Sidebar Toggle Animation
+   ============================================================ */
+@keyframes appSidebarMobileSlideInLeft {
+    from { left: -300px; }
+    to { left: 0; }
+}
+
+@keyframes appSidebarMobileBackdrop {
+    from { background: 0 0; }
+    to { background: rgba(32, 37, 42, .5); }
+}
+
+@media (max-width: 767.98px) {
+    .app-sidebar-mobile-toggled .app-sidebar-bg:not(.app-sidebar-end),
+    .app-sidebar-mobile-toggled .app-sidebar:not(.app-sidebar-end) {
+        left: 0;
+        animation: appSidebarMobileSlideInLeft .2s ease;
+    }
+
+    .app-sidebar-mobile-toggled .app-sidebar-bg:not(.app-sidebar-end) {
+        position: fixed;
+    }
+
+    .app-sidebar-mobile-toggled .app-sidebar-mobile-backdrop:not(.app-sidebar-end) {
+        display: block;
+        background: rgba(32, 37, 42, .5);
+        animation: appSidebarMobileBackdrop .2s ease;
+    }
+}
+
+@keyframes appSidebarMobileSlideOutLeft {
+    from { left: 0; }
+    to { left: -300px; }
+}
+
+@keyframes appSidebarMobileRemoveBackdrop {
+    from { background: rgba(32, 37, 42, .5); }
+    to { background: 0 0; }
+}
+
+@media (max-width: 767.98px) {
+    .app-sidebar-mobile-closed .app-sidebar-bg:not(.app-sidebar-end),
+    .app-sidebar-mobile-closed .app-sidebar:not(.app-sidebar-end) {
+        left: -300px;
+        animation: appSidebarMobileSlideOutLeft .2s ease;
+    }
+
+    .app-sidebar-mobile-closed .app-sidebar-mobile-backdrop:not(.app-sidebar-end) {
+        display: block;
+        background: 0 0;
+        animation: appSidebarMobileRemoveBackdrop .2s ease;
+    }
+}
+
+/* ============================================================
+   Content Area Margin (Desktop)
+   ============================================================ */
+@media (min-width: 768px) {
+    .app-content {
+        margin-left: 220px;
+    }
+}
+
+/* Custom width adjustment (240px instead of 220px) */
+.app-sidebar-240 .app-sidebar,
+.app-sidebar-240 .app-sidebar-bg {
+    width: 240px;
+}
+
+@media (min-width: 768px) {
+    .app-sidebar-240 .app-content {
+        margin-left: 240px;
+    }
+}
+
+/* ============================================================
+   Hover Sidebar Mode
+   ============================================================ */
+@media (min-width: 992px) {
+    .app-with-hover-sidebar:not(.app-sidebar-minified) .app-sidebar:not(.app-sidebar-end) {
+        width: 60px;
+        overflow: hidden;
+        bottom: auto;
+        min-height: 100vh;
+        transition-property: width, box-shadow;
+        transition-duration: 150ms;
+        box-shadow: inset -12px 6px 12px rgba(0, 0, 0, .14);
+    }
+
+    .app-with-hover-sidebar:not(.app-sidebar-minified) .app-sidebar:not(.app-sidebar-end) .app-sidebar-content {
+        width: 220px;
+    }
+
+    .app-with-hover-sidebar:not(.app-sidebar-minified) .app-sidebar:not(.app-sidebar-end):hover {
+        width: 220px;
+        box-shadow: 12px 6px 12px rgba(0, 0, 0, .14);
+    }
+
+    .app-with-hover-sidebar:not(.app-sidebar-minified) .app-sidebar:not(.app-sidebar-end):hover + .app-sidebar-bg {
+        width: 220px;
+    }
+
+    .app-with-hover-sidebar:not(.app-sidebar-minified) .app-sidebar-bg {
+        width: 60px;
+        transition-property: width;
+        transition-duration: 150ms;
+    }
+
+    .app-with-hover-sidebar:not(.app-sidebar-minified) .app-content {
+        margin-left: 60px;
+    }
+}
+
+/* ============================================================
+   Transparent Sidebar
+   ============================================================ */
+.app-sidebar.app-sidebar-transparent {
+    background: 0 0;
+}
+
+.app-sidebar.app-sidebar-transparent + .app-sidebar-bg {
+    background-image: var(--bs-app-sidebar-bg-transparent);
+    background-size: cover;
+}
+
+.app-sidebar.app-sidebar-transparent + .app-sidebar-bg:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(var(--bs-app-sidebar-bg-rgb), .75);
+}
+
+/* ============================================================
+   Wide Sidebar (250px)
+   ============================================================ */
+.app-with-wide-sidebar .app-sidebar,
+.app-with-wide-sidebar .app-sidebar-bg {
+    width: 250px;
+}
+
+@media (max-width: 767.98px) {
+    .app-with-wide-sidebar .app-sidebar,
+    .app-with-wide-sidebar .app-sidebar-bg {
+        width: 250px;
+        left: -250px;
+    }
+}
+
+@media (min-width: 768px) {
+    .app-with-wide-sidebar .app-content {
+        margin-left: 250px;
+    }
+}
+
+/* ============================================================
+   Without Sidebar
+   ============================================================ */
+.app-without-sidebar .app-content {
+    margin: 0;
+}
+
+/* ============================================================
+   Sidebar Grid Style
+   ============================================================ */
+.app-sidebar.app-sidebar-grid .menu > .menu-item + .menu-item {
+    margin-top: -1px;
+}
+
+.app-sidebar.app-sidebar-grid .menu > .menu-item > .menu-link {
+    border-top: 1px solid var(--bs-app-sidebar-grid-border-color);
+    border-bottom: 1px solid var(--bs-app-sidebar-grid-border-color);
+}
+
+.app-sidebar.app-sidebar-grid .menu > .menu-item.expand > a,
+.app-sidebar.app-sidebar-grid .menu > .menu-item.expanding > a {
+    border-bottom-color: transparent;
+}
+
+.app-sidebar.app-sidebar-grid .menu > .menu-item.active > .menu-link {
+    border-color: var(--bs-app-sidebar-component-active-bg);
+}
+
+/* ============================================================
+   Menu Search
+   ============================================================ */
+.app-sidebar .menu .menu-search {
+    padding: 20px;
+}
+
+.app-sidebar .menu .menu-search + .menu-item {
+    padding-top: 0;
+}
+
+.app-sidebar .menu .menu-search .form-control {
+    background: 0 0;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    border-bottom: 1px solid rgba(var(--bs-app-sidebar-component-color-rgb), .2);
+    color: var(--bs-app-sidebar-component-color);
+    border-radius: 0;
+}
+
+.app-sidebar .menu .menu-search .form-control:focus {
+    border-color: rgba(var(--bs-app-sidebar-component-color-rgb), .5);
+    box-shadow: none;
+}

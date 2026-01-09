@@ -1,0 +1,79 @@
+<!-- Dev Panel Toggle Button -->
+<button class="dev-panel-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#devPanel" aria-controls="devPanel" aria-label="Dev Panel">
+    <i class="bi bi-gear-fill"></i>
+</button>
+
+<!-- Dev Panel Offcanvas -->
+<div class="offcanvas offcanvas-end dev-panel" tabindex="-1" id="devPanel" aria-labelledby="devPanelLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="devPanelLabel">
+            <i class="bi bi-tools me-2"></i>Dev Tools
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <!-- Viewport Info -->
+        <div class="dev-section">
+            <h6 class="dev-section-title">Viewport</h6>
+            <div class="dev-viewport-info">
+                <span class="dev-viewport-size" id="devViewportSize">0 × 0</span>
+                <span class="dev-viewport-breakpoint" id="devViewportBreakpoint">--</span>
+            </div>
+            <div class="dev-breakpoint-bar">
+                <div class="dev-breakpoint-segment" data-bp="xs" title="< 576px">xs</div>
+                <div class="dev-breakpoint-segment" data-bp="sm" title="≥ 576px">sm</div>
+                <div class="dev-breakpoint-segment" data-bp="md" title="≥ 768px">md</div>
+                <div class="dev-breakpoint-segment" data-bp="lg" title="≥ 992px">lg</div>
+                <div class="dev-breakpoint-segment" data-bp="xl" title="≥ 1200px">xl</div>
+                <div class="dev-breakpoint-segment" data-bp="xxl" title="≥ 1400px">xxl</div>
+            </div>
+        </div>
+
+        <!-- Layout Switcher -->
+        <div class="dev-section">
+            <h6 class="dev-section-title">Layout</h6>
+            <div class="dev-layout-grid">
+                <button type="button" class="dev-layout-btn" data-layout="1" title="Sidebar links, Card-Style">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="2" y="2" width="10" height="26" rx="2" class="dev-layout-sidebar"/>
+                        <rect x="14" y="2" width="24" height="8" rx="2" class="dev-layout-header"/>
+                        <rect x="14" y="12" width="24" height="16" rx="2" class="dev-layout-main"/>
+                    </svg>
+                    <span>1</span>
+                </button>
+                <button type="button" class="dev-layout-btn" data-layout="2" title="Header oben, Card-Style">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="2" y="2" width="36" height="6" rx="2" class="dev-layout-header"/>
+                        <rect x="2" y="10" width="10" height="18" rx="2" class="dev-layout-sidebar"/>
+                        <rect x="14" y="10" width="24" height="18" rx="2" class="dev-layout-main"/>
+                    </svg>
+                    <span>2</span>
+                </button>
+                <button type="button" class="dev-layout-btn" data-layout="3" title="Sidebar links, Flush">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="0" y="0" width="12" height="30" class="dev-layout-sidebar"/>
+                        <rect x="12" y="0" width="28" height="8" class="dev-layout-header"/>
+                        <rect x="12" y="8" width="28" height="22" class="dev-layout-main"/>
+                    </svg>
+                    <span>3</span>
+                </button>
+                <button type="button" class="dev-layout-btn" data-layout="4" title="Header oben, Flush">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="0" y="0" width="40" height="6" class="dev-layout-header"/>
+                        <rect x="0" y="6" width="12" height="24" class="dev-layout-sidebar"/>
+                        <rect x="12" y="6" width="28" height="24" class="dev-layout-main"/>
+                    </svg>
+                    <span>4</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Theme Info -->
+        <div class="dev-section">
+            <h6 class="dev-section-title">Theme</h6>
+            <div class="dev-theme-info">
+                <span id="devThemeValue">--</span>
+            </div>
+        </div>
+    </div>
+</div>

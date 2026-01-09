@@ -1,0 +1,27 @@
+{
+  "name": "taurus-bs",
+  "version": "1.0.0",
+  "description": "Taurus Bootstrap Application",
+  "scripts": {
+    "build:css": "cleancss -o public/assets/css/app.min.css src/assets/css/app.css",
+    "build:js": "esbuild src/assets/js/app.js --bundle --minify --outfile=public/assets/js/app.min.js",
+    "build:html": "php build.php",
+    "build": "npm run build:css && npm run build:js && npm run build:html",
+    "watch:css": "chokidar 'src/assets/css/**/*.css' -c 'npm run build:css'",
+    "watch:js": "chokidar 'src/assets/js/**/*.js' -c 'npm run build:js'",
+    "watch:html": "chokidar 'src/{layouts,pages,partials}/**/*.php' -c 'npm run build:html'",
+    "watch": "concurrently \"npm run watch:css\" \"npm run watch:js\" \"npm run watch:html\"",
+    "dev": "npm run build && npm run watch"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "clean-css-cli": "^5.6.3",
+    "concurrently": "^9.1.2",
+    "esbuild": "^0.27.2",
+    "terser": "^5.37.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1"
+  }
+}

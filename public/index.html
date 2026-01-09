@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taurus Dashboard">
+    <title>Dashboard - Taurus</title>
+    <link rel="preload" href="assets/img/coverImage.webp" as="image" fetchpriority="high">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/app.min.css?v=2011053s">
+</head>
+<body data-layout="4">
+    <div class="layout-wrapper">
+        <aside class="layout-sidebar">
+            <!-- Cover Header -->
+<div class="sidebar-cover position-relative" style="background: url('assets/img/coverImage.webp') center/cover no-repeat, #2a3f5f;">
+    <div class="p-3" role="button" data-bs-toggle="collapse" data-bs-target="#quickMenu" aria-expanded="false" aria-controls="quickMenu" style="cursor: pointer;">
+        <!-- Avatar -->
+        <img src="assets/img/avatar.webp" alt="Avatar" class="rounded-circle border border-2 border-light mb-2" width="56" height="56" style="object-fit: cover;">
+        <!-- Name & Role + Chevron -->
+        <div class="d-flex align-items-center text-white">
+            <div class="flex-grow-1">
+                <div class="fw-semibold">Mirko Schwarz</div>
+                <small>Administrator</small>
+            </div>
+            <!-- Chevron Icon -->
+            <svg class="quick-menu-chevron" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </div>
+    </div>
+    <!-- Quick Menu (Collapse) -->
+    <div class="collapse" id="quickMenu">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-arrow-repeat me-2"></i> Updates
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-ticket me-2"></i> Ticketsystem
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-question-circle me-2"></i> FAQ / Hilfe
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Navigation Menu -->
+<div class="menu">
+    <!-- Menu Header -->
+    <div class="menu-header">Navigation</div>
+
+    <!-- Dashboard -->
+    <div class="menu-item">
+        <a href="index.html" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-speedometer2"></i></span>
+            <span class="menu-text">Dashboard</span>
+        </a>
+    </div>
+
+    <!-- UI Components with Submenu -->
+    <div class="menu-item has-sub">
+        <a href="javascript:;" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-palette"></i></span>
+            <span class="menu-text">UI Components</span>
+            <span class="menu-caret"></span>
+        </a>
+        <div class="menu-submenu">
+            <div class="menu-item">
+                <a href="typography.html" class="menu-link">
+                    <span class="menu-text">Typography</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="buttons.html" class="menu-link">
+                    <span class="menu-text">Buttons</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="cards.html" class="menu-link">
+                    <span class="menu-text">Cards</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="alerts.html" class="menu-link">
+                    <span class="menu-text">Alerts</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forms with Submenu -->
+    <div class="menu-item has-sub">
+        <a href="javascript:;" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-ui-checks"></i></span>
+            <span class="menu-text">Forms</span>
+            <span class="menu-caret"></span>
+        </a>
+        <div class="menu-submenu">
+            <div class="menu-item">
+                <a href="form-elements.html" class="menu-link">
+                    <span class="menu-text">Form Elements</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="form-validation.html" class="menu-link">
+                    <span class="menu-text">Validation</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tables -->
+    <div class="menu-item">
+        <a href="tables.html" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-table"></i></span>
+            <span class="menu-text">Tables</span>
+        </a>
+    </div>
+
+    <!-- Charts -->
+    <div class="menu-item">
+        <a href="charts.html" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-bar-chart"></i></span>
+            <span class="menu-text">Charts</span>
+            <span class="menu-badge">New</span>
+        </a>
+    </div>
+
+    <!-- Menu Divider -->
+    <div class="menu-divider"></div>
+
+    <!-- Menu Header -->
+    <div class="menu-header">Pages</div>
+
+    <!-- Pages with Nested Submenu -->
+    <div class="menu-item has-sub">
+        <a href="javascript:;" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-file-earmark"></i></span>
+            <span class="menu-text">Pages</span>
+            <span class="menu-caret"></span>
+        </a>
+        <div class="menu-submenu">
+            <div class="menu-item has-sub">
+                <a href="javascript:;" class="menu-link">
+                    <span class="menu-text">Authentication</span>
+                    <span class="menu-caret"></span>
+                </a>
+                <div class="menu-submenu">
+                    <div class="menu-item">
+                        <a href="login.html" class="menu-link">
+                            <span class="menu-text">Login</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="register.html" class="menu-link">
+                            <span class="menu-text">Register</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <a href="error-404.html" class="menu-link">
+                    <span class="menu-text">Error 404</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="blank.html" class="menu-link">
+                    <span class="menu-text">Blank Page</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Divider -->
+    <div class="menu-divider"></div>
+
+    <!-- Menu Header -->
+    <div class="menu-header">System</div>
+
+    <!-- Settings -->
+    <div class="menu-item">
+        <a href="settings.html" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-gear"></i></span>
+            <span class="menu-text">Settings</span>
+        </a>
+    </div>
+
+    <!-- Help -->
+    <div class="menu-item">
+        <a href="help.html" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-question-circle"></i></span>
+            <span class="menu-text">Help</span>
+        </a>
+    </div>
+
+    <!-- Minify Button -->
+    <div class="menu-item d-flex">
+        <a href="javascript:;" class="sidebar-minify-btn ms-auto" data-toggle="sidebar-minify" aria-label="Sidebar minimieren">
+            <i class="bi bi-chevron-double-left"></i>
+        </a>
+    </div>
+</div>
+
+        </aside>
+
+        <header class="layout-header">
+            <div class="layout-header-inner">
+                <nav class="navbar py-1">
+    <div class="container-fluid px-0">
+        <!-- Mobile Sidebar Toggle -->
+        <button type="button" class="btn btn-link nav-link d-lg-none me-2" data-toggle="sidebar-mobile" aria-label="Menu">
+            <i class="bi bi-list fs-4"></i>
+        </button>
+
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+            <i class="bi bi-bullseye"></i> Taurus
+        </a>
+
+        <!-- Toolbar Icons (immer sichtbar, rechts) -->
+        <ul class="navbar-nav flex-row ms-auto align-items-center gap-1">
+            <li class="nav-item dropdown">
+                <button class="btn btn-link nav-link dropdown-toggle" id="themeToggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Theme umschalten">
+                    <i class="bi bi-sun-fill theme-icon-active"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeToggle">
+                    <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light">
+                            <i class="bi bi-sun-fill me-2"></i> Hell
+                            <i class="bi bi-check2 ms-auto d-none"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark">
+                            <i class="bi bi-moon-stars-fill me-2"></i> Dunkel
+                            <i class="bi bi-check2 ms-auto d-none"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto">
+                            <i class="bi bi-circle-half me-2"></i> System
+                            <i class="bi bi-check2 ms-auto d-none"></i>
+                        </button>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" aria-label="Benachrichtigungen"><i class="bi bi-bell"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" aria-label="Profil"><i class="bi bi-person-circle"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+            </div>
+        </header>
+
+        <main class="layout-main">
+            <h1 class="mb-4">Dashboard</h1>
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar Backdrop -->
+    <div class="sidebar-mobile-backdrop" data-dismiss="sidebar-mobile"></div>
+
+    <!-- Dev Panel -->
+    <!-- Dev Panel Toggle Button -->
+<button class="dev-panel-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#devPanel" aria-controls="devPanel" aria-label="Dev Panel">
+    <i class="bi bi-gear-fill"></i>
+</button>
+
+<!-- Dev Panel Offcanvas -->
+<div class="offcanvas offcanvas-end dev-panel" tabindex="-1" id="devPanel" aria-labelledby="devPanelLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="devPanelLabel">
+            <i class="bi bi-tools me-2"></i>Dev Tools
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <!-- Viewport Info -->
+        <div class="dev-section">
+            <h6 class="dev-section-title">Viewport</h6>
+            <div class="dev-viewport-info">
+                <span class="dev-viewport-size" id="devViewportSize">0 × 0</span>
+                <span class="dev-viewport-breakpoint" id="devViewportBreakpoint">--</span>
+            </div>
+            <div class="dev-breakpoint-bar">
+                <div class="dev-breakpoint-segment" data-bp="xs" title="< 576px">xs</div>
+                <div class="dev-breakpoint-segment" data-bp="sm" title="≥ 576px">sm</div>
+                <div class="dev-breakpoint-segment" data-bp="md" title="≥ 768px">md</div>
+                <div class="dev-breakpoint-segment" data-bp="lg" title="≥ 992px">lg</div>
+                <div class="dev-breakpoint-segment" data-bp="xl" title="≥ 1200px">xl</div>
+                <div class="dev-breakpoint-segment" data-bp="xxl" title="≥ 1400px">xxl</div>
+            </div>
+        </div>
+
+        <!-- Layout Switcher -->
+        <div class="dev-section">
+            <h6 class="dev-section-title">Layout</h6>
+            <div class="dev-layout-grid">
+                <button type="button" class="dev-layout-btn" data-layout="1" title="Sidebar links, Card-Style">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="2" y="2" width="10" height="26" rx="2" class="dev-layout-sidebar"/>
+                        <rect x="14" y="2" width="24" height="8" rx="2" class="dev-layout-header"/>
+                        <rect x="14" y="12" width="24" height="16" rx="2" class="dev-layout-main"/>
+                    </svg>
+                    <span>1</span>
+                </button>
+                <button type="button" class="dev-layout-btn" data-layout="2" title="Header oben, Card-Style">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="2" y="2" width="36" height="6" rx="2" class="dev-layout-header"/>
+                        <rect x="2" y="10" width="10" height="18" rx="2" class="dev-layout-sidebar"/>
+                        <rect x="14" y="10" width="24" height="18" rx="2" class="dev-layout-main"/>
+                    </svg>
+                    <span>2</span>
+                </button>
+                <button type="button" class="dev-layout-btn" data-layout="3" title="Sidebar links, Flush">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="0" y="0" width="12" height="30" class="dev-layout-sidebar"/>
+                        <rect x="12" y="0" width="28" height="8" class="dev-layout-header"/>
+                        <rect x="12" y="8" width="28" height="22" class="dev-layout-main"/>
+                    </svg>
+                    <span>3</span>
+                </button>
+                <button type="button" class="dev-layout-btn" data-layout="4" title="Header oben, Flush">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="0" y="0" width="40" height="6" class="dev-layout-header"/>
+                        <rect x="0" y="6" width="12" height="24" class="dev-layout-sidebar"/>
+                        <rect x="12" y="6" width="28" height="24" class="dev-layout-main"/>
+                    </svg>
+                    <span>4</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Theme Info -->
+        <div class="dev-section">
+            <h6 class="dev-section-title">Theme</h6>
+            <div class="dev-theme-info">
+                <span id="devThemeValue">--</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/app.min.js?v=20210514s"></script>
+</body>
+</html>

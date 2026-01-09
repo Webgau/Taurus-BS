@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taurus Dashboard">
+    <title>{{title}}</title>
+    <link rel="preload" href="assets/img/coverImage.webp" as="image" fetchpriority="high">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/app.min.css?v=2011053s">
+</head>
+<body data-layout="4">
+    <div class="layout-wrapper">
+        <aside class="layout-sidebar">
+            {{sidenav}}
+        </aside>
+
+        <header class="layout-header">
+            <div class="layout-header-inner">
+                {{header}}
+            </div>
+        </header>
+
+        <main class="layout-main">
+            {{content}}
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar Backdrop -->
+    <div class="sidebar-mobile-backdrop" data-dismiss="sidebar-mobile"></div>
+
+    <!-- Dev Panel -->
+    {{devpanel}}
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/app.min.js?v=20210514s"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+/* ==========================================================================
+   DEV PANEL
+   Developer tools panel for layout switching and viewport debugging
+   ========================================================================== */
+
+/* Toggle Button (fixed right edge) */
+.dev-panel-toggle {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1040;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 0.5rem 0 0 0.5rem;
+    background-color: var(--bs-primary);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.2s ease, background-color 0.2s ease;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.dev-panel-toggle:hover {
+    width: 44px;
+    background-color: var(--bs-primary-text-emphasis);
+}
+
+.dev-panel-toggle i {
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.dev-panel-toggle:hover i {
+    transform: rotate(90deg);
+}
+
+/* Panel Offcanvas */
+.dev-panel {
+    --bs-offcanvas-width: 280px;
+}
+
+.dev-panel .offcanvas-header {
+    background-color: var(--bs-tertiary-bg);
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+.dev-panel .offcanvas-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Sections */
+.dev-section {
+    margin-bottom: 1.5rem;
+}
+
+.dev-section-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--bs-secondary-color);
+    margin-bottom: 0.75rem;
+}
+
+/* Viewport Info */
+.dev-viewport-info {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.dev-viewport-size {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--bs-font-monospace);
+    color: var(--bs-emphasis-color);
+}
+
+.dev-viewport-breakpoint {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--bs-primary);
+    color: #fff;
+    text-transform: uppercase;
+}
+
+/* Breakpoint Bar */
+.dev-breakpoint-bar {
+    display: flex;
+    gap: 2px;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.dev-breakpoint-segment {
+    flex: 1;
+    padding: 0.35rem 0;
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: var(--bs-tertiary-bg);
+    color: var(--bs-secondary-color);
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dev-breakpoint-segment.active {
+    background-color: var(--bs-primary);
+    color: #fff;
+}
+
+/* Layout Grid */
+.dev-layout-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.dev-layout-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.75rem 0.5rem;
+    border: 2px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.dev-layout-btn:hover {
+    border-color: var(--bs-primary);
+    background-color: var(--bs-tertiary-bg);
+}
+
+.dev-layout-btn.active {
+    border-color: var(--bs-primary);
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.dev-layout-btn span {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Layout Icons (SVG) */
+.dev-layout-icon {
+    width: 48px;
+    height: 36px;
+}
+
+.dev-layout-sidebar {
+    fill: var(--bs-secondary-bg);
+    stroke: var(--bs-border-color);
+    stroke-width: 0.5;
+}
+
+.dev-layout-header {
+    fill: var(--bs-tertiary-bg);
+    stroke: var(--bs-border-color);
+    stroke-width: 0.5;
+}
+
+.dev-layout-main {
+    fill: var(--bs-body-bg);
+    stroke: var(--bs-border-color);
+    stroke-width: 0.5;
+}
+
+.dev-layout-btn.active .dev-layout-sidebar,
+.dev-layout-btn.active .dev-layout-header,
+.dev-layout-btn.active .dev-layout-main {
+    stroke: var(--bs-primary);
+    stroke-width: 1;
+}
+
+/* Theme Info */
+.dev-theme-info {
+    font-family: var(--bs-font-monospace);
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--bs-tertiary-bg);
+    border-radius: 0.375rem;
+}

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taurus Dashboard">
+    <title>Typografie - Taurus</title>
+    <link rel="preload" href="assets/img/coverImage.webp" as="image" fetchpriority="high">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/app.min.css?v=2011053s">
+</head>
+<body data-layout="4">
+    <div class="layout-wrapper">
+        <aside class="layout-sidebar">
+            <!-- Cover Header -->
+<div class="sidebar-cover position-relative" style="background: url('assets/img/coverImage.webp') center/cover no-repeat, #2a3f5f;">
+    <div class="p-3" role="button" data-bs-toggle="collapse" data-bs-target="#quickMenu" aria-expanded="false" aria-controls="quickMenu" style="cursor: pointer;">
+        <!-- Avatar -->
+        <img src="assets/img/avatar.webp" alt="Avatar" class="rounded-circle border border-2 border-light mb-2" width="56" height="56" style="object-fit: cover;">
+        <!-- Name & Role + Chevron -->
+        <div class="d-flex align-items-center text-white">
+            <div class="flex-grow-1">
+                <div class="fw-semibold">Mirko Schwarz</div>
+                <small>Administrator</small>
+            </div>
+            <!-- Chevron Icon -->
+            <svg class="quick-menu-chevron" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        </div>
+    </div>
+    <!-- Quick Menu (Collapse) -->
+    <div class="collapse" id="quickMenu">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-arrow-repeat me-2"></i> Updates
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-ticket me-2"></i> Ticketsystem
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="bi bi-question-circle me-2"></i> FAQ / Hilfe
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Navigation Menu -->
+<div class="menu">
+    <!-- Menu Header -->
+    <div class="menu-header">Navigation</div>
+
+    <!-- Dashboard -->
+    <div class="menu-item">
+        <a href="index.html" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-speedometer2"></i></span>
+            <span class="menu-text">Dashboard</span>
+        </a>
+    </div>
+
+    <!-- UI Components with Submenu -->
+    <div class="menu-item has-sub">
+        <a href="javascript:;" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-palette"></i></span>
+            <span class="menu-text">UI Components</span>
+            <span class="menu-caret"></span>
+        </a>
+        <div class="menu-submenu">
+            <div class="menu-item">
+                <a href="typography.html" class="menu-link">
+                    <span class="menu-text">Typography</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="buttons.html" class="menu-link">
+                    <span class="menu-text">Buttons</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="cards.html" class="menu-link">
+                    <span class="menu-text">Cards</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="alerts.html" class="menu-link">
+                    <span class="menu-text">Alerts</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forms with Submenu -->
+    <div class="menu-item has-sub">
+        <a href="javascript:;" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-ui-checks"></i></span>
+            <span class="menu-text">Forms</span>
+            <span class="menu-caret"></span>
+        </a>
+        <div class="menu-submenu">
+            <div class="menu-item">
+                <a href="form-elements.html" class="menu-link">
+                    <span class="menu-text">Form Elements</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="form-validation.html" class="menu-link">
+                    <span class="menu-text">Validation</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tables -->
+    <div class="menu-item">
+        <a href="tables.html" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-table"></i></span>
+            <span class="menu-text">Tables</span>
+        </a>
+    </div>
+
+    <!-- Charts -->
+    <div class="menu-item">
+        <a href="charts.html" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-bar-chart"></i></span>
+            <span class="menu-text">Charts</span>
+            <span class="menu-badge">New</span>
+        </a>
+    </div>
+
+    <!-- Menu Divider -->
+    <div class="menu-divider"></div>
+
+    <!-- Menu Header -->
+    <div class="menu-header">Pages</div>
+
+    <!-- Pages with Nested Submenu -->
+    <div class="menu-item has-sub">
+        <a href="javascript:;" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-file-earmark"></i></span>
+            <span class="menu-text">Pages</span>
+            <span class="menu-caret"></span>
+        </a>
+        <div class="menu-submenu">
+            <div class="menu-item has-sub">
+                <a href="javascript:;" class="menu-link">
+                    <span class="menu-text">Authentication</span>
+                    <span class="menu-caret"></span>
+                </a>
+                <div class="menu-submenu">
+                    <div class="menu-item">
+                        <a href="login.html" class="menu-link">
+                            <span class="menu-text">Login</span>
+                        </a>
+                    </div>
+                    <div class="menu-item">
+                        <a href="register.html" class="menu-link">
+                            <span class="menu-text">Register</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <a href="error-404.html" class="menu-link">
+                    <span class="menu-text">Error 404</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="blank.html" class="menu-link">
+                    <span class="menu-text">Blank Page</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Divider -->
+    <div class="menu-divider"></div>
+
+    <!-- Menu Header -->
+    <div class="menu-header">System</div>
+
+    <!-- Settings -->
+    <div class="menu-item">
+        <a href="settings.html" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-gear"></i></span>
+            <span class="menu-text">Settings</span>
+        </a>
+    </div>
+
+    <!-- Help -->
+    <div class="menu-item">
+        <a href="help.html" class="menu-link">
+            <span class="menu-icon"><i class="bi bi-question-circle"></i></span>
+            <span class="menu-text">Help</span>
+        </a>
+    </div>
+
+    <!-- Minify Button -->
+    <div class="menu-item d-flex">
+        <a href="javascript:;" class="sidebar-minify-btn ms-auto" data-toggle="sidebar-minify" aria-label="Sidebar minimieren">
+            <i class="bi bi-chevron-double-left"></i>
+        </a>
+    </div>
+</div>
+
+        </aside>
+
+        <header class="layout-header">
+            <div class="layout-header-inner">
+                <nav class="navbar py-1">
+    <div class="container-fluid px-0">
+        <!-- Mobile Sidebar Toggle -->
+        <button type="button" class="btn btn-link nav-link d-lg-none me-2" data-toggle="sidebar-mobile" aria-label="Menu">
+            <i class="bi bi-list fs-4"></i>
+        </button>
+
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+            <i class="bi bi-bullseye"></i> Taurus
+        </a>
+
+        <!-- Toolbar Icons (immer sichtbar, rechts) -->
+        <ul class="navbar-nav flex-row ms-auto align-items-center gap-1">
+            <li class="nav-item dropdown">
+                <button class="btn btn-link nav-link dropdown-toggle" id="themeToggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Theme umschalten">
+                    <i class="bi bi-sun-fill theme-icon-active"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeToggle">
+                    <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light">
+                            <i class="bi bi-sun-fill me-2"></i> Hell
+                            <i class="bi bi-check2 ms-auto d-none"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark">
+                            <i class="bi bi-moon-stars-fill me-2"></i> Dunkel
+                            <i class="bi bi-check2 ms-auto d-none"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto">
+                            <i class="bi bi-circle-half me-2"></i> System
+                            <i class="bi bi-check2 ms-auto d-none"></i>
+                        </button>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" aria-label="Benachrichtigungen"><i class="bi bi-bell"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" aria-label="Profil"><i class="bi bi-person-circle"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+            </div>
+        </header>
+
+        <main class="layout-main">
+            <h1 class="mb-4">Typografie</h1>
+
+<!-- Headings -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Headings</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Standard Headings</div>
+                <div class="card-body">
+                    <h1>h1. Heading</h1>
+                    <h2>h2. Heading</h2>
+                    <h3>h3. Heading</h3>
+                    <h4>h4. Heading</h4>
+                    <h5>h5. Heading</h5>
+                    <h6>h6. Heading</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Heading Classes (.h1-.h6)</div>
+                <div class="card-body">
+                    <p class="h1">h1. Heading</p>
+                    <p class="h2">h2. Heading</p>
+                    <p class="h3">h3. Heading</p>
+                    <p class="h4">h4. Heading</p>
+                    <p class="h5">h5. Heading</p>
+                    <p class="h6">h6. Heading</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Display Headings -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Display Headings</h2>
+    <div class="card">
+        <div class="card-body">
+            <h1 class="display-1">Display 1</h1>
+            <h1 class="display-2">Display 2</h1>
+            <h1 class="display-3">Display 3</h1>
+            <h1 class="display-4">Display 4</h1>
+            <h1 class="display-5">Display 5</h1>
+            <h1 class="display-6">Display 6</h1>
+        </div>
+    </div>
+</section>
+
+<!-- Lead & Paragraphs -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Lead & Paragraphs</h2>
+    <div class="card">
+        <div class="card-body">
+            <p class="lead">Dies ist ein Lead-Paragraph. Er hebt sich durch eine etwas groessere Schriftgroesse und leichteres Gewicht vom normalen Text ab.</p>
+            <p>Dies ist ein normaler Paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p class="small">Dies ist ein kleiner Paragraph mit der .small Klasse.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Inline Text Elements -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Inline Text Elements</h2>
+    <div class="card">
+        <div class="card-body">
+            <p><mark>Hervorgehobener Text</mark> mit &lt;mark&gt;</p>
+            <p><del>Geloeschter Text</del> mit &lt;del&gt;</p>
+            <p><s>Durchgestrichener Text</s> mit &lt;s&gt;</p>
+            <p><ins>Eingefuegter Text</ins> mit &lt;ins&gt;</p>
+            <p><u>Unterstrichener Text</u> mit &lt;u&gt;</p>
+            <p><small>Kleiner Text</small> mit &lt;small&gt;</p>
+            <p><strong>Fetter Text</strong> mit &lt;strong&gt;</p>
+            <p><em>Kursiver Text</em> mit &lt;em&gt;</p>
+            <p><abbr title="Abkuerzung">Abbr</abbr> mit &lt;abbr&gt;</p>
+        </div>
+    </div>
+</section>
+
+<!-- Code Elements -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Code Elements</h2>
+    <div class="card">
+        <div class="card-body">
+            <p>Inline <code>&lt;code&gt;</code> Element</p>
+            <p>Tastatureingabe: <kbd>Ctrl</kbd> + <kbd>S</kbd></p>
+            <p>Variable: <var>x</var> = <var>y</var> + <var>z</var></p>
+            <p>Sample Output: <samp>Hello World</samp></p>
+            <pre><code>&lt;p&gt;Preformatted Code Block&lt;/p&gt;
+&lt;div class="example"&gt;
+    Content here
+&lt;/div&gt;</code></pre>
+        </div>
+    </div>
+</section>
+
+<!-- Blockquotes -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Blockquotes</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Standard Blockquote</div>
+                <div class="card-body">
+                    <blockquote class="blockquote">
+                        <p>Ein bekanntes Zitat, das in einem Blockquote-Element enthalten ist.</p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Mit Quellenangabe</div>
+                <div class="card-body">
+                    <figure>
+                        <blockquote class="blockquote">
+                            <p>Ein bekanntes Zitat, das in einem Blockquote-Element enthalten ist.</p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer">
+                            Jemand Bekanntes in <cite title="Quelltitel">Quelltitel</cite>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lists -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Listen</h2>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card mb-4">
+                <div class="card-header">Unordered</div>
+                <div class="card-body">
+                    <ul>
+                        <li>Element eins</li>
+                        <li>Element zwei</li>
+                        <li>Element drei
+                            <ul>
+                                <li>Unterelement</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card mb-4">
+                <div class="card-header">Ordered</div>
+                <div class="card-body">
+                    <ol>
+                        <li>Erstes Element</li>
+                        <li>Zweites Element</li>
+                        <li>Drittes Element</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card mb-4">
+                <div class="card-header">Unstyled</div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li>Element eins</li>
+                        <li>Element zwei</li>
+                        <li>Element drei</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card mb-4">
+                <div class="card-header">Inline</div>
+                <div class="card-body">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">Eins</li>
+                        <li class="list-inline-item">Zwei</li>
+                        <li class="list-inline-item">Drei</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Font Sizes -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Font Sizes</h2>
+    <div class="card">
+        <div class="card-body">
+            <p class="fs-1">.fs-1 Text</p>
+            <p class="fs-2">.fs-2 Text</p>
+            <p class="fs-3">.fs-3 Text</p>
+            <p class="fs-4">.fs-4 Text</p>
+            <p class="fs-5">.fs-5 Text</p>
+            <p class="fs-6">.fs-6 Text</p>
+        </div>
+    </div>
+</section>
+
+<!-- Font Weight & Style -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Font Weight & Style</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Font Weight</div>
+                <div class="card-body">
+                    <p class="fw-lighter">.fw-lighter</p>
+                    <p class="fw-light">.fw-light</p>
+                    <p class="fw-normal">.fw-normal</p>
+                    <p class="fw-medium">.fw-medium</p>
+                    <p class="fw-semibold">.fw-semibold</p>
+                    <p class="fw-bold">.fw-bold</p>
+                    <p class="fw-bolder">.fw-bolder</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Font Style</div>
+                <div class="card-body">
+                    <p class="fst-italic">.fst-italic</p>
+                    <p class="fst-normal">.fst-normal</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Line Height -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Line Height</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p class="lh-1 mb-4">.lh-1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+                    <p class="lh-sm mb-4">.lh-sm - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+                    <p class="lh-base mb-4">.lh-base - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+                    <p class="lh-lg">.lh-lg - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Text Alignment -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Text Alignment</h2>
+    <div class="card">
+        <div class="card-body">
+            <p class="text-start">.text-start - Linksbuendig</p>
+            <p class="text-center">.text-center - Zentriert</p>
+            <p class="text-end">.text-end - Rechtsbuendig</p>
+        </div>
+    </div>
+</section>
+
+<!-- Text Transform -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Text Transform</h2>
+    <div class="card">
+        <div class="card-body">
+            <p class="text-lowercase">.text-lowercase - KLEINBUCHSTABEN</p>
+            <p class="text-uppercase">.text-uppercase - grossbuchstaben</p>
+            <p class="text-capitalize">.text-capitalize - erster buchstabe gross</p>
+        </div>
+    </div>
+</section>
+
+<!-- Text Decoration -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Text Decoration</h2>
+    <div class="card">
+        <div class="card-body">
+            <p class="text-decoration-underline">.text-decoration-underline</p>
+            <p class="text-decoration-line-through">.text-decoration-line-through</p>
+            <p><a href="#" class="text-decoration-none">.text-decoration-none (Link)</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- Text Colors -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Text Colors</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Body Colors</div>
+                <div class="card-body">
+                    <p class="text-body">.text-body</p>
+                    <p class="text-body-secondary">.text-body-secondary</p>
+                    <p class="text-body-tertiary">.text-body-tertiary</p>
+                    <p class="text-body-emphasis">.text-body-emphasis</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Theme Colors</div>
+                <div class="card-body">
+                    <p class="text-primary">.text-primary</p>
+                    <p class="text-secondary">.text-secondary</p>
+                    <p class="text-success">.text-success</p>
+                    <p class="text-danger">.text-danger</p>
+                    <p class="text-warning bg-dark">.text-warning</p>
+                    <p class="text-info bg-dark">.text-info</p>
+                    <p class="text-light bg-dark">.text-light</p>
+                    <p class="text-dark">.text-dark</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Emphasis Colors (High Contrast)</div>
+                <div class="card-body">
+                    <p class="text-primary-emphasis">.text-primary-emphasis</p>
+                    <p class="text-secondary-emphasis">.text-secondary-emphasis</p>
+                    <p class="text-success-emphasis">.text-success-emphasis</p>
+                    <p class="text-danger-emphasis">.text-danger-emphasis</p>
+                    <p class="text-warning-emphasis">.text-warning-emphasis</p>
+                    <p class="text-info-emphasis">.text-info-emphasis</p>
+                    <p class="text-light-emphasis">.text-light-emphasis</p>
+                    <p class="text-dark-emphasis">.text-dark-emphasis</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Special</div>
+                <div class="card-body">
+                    <p class="text-black">.text-black</p>
+                    <p class="text-white bg-dark">.text-white</p>
+                    <p class="text-black-50">.text-black-50</p>
+                    <p class="text-white-50 bg-dark">.text-white-50</p>
+                    <p class="text-muted">.text-muted (deprecated)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Text Opacity -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Text Opacity</h2>
+    <div class="card">
+        <div class="card-body">
+            <p class="text-primary">.text-primary (100%)</p>
+            <p class="text-primary text-opacity-75">.text-primary .text-opacity-75</p>
+            <p class="text-primary text-opacity-50">.text-primary .text-opacity-50</p>
+            <p class="text-primary text-opacity-25">.text-primary .text-opacity-25</p>
+        </div>
+    </div>
+</section>
+
+<!-- Word Break & Wrap -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Word Break & Wrap</h2>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">.text-break</div>
+                <div class="card-body">
+                    <p class="text-break">mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">.text-nowrap</div>
+                <div class="card-body" style="overflow: hidden;">
+                    <p class="text-nowrap">Dieser Text wird nicht umgebrochen.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Truncation -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Text Truncation</h2>
+    <div class="card">
+        <div class="card-body">
+            <div class="text-truncate" style="max-width: 300px;">
+                .text-truncate - Dieser lange Text wird abgeschnitten und mit Punkten versehen
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Description Lists -->
+<section class="mb-5">
+    <h2 class="border-bottom pb-2 mb-4">Description Lists</h2>
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Begriff</dt>
+                <dd class="col-sm-9">Definition des Begriffs.</dd>
+                <dt class="col-sm-3">Langer Begriff</dt>
+                <dd class="col-sm-9">
+                    <p>Dies ist eine laengere Definition.</p>
+                    <p>Mit mehreren Absaetzen.</p>
+                </dd>
+                <dt class="col-sm-3 text-truncate">Sehr langer Begriff der abgeschnitten wird</dt>
+                <dd class="col-sm-9">Mit Truncation.</dd>
+            </dl>
+        </div>
+    </div>
+</section>
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar Backdrop -->
+    <div class="sidebar-mobile-backdrop" data-dismiss="sidebar-mobile"></div>
+
+    <!-- Dev Panel -->
+    <!-- Dev Panel Toggle Button -->
+<button class="dev-panel-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#devPanel" aria-controls="devPanel" aria-label="Dev Panel">
+    <i class="bi bi-gear-fill"></i>
+</button>
+
+<!-- Dev Panel Offcanvas -->
+<div class="offcanvas offcanvas-end dev-panel" tabindex="-1" id="devPanel" aria-labelledby="devPanelLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="devPanelLabel">
+            <i class="bi bi-tools me-2"></i>Dev Tools
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <!-- Viewport Info -->
+        <div class="dev-section">
+            <h6 class="dev-section-title">Viewport</h6>
+            <div class="dev-viewport-info">
+                <span class="dev-viewport-size" id="devViewportSize">0 × 0</span>
+                <span class="dev-viewport-breakpoint" id="devViewportBreakpoint">--</span>
+            </div>
+            <div class="dev-breakpoint-bar">
+                <div class="dev-breakpoint-segment" data-bp="xs" title="< 576px">xs</div>
+                <div class="dev-breakpoint-segment" data-bp="sm" title="≥ 576px">sm</div>
+                <div class="dev-breakpoint-segment" data-bp="md" title="≥ 768px">md</div>
+                <div class="dev-breakpoint-segment" data-bp="lg" title="≥ 992px">lg</div>
+                <div class="dev-breakpoint-segment" data-bp="xl" title="≥ 1200px">xl</div>
+                <div class="dev-breakpoint-segment" data-bp="xxl" title="≥ 1400px">xxl</div>
+            </div>
+        </div>
+
+        <!-- Layout Switcher -->
+        <div class="dev-section">
+            <h6 class="dev-section-title">Layout</h6>
+            <div class="dev-layout-grid">
+                <button type="button" class="dev-layout-btn" data-layout="1" title="Sidebar links, Card-Style">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="2" y="2" width="10" height="26" rx="2" class="dev-layout-sidebar"/>
+                        <rect x="14" y="2" width="24" height="8" rx="2" class="dev-layout-header"/>
+                        <rect x="14" y="12" width="24" height="16" rx="2" class="dev-layout-main"/>
+                    </svg>
+                    <span>1</span>
+                </button>
+                <button type="button" class="dev-layout-btn" data-layout="2" title="Header oben, Card-Style">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="2" y="2" width="36" height="6" rx="2" class="dev-layout-header"/>
+                        <rect x="2" y="10" width="10" height="18" rx="2" class="dev-layout-sidebar"/>
+                        <rect x="14" y="10" width="24" height="18" rx="2" class="dev-layout-main"/>
+                    </svg>
+                    <span>2</span>
+                </button>
+                <button type="button" class="dev-layout-btn" data-layout="3" title="Sidebar links, Flush">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="0" y="0" width="12" height="30" class="dev-layout-sidebar"/>
+                        <rect x="12" y="0" width="28" height="8" class="dev-layout-header"/>
+                        <rect x="12" y="8" width="28" height="22" class="dev-layout-main"/>
+                    </svg>
+                    <span>3</span>
+                </button>
+                <button type="button" class="dev-layout-btn" data-layout="4" title="Header oben, Flush">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                        <rect x="0" y="0" width="40" height="6" class="dev-layout-header"/>
+                        <rect x="0" y="6" width="12" height="24" class="dev-layout-sidebar"/>
+                        <rect x="12" y="6" width="28" height="24" class="dev-layout-main"/>
+                    </svg>
+                    <span>4</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Theme Info -->
+        <div class="dev-section">
+            <h6 class="dev-section-title">Theme</h6>
+            <div class="dev-theme-info">
+                <span id="devThemeValue">--</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/app.min.js?v=20210514s"></script>
+</body>
+</html>

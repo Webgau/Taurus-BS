@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Claude Code local settings
+.claude/
+.mcp.json
+
+# Playwright MCP screenshots
+.playwright-mcp/
+
+# Source maps (optional - uncomment to exclude)
+# *.map
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

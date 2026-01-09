@@ -1,0 +1,95 @@
+/* ==========================================================================
+   SIDEBAR COVER
+   ========================================================================== */
+.sidebar-cover {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 var(--layout-radius) var(--layout-radius);
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar-cover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.85));
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.sidebar-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    background-color: transparent;
+    transition: transform 0.4s ease;
+    z-index: 0;
+    border-radius: inherit;
+}
+
+.sidebar-cover:hover::before {
+    opacity: 0.7;
+}
+
+.sidebar-cover:hover::after {
+    transform: scale(1.05);
+}
+
+.sidebar-cover > * {
+    position: relative;
+    z-index: 2;
+}
+
+.sidebar-cover .collapse,
+.sidebar-cover .collapsing {
+    margin: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.sidebar-cover .collapse > .nav,
+.sidebar-cover .collapsing > .nav {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: var(--layout-radius);
+    padding: 0.5rem;
+}
+
+/* Quick Menu Links */
+.sidebar-cover .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.sidebar-cover .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.sidebar-cover .nav-link i {
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.sidebar-cover .nav-link:hover i {
+    opacity: 1;
+}
+
+/* Quick Menu Chevron */
+.quick-menu-chevron {
+    transition: transform 0.3s ease;
+}
+
+[aria-expanded="true"] .quick-menu-chevron {
+    transform: rotate(0deg);
+}
+
+[aria-expanded="false"] .quick-menu-chevron {
+    transform: rotate(-90deg);
+}
+
