@@ -314,7 +314,13 @@
 }
 
 .layout-sidebar .menu .menu-item .menu-submenu .menu-item.active::after {
-    border-color: var(--bs-primary);
+    background: var(--sidenav-menu-active-color);
+    border-color: var(--sidenav-menu-grid-border-color);
+}
+
+/* Hover state for bullet point marker */
+.layout-sidebar .menu .menu-item .menu-submenu .menu-item:hover::after {
+    border-color: var(--sidenav-menu-submenu-link-hover-color);
 }
 
 /* Nested Submenu (3rd level) */
