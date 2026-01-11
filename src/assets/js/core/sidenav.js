@@ -1,6 +1,7 @@
 /**
  * Sidenav Menu Module
- * Handles submenu toggle, mobile sidebar, minify mode, and scroll memory
+ * Handles submenu toggle, mobile sidebar, minify mode, scroll memory,
+ * and accessibility features (focus trap, keyboard navigation)
  */
 
 'use strict';
@@ -17,6 +18,9 @@ const config = {
 const selectors = {
     app: 'body',
     sidebar: '.layout-sidebar',
+    sidebarId: '#sidebar',
+    layoutHeader: '.layout-header',
+    layoutMain: '.layout-main',
     menu: '.menu',
     menuItem: '.menu-item',
     menuLink: '.menu-link',
@@ -24,7 +28,8 @@ const selectors = {
     mobileToggle: '[data-toggle="sidebar-mobile"]',
     mobileDismiss: '[data-dismiss="sidebar-mobile"]',
     mobileBackdrop: '.sidebar-mobile-backdrop',
-    minifyToggle: '[data-toggle="sidebar-minify"]'
+    minifyToggle: '[data-toggle="sidebar-minify"]',
+    focusableElements: 'a[href]:not([tabindex="-1"]), button:not([disabled]):not([tabindex="-1"]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
 };
 
 // CSS Classes
@@ -38,6 +43,10 @@ const classes = {
     mobileClosed: 'app-sidebar-mobile-closed',
     hide: 'd-none'
 };
+
+// State
+let focusTrapActive = false;
+let lastFocusedElement = null;
 
 /**
  * Slide Up Animation
@@ -122,6 +131,165 @@ const slideToggle = (element, duration = config.animationTime) => {
 };
 
 /**
+ * Get all focusable elements within sidebar
+ */
+const getFocusableElements = () => {
+    const sidebar = document.querySelector(selectors.sidebar);
+    if (!sidebar) return [];
+    return [...sidebar.querySelectorAll(selectors.focusableElements)];
+};
+
+/**
+ * Focus Trap - keeps focus within sidebar when open on mobile
+ */
+const trapFocus = (e) => {
+    if (!focusTrapActive) return;
+
+    const focusable = getFocusableElements();
+    if (focusable.length === 0) return;
+
+    const firstElement = focusable[0];
+    const lastElement = focusable[focusable.length - 1];
+
+    if (e.key === 'Tab') {
+        if (e.shiftKey) {
+            // Shift + Tab: if on first element, wrap to last
+            if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            }
+        } else {
+            // Tab: if on last element, wrap to first
+            if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
+    }
+};
+
+/**
+ * Handle Escape key to close mobile sidebar
+ */
+const handleEscapeKey = (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains(classes.mobileToggled)) {
+        closeMobileSidebar();
+    }
+};
+
+/**
+ * Open Mobile Sidebar with accessibility
+ */
+const openMobileSidebar = () => {
+    const sidebar = document.querySelector(selectors.sidebar);
+    const layoutHeader = document.querySelector(selectors.layoutHeader);
+    const layoutMain = document.querySelector(selectors.layoutMain);
+    const backdrop = document.querySelector(selectors.mobileBackdrop);
+    const toggleButtons = document.querySelectorAll(selectors.mobileToggle);
+
+    // Store last focused element for restoration
+    lastFocusedElement = document.activeElement;
+
+    // Add body classes
+    document.body.classList.add(classes.mobileToggled);
+    document.body.classList.remove(classes.mobileClosed);
+
+    // Set ARIA attributes on sidebar
+    if (sidebar) {
+        sidebar.setAttribute('aria-hidden', 'false');
+    }
+
+    // Update toggle button aria-expanded
+    toggleButtons.forEach(btn => btn.setAttribute('aria-expanded', 'true'));
+
+    // Set inert on background content
+    if (layoutHeader) {
+        layoutHeader.setAttribute('inert', '');
+        layoutHeader.setAttribute('aria-hidden', 'true');
+    }
+    if (layoutMain) {
+        layoutMain.setAttribute('inert', '');
+        layoutMain.setAttribute('aria-hidden', 'true');
+    }
+
+    // Show backdrop
+    if (backdrop) {
+        backdrop.setAttribute('aria-hidden', 'false');
+    }
+
+    // Activate focus trap and escape handler
+    focusTrapActive = true;
+    document.addEventListener('keydown', trapFocus);
+    document.addEventListener('keydown', handleEscapeKey);
+
+    // Focus first focusable element in sidebar after animation
+    requestAnimationFrame(() => {
+        const focusable = getFocusableElements();
+        if (focusable.length > 0) {
+            focusable[0].focus();
+        }
+    });
+};
+
+/**
+ * Close Mobile Sidebar with accessibility cleanup
+ */
+const closeMobileSidebar = () => {
+    const sidebar = document.querySelector(selectors.sidebar);
+    const layoutHeader = document.querySelector(selectors.layoutHeader);
+    const layoutMain = document.querySelector(selectors.layoutMain);
+    const backdrop = document.querySelector(selectors.mobileBackdrop);
+    const toggleButtons = document.querySelectorAll(selectors.mobileToggle);
+
+    // Remove body classes
+    document.body.classList.remove(classes.mobileToggled);
+    document.body.classList.add(classes.mobileClosed);
+
+    // Reset ARIA attributes on sidebar
+    if (sidebar) {
+        sidebar.setAttribute('aria-hidden', 'true');
+    }
+
+    // Update toggle button aria-expanded
+    toggleButtons.forEach(btn => btn.setAttribute('aria-expanded', 'false'));
+
+    // Remove inert from background content
+    if (layoutHeader) {
+        layoutHeader.removeAttribute('inert');
+        layoutHeader.removeAttribute('aria-hidden');
+    }
+    if (layoutMain) {
+        layoutMain.removeAttribute('inert');
+        layoutMain.removeAttribute('aria-hidden');
+    }
+
+    // Hide backdrop
+    if (backdrop) {
+        backdrop.setAttribute('aria-hidden', 'true');
+    }
+
+    // Deactivate focus trap and escape handler
+    focusTrapActive = false;
+    document.removeEventListener('keydown', trapFocus);
+    document.removeEventListener('keydown', handleEscapeKey);
+
+    // Restore focus to trigger element
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        lastFocusedElement.focus();
+    }
+};
+
+/**
+ * Update ARIA attributes on submenu toggle
+ */
+const updateSubmenuAria = (menuItem, isExpanded) => {
+    const link = menuItem.querySelector(':scope > .menu-link');
+    if (link) {
+        link.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+    }
+};
+
+/**
  * Handle Sidebar Menu Toggle
  */
 const handleMenuToggle = (links, duration) => {
@@ -141,20 +309,25 @@ const handleMenuToggle = (links, duration) => {
                     if (otherItem) {
                         otherItem.classList.remove(classes.expand);
                         otherItem.classList.add(classes.closed);
+                        updateSubmenuAria(otherItem, false);
                     }
                 }
             });
 
             // Toggle current submenu
             const menuItem = submenu.closest(selectors.menuItem);
-            if (menuItem.classList.contains(classes.expand) ||
-                (menuItem.classList.contains(classes.active) && !submenu.style.display)) {
+            const isCurrentlyExpanded = menuItem.classList.contains(classes.expand) ||
+                (menuItem.classList.contains(classes.active) && !submenu.style.display);
+
+            if (isCurrentlyExpanded) {
                 menuItem.classList.remove(classes.expand);
                 menuItem.classList.add(classes.closed);
+                updateSubmenuAria(menuItem, false);
                 slideToggle(submenu, duration);
             } else {
                 menuItem.classList.add(classes.expand);
                 menuItem.classList.remove(classes.closed);
+                updateSubmenuAria(menuItem, true);
                 slideToggle(submenu, duration);
             }
         });
@@ -191,27 +364,24 @@ const initMobileSidebarToggle = () => {
     document.querySelectorAll(selectors.mobileToggle).forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            document.body.classList.add(classes.mobileToggled);
-            document.body.classList.remove(classes.mobileClosed);
+            openMobileSidebar();
         });
     });
 
-    // Close sidebar
+    // Close sidebar (dismiss buttons)
     document.querySelectorAll(selectors.mobileDismiss).forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            document.body.classList.remove(classes.mobileToggled);
-            document.body.classList.add(classes.mobileClosed);
+            closeMobileSidebar();
         });
     });
 
-    // Also close on backdrop click
+    // Close on backdrop click
     const backdrop = document.querySelector(selectors.mobileBackdrop);
     if (backdrop) {
         backdrop.addEventListener('click', (e) => {
             e.preventDefault();
-            document.body.classList.remove(classes.mobileToggled);
-            document.body.classList.add(classes.mobileClosed);
+            closeMobileSidebar();
         });
     }
 
@@ -222,6 +392,18 @@ const initMobileSidebarToggle = () => {
             document.body.classList.remove(classes.mobileClosed);
         });
     }
+
+    // Handle resize: close sidebar if resizing to desktop
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (window.innerWidth >= config.mobileBreakpoint &&
+                document.body.classList.contains(classes.mobileToggled)) {
+                closeMobileSidebar();
+            }
+        }, 100);
+    });
 };
 
 /**
@@ -235,8 +417,10 @@ const initSidebarMinify = () => {
 
             if (document.body.classList.contains(classes.minified)) {
                 document.body.classList.remove(classes.minified);
+                button.setAttribute('aria-pressed', 'false');
             } else {
                 document.body.classList.add(classes.minified);
+                button.setAttribute('aria-pressed', 'true');
                 isMinified = true;
             }
 
@@ -250,8 +434,12 @@ const initSidebarMinify = () => {
 
     // Restore minified state from localStorage
     try {
-        if (localStorage.getItem(config.minifyStorageKey) === 'true') {
+        const isMinified = localStorage.getItem(config.minifyStorageKey) === 'true';
+        if (isMinified) {
             document.body.classList.add(classes.minified);
+            document.querySelectorAll(selectors.minifyToggle).forEach(btn => {
+                btn.setAttribute('aria-pressed', 'true');
+            });
         }
     } catch (err) {
         // LocalStorage not available
@@ -280,13 +468,14 @@ const setActiveMenuItem = () => {
             if (menuItem) {
                 menuItem.classList.add(classes.active);
 
-                // Open parent submenus
+                // Open parent submenus and update ARIA
                 let parent = menuItem.parentElement;
                 while (parent) {
                     if (parent.classList && parent.classList.contains('menu-submenu')) {
                         const parentMenuItem = parent.closest(selectors.menuItem);
                         if (parentMenuItem && parentMenuItem.classList.contains(classes.hasSub)) {
                             parentMenuItem.classList.add(classes.active);
+                            updateSubmenuAria(parentMenuItem, true);
                             // Show the submenu
                             parent.style.display = 'block';
                         }
@@ -308,9 +497,13 @@ const initScrollMemory = () => {
     if (!sidebar) return;
 
     try {
-        // Save scroll position
+        // Save scroll position (debounced)
+        let scrollTimeout;
         sidebar.addEventListener('scroll', () => {
-            localStorage.setItem(config.scrollMemoryKey, sidebar.scrollTop);
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                localStorage.setItem(config.scrollMemoryKey, sidebar.scrollTop);
+            }, 100);
         });
 
         // Restore scroll position
@@ -324,6 +517,18 @@ const initScrollMemory = () => {
 };
 
 /**
+ * Set initial ARIA state for mobile
+ */
+const initMobileAriaState = () => {
+    if (window.innerWidth < config.mobileBreakpoint) {
+        const sidebar = document.querySelector(selectors.sidebar);
+        if (sidebar) {
+            sidebar.setAttribute('aria-hidden', 'true');
+        }
+    }
+};
+
+/**
  * Initialize all sidenav functionality
  */
 export const init = () => {
@@ -333,6 +538,7 @@ export const init = () => {
         initMobileSidebarToggle();
         initSidebarMinify();
         initScrollMemory();
+        initMobileAriaState();
     };
 
     if (document.readyState === 'loading') {

@@ -53,6 +53,8 @@ body {
     width: var(--layout-sidebar-width);
     background-color: var(--bs-tertiary-bg);
     overflow-y: auto;
+    /* Smooth transition for minify toggle (desktop only) */
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .layout-header {
@@ -87,6 +89,8 @@ body {
     grid-area: main;
     padding: 1.5rem;
     overflow-y: auto;
+    /* Smooth transition for minify toggle (desktop only) */
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ==========================================================================
@@ -113,7 +117,7 @@ body {
 
 [data-layout="1"] .layout-sidebar {
     border-radius: var(--layout-radius);
-    box-shadow: var(--bs-box-shadow-sm);
+    box-shadow: var(--bs-box-shadow-lg);
     height: calc(100vh - 2 * var(--layout-spacing));
     position: sticky;
     top: var(--layout-spacing);
@@ -156,7 +160,7 @@ body {
 
 [data-layout="2"] .layout-sidebar {
     border-radius: var(--layout-radius);
-    box-shadow: var(--bs-box-shadow-sm);
+    box-shadow: var(--bs-box-shadow-lg);
     height: calc(100vh - var(--layout-header-height) - 3 * var(--layout-spacing));
     position: sticky;
     top: calc(var(--layout-header-height) + 2 * var(--layout-spacing));
@@ -234,21 +238,80 @@ body {
    MOBILE: Responsive Layout
    ========================================================================== */
 @media (max-width: 991.98px) {
+    /* Prevent horizontal overflow globally */
+    html {
+        overflow-x: hidden;
+    }
+
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+    }
+
     /* Sidebar wird via _sidenav.css als fixed Slide-In positioniert */
     .layout-wrapper {
         grid-template-columns: 1fr !important;
         grid-template-areas:
             "header"
             "main" !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+    }
+
+    [data-layout="1"],
+    [data-layout="2"] {
+        overflow-x: hidden;
     }
 
     [data-layout="1"] .layout-wrapper,
     [data-layout="2"] .layout-wrapper {
         padding: var(--layout-spacing);
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Reset Layout 1 & 2 card styles on mobile */
+    [data-layout="1"] .layout-header,
+    [data-layout="2"] .layout-header,
+    [data-layout="1"] .layout-main,
+    [data-layout="2"] .layout-main {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Reset Layout 1 & 2 specific sidebar styles on mobile */
+    [data-layout="1"] .layout-sidebar,
+    [data-layout="2"] .layout-sidebar {
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        top: 0 !important;
     }
 
     .layout-main {
         min-height: calc(100vh - var(--layout-header-height));
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Prevent large text from causing overflow */
+    .layout-main h1,
+    .layout-main h2,
+    .layout-main .display-1,
+    .layout-main .display-2,
+    .layout-main .display-3,
+    .layout-main .display-4,
+    .layout-main .display-5,
+    .layout-main .display-6 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
 }
 

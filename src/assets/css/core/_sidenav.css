@@ -3,7 +3,7 @@
  * SIDENAV MENU STYLES
  * ==========================================================================
  *
- * Navigation menu component for the sidebar with the following features:
+ * Navigation menu component for the sidebar:
  * - Multi-level submenu support (up to 3 levels)
  * - Collapsible/expandable submenus with animations
  * - Minified mode (icon-only, 60px width)
@@ -11,127 +11,73 @@
  * - Light/Dark theme support via CSS variables
  *
  * Table of Contents:
- * 1. CSS Variables - Light Mode
- * 2. CSS Variables - Dark Mode
- * 3. Menu Header
- * 4. Menu Items & Links
- * 5. Menu Icons
- * 6. Menu Badges & Labels
- * 7. Menu Caret (Submenu Indicator)
- * 8. Active State
- * 9. Submenu Styles
- * 10. Submenu Grid Lines
- * 11. Minify Button
- * 12. Minified Sidebar State
- * 13. Mobile Sidebar
+ * 1. CSS Variables
+ * 2. Menu Header
+ * 3. Menu Items & Links
+ * 4. Menu Icons, Badges & Caret
+ * 5. Active State
+ * 6. Submenu Styles
+ * 7. Submenu Grid Lines
+ * 8. Minify Button & Minified State
+ * 9. Mobile Sidebar
  */
 
 
 /* ==========================================================================
-   1. CSS VARIABLES - LIGHT MODE
+   1. CSS VARIABLES
    ========================================================================== */
 
 :root,
 [data-bs-theme="light"] {
-    /* Header */
-    --sidenav-menu-header-color: #adb5bd;
-
-    /* Links */
-    --sidenav-menu-link-color: #6c757d;
-    --sidenav-menu-link-hover-color: #20252a;
-    --sidenav-menu-link-font-weight: 600;
-
-    /* Icons */
-    --sidenav-menu-icon-color: #495057;
-
-    /* Badges */
-    --sidenav-menu-badge-bg: #dee2e6;
-    --sidenav-menu-badge-color: #2d353c;
-    --sidenav-menu-badge-font-weight: 700;
-
-    /* Active State */
-    --sidenav-menu-active-bg: #f0f2f4;
-    --sidenav-menu-active-color: #20252a;
-
-    /* Submenu */
-    --sidenav-menu-submenu-bg: none;
-    --sidenav-menu-submenu-link-color: #6c757d;
-    --sidenav-menu-submenu-link-hover-color: #20252a;
-    --sidenav-menu-submenu-link-font-weight: 600;
-
-    /* Submenu Grid Lines */
-    --sidenav-menu-grid-bg: #dee2e6;
-    --sidenav-menu-grid-border-width: 2px;
-    --sidenav-menu-grid-border-color: #dee2e6;
-
-    /* Minify Button */
+    --sidenav-header-color: #adb5bd;
+    --sidenav-link-color: #6c757d;
+    --sidenav-link-hover-color: #20252a;
+    --sidenav-link-font-weight: 600;
+    --sidenav-icon-color: #495057;
+    --sidenav-badge-bg: #dee2e6;
+    --sidenav-badge-color: #2d353c;
+    --sidenav-active-bg: #f0f2f4;
+    --sidenav-active-color: #20252a;
+    --sidenav-submenu-link-color: #6c757d;
+    --sidenav-grid-color: #dee2e6;
     --sidenav-minify-btn-bg: #e9ecef;
     --sidenav-minify-btn-hover-bg: #ced4da;
 }
 
-
-/* ==========================================================================
-   2. CSS VARIABLES - DARK MODE
-   ========================================================================== */
-
 [data-bs-theme="dark"] {
-    /* Header */
-    --sidenav-menu-header-color: rgba(255, 255, 255, 0.55);
-
-    /* Links */
-    --sidenav-menu-link-color: rgba(255, 255, 255, 0.65);
-    --sidenav-menu-link-hover-color: #fff;
-    --sidenav-menu-link-font-weight: 400;
-
-    /* Icons */
-    --sidenav-menu-icon-color: rgba(255, 255, 255, 0.85);
-
-    /* Badges */
-    --sidenav-menu-badge-bg: rgba(255, 255, 255, 0.1);
-    --sidenav-menu-badge-color: #fff;
-    --sidenav-menu-badge-font-weight: 400;
-
-    /* Active State */
-    --sidenav-menu-active-bg: rgba(0, 0, 0, 0.25);
-    --sidenav-menu-active-color: #fff;
-
-    /* Submenu */
-    --sidenav-menu-submenu-bg: none;
-    --sidenav-menu-submenu-link-color: rgba(255, 255, 255, 0.45);
-    --sidenav-menu-submenu-link-hover-color: #fff;
-    --sidenav-menu-submenu-link-font-weight: 400;
-
-    /* Submenu Grid Lines */
-    --sidenav-menu-grid-bg: rgba(0, 0, 0, 0.25);
-    --sidenav-menu-grid-border-width: 1px;
-    --sidenav-menu-grid-border-color: rgba(255, 255, 255, 0.6);
-
-    /* Minify Button */
+    --sidenav-header-color: rgba(255, 255, 255, 0.55);
+    --sidenav-link-color: rgba(255, 255, 255, 0.65);
+    --sidenav-link-hover-color: #fff;
+    --sidenav-link-font-weight: 400;
+    --sidenav-icon-color: rgba(255, 255, 255, 0.85);
+    --sidenav-badge-bg: rgba(255, 255, 255, 0.1);
+    --sidenav-badge-color: #fff;
+    --sidenav-active-bg: rgba(0, 0, 0, 0.25);
+    --sidenav-active-color: #fff;
+    --sidenav-submenu-link-color: rgba(255, 255, 255, 0.45);
+    --sidenav-grid-color: rgba(0, 0, 0, 0.25);
     --sidenav-minify-btn-bg: rgba(0, 0, 0, 0.25);
     --sidenav-minify-btn-hover-bg: rgba(0, 0, 0, 0.35);
 }
 
 
 /* ==========================================================================
-   3. MENU HEADER
-   Section dividers with centered text and gradient lines
+   2. MENU HEADER
    ========================================================================== */
 
 .layout-sidebar .menu .menu-header {
     align-items: center;
-    color: var(--sidenav-menu-header-color);
+    color: var(--sidenav-header-color);
     display: flex;
     font-size: 11px;
     font-weight: 600;
     gap: 12px;
     letter-spacing: 0.5px;
     line-height: 20px;
-    margin: 0;
     padding: 15px 20px 8px;
     text-transform: uppercase;
 }
 
-/* Gradient lines on both sides of header text */
 .layout-sidebar .menu .menu-header::before,
 .layout-sidebar .menu .menu-header::after {
     content: "";
@@ -140,52 +86,50 @@
 }
 
 .layout-sidebar .menu .menu-header::before {
-    background: linear-gradient(to right, transparent, var(--sidenav-menu-header-color));
+    background: linear-gradient(to right, transparent, var(--sidenav-header-color));
 }
 
 .layout-sidebar .menu .menu-header::after {
-    background: linear-gradient(to right, var(--sidenav-menu-header-color), transparent);
+    background: linear-gradient(to right, var(--sidenav-header-color), transparent);
 }
 
 
 /* ==========================================================================
-   4. MENU ITEMS & LINKS
+   3. MENU ITEMS & LINKS
    ========================================================================== */
 
 .layout-sidebar .menu .menu-item {
     position: relative;
 }
 
-.layout-sidebar .menu .menu-item .menu-link {
+.layout-sidebar .menu .menu-link {
     align-items: center;
-    color: var(--sidenav-menu-link-color);
+    color: var(--sidenav-link-color);
     display: flex;
-    font-weight: var(--sidenav-menu-link-font-weight);
+    font-weight: var(--sidenav-link-font-weight);
     line-height: 20px;
     padding: 10px 20px;
     text-decoration: none;
     transition: color 0.15s ease;
 }
 
-.layout-sidebar .menu .menu-item .menu-link .menu-text {
+.layout-sidebar .menu .menu-link .menu-text {
     flex: 1;
 }
 
-/* Hover & Focus States */
-.layout-sidebar .menu .menu-item .menu-link:hover,
-.layout-sidebar .menu .menu-item .menu-link:focus {
-    background: transparent;
-    color: var(--sidenav-menu-link-hover-color);
+.layout-sidebar .menu .menu-link:hover,
+.layout-sidebar .menu .menu-link:focus {
+    color: var(--sidenav-link-hover-color);
 }
 
 
 /* ==========================================================================
-   5. MENU ICONS
+   4. MENU ICONS, BADGES & CARET
    ========================================================================== */
 
-.layout-sidebar .menu .menu-item .menu-icon {
+.layout-sidebar .menu .menu-icon {
     align-items: center;
-    color: var(--sidenav-menu-icon-color);
+    color: var(--sidenav-icon-color);
     display: flex;
     font-size: 1rem;
     height: 20px;
@@ -194,29 +138,17 @@
     width: 20px;
 }
 
-.layout-sidebar .menu .menu-item .menu-icon img {
-    max-height: 100%;
-    max-width: 100%;
-}
-
-
-/* ==========================================================================
-   6. MENU BADGES & LABELS
-   ========================================================================== */
-
-/* Badge - Rounded pill style (e.g., "New") */
-.layout-sidebar .menu .menu-item .menu-link .menu-badge {
-    background: var(--sidenav-menu-badge-bg);
+.layout-sidebar .menu .menu-badge {
+    background: var(--sidenav-badge-bg);
     border-radius: 12px;
-    color: var(--sidenav-menu-badge-color);
+    color: var(--sidenav-badge-color);
     font-size: 10px;
-    font-weight: var(--sidenav-menu-badge-font-weight);
+    font-weight: 700;
     line-height: 1.6;
     padding: 0 0.75em;
 }
 
-/* Label - Primary colored tag */
-.layout-sidebar .menu .menu-item .menu-link .menu-label {
+.layout-sidebar .menu .menu-label {
     background-color: var(--bs-primary);
     border-radius: 4px;
     color: #fff;
@@ -224,51 +156,37 @@
     font-weight: 600;
     margin-left: 5px;
     padding: 0.25em 0.5em;
-    text-align: center;
-    white-space: nowrap;
 }
 
-
-/* ==========================================================================
-   7. MENU CARET (SUBMENU INDICATOR)
-   Chevron icon that rotates when submenu is expanded
-   ========================================================================== */
-
 .layout-sidebar .menu .menu-caret {
-    border: none;
-    display: block;
     font-size: 0.6875rem;
     margin-left: auto;
-    text-align: center;
     transition: transform 0.2s linear;
     width: 20px;
 }
 
 .layout-sidebar .menu .menu-caret::before {
-    content: "\F285"; /* Bootstrap Icon: bi-chevron-right */
+    content: "\F285";
     display: block;
     font-family: "bootstrap-icons";
     opacity: 0.5;
     text-align: center;
 }
 
-/* Rotated state when submenu is open */
-.layout-sidebar .menu .active:not(.closed):not(.closing) > a .menu-caret::before,
-.layout-sidebar .menu .expand > a .menu-caret::before,
-.layout-sidebar .menu .expanding > a .menu-caret::before {
+.layout-sidebar .menu .active:not(.closed) > a .menu-caret::before,
+.layout-sidebar .menu .expand > a .menu-caret::before {
     opacity: 1;
     transform: rotate(90deg);
 }
 
 
 /* ==========================================================================
-   8. ACTIVE STATE
-   Highlighted state for current page
+   5. ACTIVE STATE
    ========================================================================== */
 
 .layout-sidebar .menu .menu-item.active > .menu-link {
-    background-color: var(--sidenav-menu-active-bg);
-    color: var(--sidenav-menu-active-color);
+    background-color: var(--sidenav-active-bg);
+    color: var(--sidenav-active-color);
     position: relative;
     z-index: 10;
 }
@@ -279,70 +197,49 @@
 
 
 /* ==========================================================================
-   9. SUBMENU STYLES
+   6. SUBMENU STYLES
    ========================================================================== */
 
-.layout-sidebar .menu .menu-item .menu-submenu {
-    background: var(--sidenav-menu-submenu-bg);
+.layout-sidebar .menu .menu-submenu {
+    background: transparent;
     display: none;
-    list-style: none;
-    margin: 0;
     padding: 5px 0 10px 42px;
     position: relative;
 }
 
-/* Submenu Links */
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item .menu-link {
-    color: var(--sidenav-menu-submenu-link-color);
-    font-weight: var(--sidenav-menu-submenu-link-font-weight);
+.layout-sidebar .menu .menu-submenu .menu-link {
+    color: var(--sidenav-submenu-link-color);
+    font-weight: var(--sidenav-link-font-weight);
     line-height: 18px;
     padding: 3px 20px 10px 15px;
     position: relative;
-    text-decoration: none;
 }
 
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item .menu-link:hover,
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item .menu-link:focus {
+.layout-sidebar .menu .menu-submenu .menu-link:hover,
+.layout-sidebar .menu .menu-submenu .menu-link:focus {
+    color: var(--sidenav-link-hover-color);
+}
+
+.layout-sidebar .menu .menu-submenu .menu-item.active > .menu-link {
     background: transparent;
-    color: var(--sidenav-menu-submenu-link-hover-color);
+    color: var(--sidenav-active-color);
 }
 
-/* Active Submenu Item */
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item.active > .menu-link {
-    background: transparent;
-    color: var(--sidenav-menu-active-color);
-}
-
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item.active::after {
-    background: var(--sidenav-menu-active-color);
-    border-color: var(--sidenav-menu-grid-border-color);
-}
-
-/* Hover state for bullet point marker */
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item:hover::after {
-    border-color: var(--sidenav-menu-submenu-link-hover-color);
-}
-
-/* Nested Submenu (3rd level) */
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item .menu-submenu {
-    background: transparent;
+.layout-sidebar .menu .menu-submenu .menu-submenu {
     padding: 0 0 0 15px;
 }
 
-/* Show submenu when parent is active */
 .layout-sidebar .menu .menu-item.active.has-sub > .menu-submenu {
     display: block;
 }
 
 
 /* ==========================================================================
-   10. SUBMENU GRID LINES
-   Visual tree-like connector lines for submenu items
+   7. SUBMENU GRID LINES
    ========================================================================== */
 
-/* Horizontal connector line */
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item .menu-link::after {
-    background: var(--sidenav-menu-grid-bg);
+.layout-sidebar .menu .menu-submenu .menu-link::after {
+    background: var(--sidenav-grid-color);
     content: "";
     height: 2px;
     left: -11px;
@@ -351,9 +248,8 @@
     width: 11px;
 }
 
-/* Vertical connector line */
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item::before {
-    background: var(--sidenav-menu-grid-bg);
+.layout-sidebar .menu .menu-submenu .menu-item::before {
+    background: var(--sidenav-grid-color);
     bottom: 0;
     content: "";
     left: -13px;
@@ -362,10 +258,9 @@
     width: 2px;
 }
 
-/* Bullet point marker */
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item::after {
+.layout-sidebar .menu .menu-submenu .menu-item::after {
     background: var(--bs-tertiary-bg);
-    border: var(--sidenav-menu-grid-border-width) solid var(--sidenav-menu-grid-border-color);
+    border: 2px solid var(--sidenav-grid-color);
     border-radius: 4px;
     content: "";
     height: 6px;
@@ -377,24 +272,29 @@
     z-index: 10;
 }
 
-/* Grid line adjustments for first/last items */
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item:first-child::before {
+.layout-sidebar .menu .menu-submenu .menu-item.active::after {
+    background: var(--sidenav-active-color);
+}
+
+.layout-sidebar .menu .menu-submenu .menu-item:hover::after {
+    border-color: var(--sidenav-link-hover-color);
+}
+
+.layout-sidebar .menu .menu-submenu .menu-item:first-child::before {
     top: -14px;
 }
 
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item:first-child:last-child::before {
+.layout-sidebar .menu .menu-submenu .menu-item:first-child:last-child::before {
     height: 27px;
 }
 
-.layout-sidebar .menu .menu-item .menu-submenu .menu-item:last-child::before {
-    bottom: auto;
+.layout-sidebar .menu .menu-submenu .menu-item:last-child::before {
     height: 13px;
 }
 
 
 /* ==========================================================================
-   11. MINIFY BUTTON
-   Toggle button to collapse sidebar to icon-only mode
+   8. MINIFY BUTTON & MINIFIED STATE
    ========================================================================== */
 
 .layout-sidebar .sidebar-minify-btn {
@@ -406,13 +306,12 @@
     cursor: pointer;
     display: flex;
     margin: 10px 0;
-    padding: 5px 20px 5px 10px !important;
-    text-decoration: none;
+    padding: 5px 20px 5px 10px;
+    transition: background 0.2s ease;
 }
 
 .layout-sidebar .sidebar-minify-btn i {
-    margin: 0 !important;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .layout-sidebar .sidebar-minify-btn:hover,
@@ -420,12 +319,38 @@
     background: var(--sidenav-minify-btn-hover-bg);
 }
 
+/* Transition setup for elements that will animate */
+.layout-sidebar .menu > .menu-item > .menu-link .menu-text,
+.layout-sidebar .menu > .menu-item > .menu-link .menu-badge,
+.layout-sidebar .menu > .menu-item > .menu-link .menu-label {
+    opacity: 1;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    white-space: nowrap;
+}
 
-/* ==========================================================================
-   12. MINIFIED SIDEBAR STATE
-   Collapsed sidebar showing only icons (60px width)
-   ========================================================================== */
+.layout-sidebar .menu > .menu-item > .menu-link .menu-icon {
+    transition: margin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.layout-sidebar .menu .menu-header {
+    max-height: 50px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
+}
+
+.layout-sidebar .sidebar-cover {
+    max-height: 200px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
+}
+
+.layout-sidebar .menu-caret {
+    transition: margin 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
+
+/* Minified State */
 .app-sidebar-minified .layout-sidebar {
     width: 60px !important;
 }
@@ -435,42 +360,48 @@
     padding: 10px 20px;
 }
 
-/* Hide text elements in minified mode */
 .app-sidebar-minified .layout-sidebar .menu > .menu-item > .menu-link .menu-text,
 .app-sidebar-minified .layout-sidebar .menu > .menu-item > .menu-link .menu-badge,
 .app-sidebar-minified .layout-sidebar .menu > .menu-item > .menu-link .menu-label {
-    display: none;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    width: 0;
 }
 
 .app-sidebar-minified .layout-sidebar .menu > .menu-item > .menu-link .menu-icon {
     margin: 0;
 }
 
-/* Hide submenus, headers, and cover in minified mode */
 .app-sidebar-minified .layout-sidebar .menu > .menu-item.has-sub > .menu-submenu {
     display: none !important;
 }
 
-.app-sidebar-minified .layout-sidebar .menu-header,
-.app-sidebar-minified .layout-sidebar .sidebar-cover {
-    display: none !important;
+.app-sidebar-minified .layout-sidebar .menu-header {
+    max-height: 0;
+    opacity: 0;
+    padding: 0;
 }
 
-/* Caret adjustments for minified mode */
+.app-sidebar-minified .layout-sidebar .sidebar-cover {
+    margin: 0;
+    max-height: 0;
+    opacity: 0;
+}
+
 .app-sidebar-minified .layout-sidebar .menu-caret {
     margin-right: -15px;
+    opacity: 0;
 }
 
 .app-sidebar-minified .layout-sidebar .menu-caret::before {
     transform: rotate(0) !important;
 }
 
-/* Rotate minify button icon when minified */
 .app-sidebar-minified .layout-sidebar .sidebar-minify-btn i {
     transform: rotate(180deg);
 }
 
-/* Adjust main content margin when sidebar is minified */
 @media (min-width: 992px) {
     .app-sidebar-minified .layout-main {
         margin-left: calc(60px - var(--layout-sidebar-width));
@@ -479,84 +410,127 @@
 
 
 /* ==========================================================================
-   13. MOBILE SIDEBAR
-   Off-canvas drawer with slide-in animation for mobile devices
+   9. MOBILE SIDEBAR
    ========================================================================== */
 
-/* Slide-in Animations */
-@keyframes sidebarMobileSlideIn {
+@keyframes sidebarSlideIn {
     from { transform: translateX(-100%); }
     to   { transform: translateX(0); }
 }
 
-@keyframes sidebarMobileSlideOut {
+@keyframes sidebarSlideOut {
     from { transform: translateX(0); }
     to   { transform: translateX(-100%); }
 }
 
-@keyframes sidebarMobileBackdrop {
+@keyframes backdropFadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
 
-@keyframes sidebarMobileBackdropOut {
+@keyframes backdropFadeOut {
     from { opacity: 1; }
     to   { opacity: 0; }
 }
 
-/* Backdrop overlay */
+/* Backdrop */
 .sidebar-mobile-backdrop {
     background: rgba(0, 0, 0, 0.5);
-    border: 0;
-    bottom: 0;
     display: none;
-    height: 100%;
-    left: 0;
-    margin: 0;
-    outline: 0;
-    padding: 0;
+    inset: 0;
     position: fixed;
-    right: 0;
-    top: 0;
-    width: 100%;
-    z-index: 1019;
+    z-index: 1035;
 }
 
-.sidebar-mobile-backdrop a {
-    display: block;
-    height: 100%;
-    width: 100%;
-}
-
-/* Mobile-specific styles */
 @media (max-width: 991.98px) {
+    /* Prevent body scroll when sidebar is open */
+    .app-sidebar-mobile-toggled {
+        overflow: hidden !important;
+    }
+
+    /* Sidebar base styles */
     .layout-sidebar {
+        border-radius: 0 !important;
         height: 100vh !important;
+        height: 100dvh !important;
+        left: 0 !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
         position: fixed !important;
+        right: 0 !important;
         top: 0 !important;
         transform: translateX(-100%);
-        z-index: 1021;
+        width: auto !important;
+        z-index: 1040 !important;
+    }
+
+    /* Hide minify button on mobile */
+    .layout-sidebar .sidebar-minify-btn {
+        display: none !important;
+    }
+
+    /* Mobile Close Button - subtle design */
+    .sidebar-close-btn {
+        align-items: center;
+        background: transparent;
+        border: none;
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        display: none;
+        font-size: 1.125rem;
+        height: 40px;
+        justify-content: center;
+        position: fixed;
+        right: 0.75rem;
+        top: 0.75rem;
+        transition: color 0.2s ease, background 0.2s ease;
+        width: 40px;
+        z-index: 1041;
+    }
+
+    .sidebar-close-btn:hover,
+    .sidebar-close-btn:focus {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    .sidebar-close-btn:focus-visible {
+        outline: 2px solid var(--bs-primary);
+        outline-offset: 2px;
+    }
+
+    .app-sidebar-mobile-toggled .sidebar-close-btn {
+        display: flex;
+    }
+
+    /* Focus styles for accessibility */
+    .layout-sidebar .menu-link:focus-visible,
+    .layout-sidebar .nav-link:focus-visible,
+    .layout-sidebar .sidebar-minify-btn:focus-visible {
+        outline: 2px solid var(--bs-primary);
+        outline-offset: 2px;
     }
 
     /* Sidebar open state */
     .app-sidebar-mobile-toggled .layout-sidebar {
-        animation: sidebarMobileSlideIn 0.2s ease;
+        animation: sidebarSlideIn 0.2s ease-out;
         transform: translateX(0);
     }
 
     .app-sidebar-mobile-toggled .sidebar-mobile-backdrop {
-        animation: sidebarMobileBackdrop 0.2s ease;
+        animation: backdropFadeIn 0.2s ease-out;
         display: block;
     }
 
     /* Sidebar closing state */
     .app-sidebar-mobile-closed .layout-sidebar {
-        animation: sidebarMobileSlideOut 0.2s ease;
+        animation: sidebarSlideOut 0.2s ease-in;
         transform: translateX(-100%);
     }
 
     .app-sidebar-mobile-closed .sidebar-mobile-backdrop {
-        animation: sidebarMobileBackdropOut 0.2s ease;
+        animation: backdropFadeOut 0.2s ease-in;
         display: block;
         opacity: 0;
     }

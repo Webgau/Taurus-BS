@@ -8,12 +8,17 @@
     <link rel="preload" href="assets/img/coverImage.webp" as="image" fetchpriority="high">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/app.min.css?v=2011053s">
+    <link rel="stylesheet" href="assets/css/app.min.css?v=20260111g">
 </head>
 <body data-layout="4">
     <div class="layout-wrapper">
-        <aside class="layout-sidebar">
-            <!-- Cover Header -->
+        <aside class="layout-sidebar" id="sidebar" aria-label="Seitennavigation">
+            <!-- Mobile Close Button -->
+<button type="button" class="sidebar-close-btn d-lg-none" data-dismiss="sidebar-mobile" aria-label="Menü schließen">
+    <i class="bi bi-x-lg" aria-hidden="true"></i>
+</button>
+
+<!-- Cover Header -->
 <div class="sidebar-cover position-relative" style="background: url('assets/img/coverImage.webp') center/cover no-repeat, #2a3f5f;">
     <div class="p-3" role="button" data-bs-toggle="collapse" data-bs-target="#quickMenu" aria-expanded="false" aria-controls="quickMenu" style="cursor: pointer;">
         <!-- Avatar -->
@@ -25,7 +30,7 @@
                 <small>Administrator</small>
             </div>
             <!-- Chevron Icon -->
-            <svg class="quick-menu-chevron" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+            <svg class="quick-menu-chevron" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
             </svg>
         </div>
@@ -35,17 +40,17 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="bi bi-arrow-repeat me-2"></i> Updates
+                    <i class="bi bi-arrow-repeat me-2" aria-hidden="true"></i> Updates
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="bi bi-ticket me-2"></i> Ticketsystem
+                    <i class="bi bi-ticket me-2" aria-hidden="true"></i> Ticketsystem
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="bi bi-question-circle me-2"></i> FAQ / Hilfe
+                    <i class="bi bi-question-circle me-2" aria-hidden="true"></i> FAQ / Hilfe
                 </a>
             </li>
         </ul>
@@ -53,26 +58,26 @@
 </div>
 
 <!-- Navigation Menu -->
-<div class="menu">
+<nav class="menu" role="navigation" aria-label="Hauptnavigation">
     <!-- Menu Header -->
-    <div class="menu-header">Navigation</div>
+    <div class="menu-header" role="heading" aria-level="2">Navigation</div>
 
     <!-- Dashboard -->
     <div class="menu-item">
         <a href="index.html" class="menu-link">
-            <span class="menu-icon"><i class="bi bi-speedometer2"></i></span>
+            <span class="menu-icon" aria-hidden="true"><i class="bi bi-speedometer2"></i></span>
             <span class="menu-text">Dashboard</span>
         </a>
     </div>
 
     <!-- UI Components with Submenu -->
     <div class="menu-item has-sub">
-        <a href="javascript:;" class="menu-link">
-            <span class="menu-icon"><i class="bi bi-palette"></i></span>
+        <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-ui">
+            <span class="menu-icon" aria-hidden="true"><i class="bi bi-palette"></i></span>
             <span class="menu-text">UI Components</span>
-            <span class="menu-caret"></span>
+            <span class="menu-caret" aria-hidden="true"></span>
         </a>
-        <div class="menu-submenu">
+        <div class="menu-submenu" id="submenu-ui" role="group" aria-label="UI Components Untermenü">
             <div class="menu-item">
                 <a href="typography.html" class="menu-link">
                     <span class="menu-text">Typography</span>
@@ -98,12 +103,12 @@
 
     <!-- Forms with Submenu -->
     <div class="menu-item has-sub">
-        <a href="javascript:;" class="menu-link">
-            <span class="menu-icon"><i class="bi bi-ui-checks"></i></span>
+        <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-forms">
+            <span class="menu-icon" aria-hidden="true"><i class="bi bi-ui-checks"></i></span>
             <span class="menu-text">Forms</span>
-            <span class="menu-caret"></span>
+            <span class="menu-caret" aria-hidden="true"></span>
         </a>
-        <div class="menu-submenu">
+        <div class="menu-submenu" id="submenu-forms" role="group" aria-label="Forms Untermenü">
             <div class="menu-item">
                 <a href="form-elements.html" class="menu-link">
                     <span class="menu-text">Form Elements</span>
@@ -120,7 +125,7 @@
     <!-- Tables -->
     <div class="menu-item">
         <a href="tables.html" class="menu-link">
-            <span class="menu-icon"><i class="bi bi-table"></i></span>
+            <span class="menu-icon" aria-hidden="true"><i class="bi bi-table"></i></span>
             <span class="menu-text">Tables</span>
         </a>
     </div>
@@ -128,32 +133,32 @@
     <!-- Charts -->
     <div class="menu-item">
         <a href="charts.html" class="menu-link">
-            <span class="menu-icon"><i class="bi bi-bar-chart"></i></span>
+            <span class="menu-icon" aria-hidden="true"><i class="bi bi-bar-chart"></i></span>
             <span class="menu-text">Charts</span>
             <span class="menu-badge">New</span>
         </a>
     </div>
 
     <!-- Menu Divider -->
-    <div class="menu-divider"></div>
+    <div class="menu-divider" role="separator"></div>
 
     <!-- Menu Header -->
-    <div class="menu-header">Pages</div>
+    <div class="menu-header" role="heading" aria-level="2">Pages</div>
 
     <!-- Pages with Nested Submenu -->
     <div class="menu-item has-sub">
-        <a href="javascript:;" class="menu-link">
-            <span class="menu-icon"><i class="bi bi-file-earmark"></i></span>
+        <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-pages">
+            <span class="menu-icon" aria-hidden="true"><i class="bi bi-file-earmark"></i></span>
             <span class="menu-text">Pages</span>
-            <span class="menu-caret"></span>
+            <span class="menu-caret" aria-hidden="true"></span>
         </a>
-        <div class="menu-submenu">
+        <div class="menu-submenu" id="submenu-pages" role="group" aria-label="Pages Untermenü">
             <div class="menu-item has-sub">
-                <a href="javascript:;" class="menu-link">
+                <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-auth">
                     <span class="menu-text">Authentication</span>
-                    <span class="menu-caret"></span>
+                    <span class="menu-caret" aria-hidden="true"></span>
                 </a>
-                <div class="menu-submenu">
+                <div class="menu-submenu" id="submenu-auth" role="group" aria-label="Authentication Untermenü">
                     <div class="menu-item">
                         <a href="login.html" class="menu-link">
                             <span class="menu-text">Login</span>
@@ -180,15 +185,15 @@
     </div>
 
     <!-- Menu Divider -->
-    <div class="menu-divider"></div>
+    <div class="menu-divider" role="separator"></div>
 
     <!-- Menu Header -->
-    <div class="menu-header">System</div>
+    <div class="menu-header" role="heading" aria-level="2">System</div>
 
     <!-- Settings -->
     <div class="menu-item">
         <a href="settings.html" class="menu-link">
-            <span class="menu-icon"><i class="bi bi-gear"></i></span>
+            <span class="menu-icon" aria-hidden="true"><i class="bi bi-gear"></i></span>
             <span class="menu-text">Settings</span>
         </a>
     </div>
@@ -196,18 +201,18 @@
     <!-- Help -->
     <div class="menu-item">
         <a href="help.html" class="menu-link">
-            <span class="menu-icon"><i class="bi bi-question-circle"></i></span>
+            <span class="menu-icon" aria-hidden="true"><i class="bi bi-question-circle"></i></span>
             <span class="menu-text">Help</span>
         </a>
     </div>
 
     <!-- Minify Button -->
     <div class="menu-item d-flex">
-        <a href="javascript:;" class="sidebar-minify-btn ms-auto" data-toggle="sidebar-minify" aria-label="Sidebar minimieren">
-            <i class="bi bi-chevron-double-left"></i>
-        </a>
+        <button type="button" class="sidebar-minify-btn ms-auto" data-toggle="sidebar-minify" aria-label="Sidebar minimieren" aria-pressed="false">
+            <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
+        </button>
     </div>
-</div>
+</nav>
 
         </aside>
 
@@ -216,8 +221,8 @@
                 <nav class="navbar py-1">
     <div class="container-fluid px-0">
         <!-- Mobile Sidebar Toggle -->
-        <button type="button" class="btn btn-link nav-link d-lg-none me-2" data-toggle="sidebar-mobile" aria-label="Menu">
-            <i class="bi bi-list fs-4"></i>
+        <button type="button" class="btn btn-link nav-link d-lg-none me-2" data-toggle="sidebar-mobile" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="sidebar">
+            <i class="bi bi-list fs-4" aria-hidden="true"></i>
         </button>
 
         <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
@@ -684,7 +689,7 @@
     </div>
 
     <!-- Mobile Sidebar Backdrop -->
-    <div class="sidebar-mobile-backdrop" data-dismiss="sidebar-mobile"></div>
+    <div class="sidebar-mobile-backdrop" data-dismiss="sidebar-mobile" aria-hidden="true"></div>
 
     <!-- Dev Panel -->
     <!-- Dev Panel Toggle Button -->
