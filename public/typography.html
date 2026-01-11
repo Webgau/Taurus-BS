@@ -8,9 +8,10 @@
     <link rel="preload" href="assets/img/coverImage.webp" as="image" fetchpriority="high">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/app.min.css?v=20260111o">
+    <link rel="stylesheet" href="assets/css/app.min.css?v=20260111v">
 </head>
-<body data-layout="4">
+<body data-layout="4" class="no-transition">
+    <script src="assets/js/init.js"></script>
     <div class="layout-wrapper">
         <aside class="layout-sidebar" id="sidebar" aria-label="Seitennavigation">
             <!-- Mobile Close Button -->
@@ -159,10 +160,38 @@
                     <span class="menu-caret" aria-hidden="true"></span>
                 </a>
                 <div class="menu-submenu" id="submenu-auth" role="group" aria-label="Authentication Untermenü">
-                    <div class="menu-item">
-                        <a href="login.html" class="menu-link">
+                    <!-- Level 4: Login with nested submenu -->
+                    <div class="menu-item has-sub">
+                        <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-login">
                             <span class="menu-text">Login</span>
+                            <span class="menu-caret" aria-hidden="true"></span>
                         </a>
+                        <div class="menu-submenu" id="submenu-login" role="group" aria-label="Login Untermenü">
+                            <!-- Level 5: Social with nested submenu -->
+                            <div class="menu-item has-sub">
+                                <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-social">
+                                    <span class="menu-text">Social</span>
+                                    <span class="menu-caret" aria-hidden="true"></span>
+                                </a>
+                                <div class="menu-submenu" id="submenu-social" role="group" aria-label="Social Untermenü">
+                                    <div class="menu-item">
+                                        <a href="login-google.html" class="menu-link">
+                                            <span class="menu-text">Google</span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a href="login-facebook.html" class="menu-link">
+                                            <span class="menu-text">Facebook</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a href="login-email.html" class="menu-link">
+                                    <span class="menu-text">Email</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="menu-item">
                         <a href="register.html" class="menu-link">
@@ -795,6 +824,6 @@
 
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/app.min.js?v=20210514s"></script>
+    <script src="assets/js/app.min.js?v=20260111v"></script>
 </body>
 </html>

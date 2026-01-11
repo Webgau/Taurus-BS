@@ -47,6 +47,9 @@ const classes = {
 // State
 let focusTrapActive = false;
 let lastFocusedElement = null;
+let floatSubmenuElement = null;
+let floatSubmenuTimeout = null;
+let floatSubmenuPinned = false;
 
 /**
  * Slide Up Animation
@@ -290,6 +293,345 @@ const updateSubmenuAria = (menuItem, isExpanded) => {
 };
 
 /**
+ * Hide Float Submenu
+ */
+const hideFloatSubmenu = () => {
+    if (floatSubmenuTimeout) {
+        clearTimeout(floatSubmenuTimeout);
+        floatSubmenuTimeout = null;
+    }
+    if (floatSubmenuElement) {
+        floatSubmenuElement.remove();
+        floatSubmenuElement = null;
+    }
+    floatSubmenuPinned = false;
+    document.removeEventListener('click', handleClickOutsideFloatSubmenu);
+};
+
+/**
+ * Handle click outside Float Submenu to close it
+ */
+const handleClickOutsideFloatSubmenu = (e) => {
+    if (!floatSubmenuElement) return;
+
+    // Check if click is outside the float submenu and outside the sidebar
+    const sidebar = document.querySelector(selectors.sidebar);
+    const isInsideFloatSubmenu = floatSubmenuElement.contains(e.target);
+    const isInsideSidebar = sidebar && sidebar.contains(e.target);
+
+    if (!isInsideFloatSubmenu && !isInsideSidebar) {
+        hideFloatSubmenu();
+    }
+};
+
+/**
+ * Get height of a hidden element
+ */
+const getHiddenMenuHeight = (element) => {
+    element.setAttribute('style', 'position: absolute; visibility: hidden; display: block !important');
+    const height = element.clientHeight;
+    element.removeAttribute('style');
+    return height;
+};
+
+/**
+ * SlideToggle animation for nested submenus
+ */
+const floatSubmenuSlideToggle = (element, duration = 250) => {
+    if (window.getComputedStyle(element).display === 'none') {
+        // Slide Down
+        element.style.display = 'block';
+        element.style.overflow = 'hidden';
+        const height = element.scrollHeight;
+        element.style.height = '0px';
+        element.offsetHeight; // Force reflow
+        element.style.transition = `height ${duration}ms ease-in-out`;
+        element.style.height = `${height}px`;
+
+        setTimeout(() => {
+            element.style.height = '';
+            element.style.overflow = '';
+            element.style.transition = '';
+        }, duration);
+    } else {
+        // Slide Up
+        element.style.overflow = 'hidden';
+        element.style.height = `${element.scrollHeight}px`;
+        element.offsetHeight; // Force reflow
+        element.style.transition = `height ${duration}ms ease-in-out`;
+        element.style.height = '0px';
+
+        setTimeout(() => {
+            element.style.display = 'none';
+            element.style.height = '';
+            element.style.overflow = '';
+            element.style.transition = '';
+        }, duration);
+    }
+};
+
+/**
+ * Handle clicks on nested submenu links inside float submenu
+ * Based on reference: docs/collapse-menu.js handleSidebarMinifyFloatMenuClick()
+ */
+const handleFloatSubmenuClick = () => {
+    if (!floatSubmenuElement) return;
+
+    const nestedLinks = floatSubmenuElement.querySelectorAll(
+        `.sidebar-float-submenu .${classes.hasSub} > .menu-link`
+    );
+
+    nestedLinks.forEach(link => {
+        link.onclick = (e) => {
+            e.preventDefault();
+
+            const parentItem = link.closest(`.${classes.hasSub}`);
+            const submenu = parentItem?.querySelector('.menu-submenu');
+            if (!submenu) return;
+
+            const isExpanded = window.getComputedStyle(submenu).display !== 'none';
+            const isCollapsed = window.getComputedStyle(submenu).display === 'none';
+
+            // Toggle animation
+            floatSubmenuSlideToggle(submenu);
+
+            // Toggle expand class
+            if (isExpanded) {
+                parentItem.classList.remove(classes.expand);
+            } else {
+                parentItem.classList.add(classes.expand);
+            }
+
+            // Update positioning during animation
+            const updateInterval = setInterval(() => {
+                if (!floatSubmenuElement) {
+                    clearInterval(updateInterval);
+                    return;
+                }
+
+                const arrow = floatSubmenuElement.querySelector('.sidebar-float-submenu-arrow');
+                const line = floatSubmenuElement.querySelector('.sidebar-float-submenu-line');
+                if (!arrow || !line) return;
+
+                const submenuHeight = floatSubmenuElement.clientHeight;
+                const floatRect = floatSubmenuElement.getBoundingClientRect();
+                const originalTop = parseFloat(floatSubmenuElement.getAttribute('data-offset-top') || floatRect.top);
+                const menuOffsetTop = parseFloat(floatSubmenuElement.getAttribute('data-menu-offset-top') || originalTop);
+                const bodyHeight = document.body.clientHeight;
+
+                // If expanding and menu moves up, keep it at original position
+                if (isExpanded && floatRect.top > originalTop) {
+                    floatSubmenuElement.style.top = `${originalTop}px`;
+                    floatSubmenuElement.style.bottom = 'auto';
+                    arrow.style.top = '20px';
+                    arrow.style.bottom = 'auto';
+                    line.style.top = '20px';
+                    line.style.bottom = 'auto';
+                }
+
+                // If collapsing and not enough space below
+                if (isCollapsed && bodyHeight - floatRect.top < submenuHeight) {
+                    const bottomOffset = bodyHeight - menuOffsetTop - 22;
+                    floatSubmenuElement.style.top = 'auto';
+                    floatSubmenuElement.style.bottom = '0';
+                    arrow.style.top = 'auto';
+                    arrow.style.bottom = `${bottomOffset}px`;
+                    line.style.top = '20px';
+                    line.style.bottom = `${bottomOffset}px`;
+                }
+            }, 1);
+
+            // Stop updating after animation
+            setTimeout(() => clearInterval(updateInterval), config.animationTime);
+        };
+    });
+};
+
+/**
+ * Show Float Submenu on hover (minified mode only)
+ * Based on reference: docs/collapse-menu.js
+ */
+const showFloatSubmenu = (menuLink, submenu) => {
+    // Clear timeout
+    if (floatSubmenuTimeout) {
+        clearTimeout(floatSubmenuTimeout);
+        floatSubmenuTimeout = null;
+    }
+
+    const submenuContent = submenu.innerHTML;
+    if (!submenuContent) {
+        hideFloatSubmenu();
+        return;
+    }
+
+    // Get sidebar for positioning
+    const sidebar = document.querySelector(selectors.sidebar);
+    if (!sidebar) return;
+
+    const sidebarRect = sidebar.getBoundingClientRect();
+    const sidebarWidth = sidebar.clientWidth;
+    const leftPosition = sidebarRect.left + sidebarWidth;
+    const submenuHeight = getHiddenMenuHeight(submenu);
+    const topPosition = menuLink.getBoundingClientRect().top;
+    const bodyHeight = document.body.clientHeight;
+
+    // Check if we need overflow scrolling
+    const needsOverflow = submenuHeight > bodyHeight;
+    const overflowClass = needsOverflow ? ' overflow-scroll' : '';
+
+    // Check if existing float submenu is for same element
+    if (floatSubmenuElement && floatSubmenuElement.getAttribute('data-source') === menuLink.id) {
+        // Update content only
+        const content = floatSubmenuElement.querySelector('.sidebar-float-submenu');
+        if (content) content.innerHTML = submenuContent;
+    } else {
+        // Remove existing
+        hideFloatSubmenu();
+
+        // Create new float submenu
+        floatSubmenuElement = document.createElement('div');
+        floatSubmenuElement.className = 'sidebar-float-submenu-container';
+        floatSubmenuElement.id = 'sidebar-float-submenu';
+        floatSubmenuElement.setAttribute('data-offset-top', topPosition);
+        floatSubmenuElement.setAttribute('data-menu-offset-top', topPosition);
+
+        floatSubmenuElement.innerHTML = `
+            <div class="sidebar-float-submenu-arrow" id="sidebar-float-submenu-arrow"></div>
+            <div class="sidebar-float-submenu-line" id="sidebar-float-submenu-line"></div>
+            <div class="sidebar-float-submenu${overflowClass}">${submenuContent}</div>
+        `;
+
+        document.body.appendChild(floatSubmenuElement);
+
+        // Mouse events to keep open
+        floatSubmenuElement.onmouseover = () => {
+            if (floatSubmenuTimeout) {
+                clearTimeout(floatSubmenuTimeout);
+                floatSubmenuTimeout = null;
+            }
+        };
+
+        floatSubmenuElement.onmouseout = () => {
+            // Only auto-close if not pinned
+            if (!floatSubmenuPinned) {
+                floatSubmenuTimeout = setTimeout(hideFloatSubmenu, config.animationTime);
+            }
+        };
+
+        // Click inside pins the submenu open
+        floatSubmenuElement.onclick = (e) => {
+            floatSubmenuPinned = true;
+            // Clear any pending close timeout
+            if (floatSubmenuTimeout) {
+                clearTimeout(floatSubmenuTimeout);
+                floatSubmenuTimeout = null;
+            }
+        };
+
+        // Click outside closes the submenu
+        setTimeout(() => {
+            document.addEventListener('click', handleClickOutsideFloatSubmenu);
+        }, 10);
+    }
+
+    // Get actual height after adding to DOM
+    const actualHeight = floatSubmenuElement.clientHeight;
+    const arrow = floatSubmenuElement.querySelector('.sidebar-float-submenu-arrow');
+    const line = floatSubmenuElement.querySelector('.sidebar-float-submenu-line');
+
+    // Position based on available space (exact copy from reference)
+    if (bodyHeight - topPosition > actualHeight) {
+        // Enough space below - position from top
+        floatSubmenuElement.style.top = `${topPosition}px`;
+        floatSubmenuElement.style.left = `${leftPosition}px`;
+        floatSubmenuElement.style.bottom = 'auto';
+        floatSubmenuElement.style.right = 'auto';
+
+        if (arrow) {
+            arrow.style.top = '20px';
+            arrow.style.bottom = 'auto';
+        }
+        if (line) {
+            line.style.top = '20px';
+            line.style.bottom = 'auto';
+        }
+    } else {
+        // Not enough space - position from bottom
+        const bottomOffset = bodyHeight - topPosition - 21;
+
+        floatSubmenuElement.style.top = 'auto';
+        floatSubmenuElement.style.left = `${leftPosition}px`;
+        floatSubmenuElement.style.bottom = '0';
+        floatSubmenuElement.style.right = 'auto';
+
+        if (arrow) {
+            arrow.style.top = 'auto';
+            arrow.style.bottom = `${bottomOffset}px`;
+        }
+        if (line) {
+            line.style.top = '20px';
+            line.style.bottom = `${bottomOffset}px`;
+        }
+    }
+
+    // Initialize click handlers for nested submenus
+    handleFloatSubmenuClick();
+};
+
+/**
+ * Initialize Float Submenu for minified mode
+ */
+const initFloatSubmenu = () => {
+    const sidebar = document.querySelector(selectors.sidebar);
+    if (!sidebar) return;
+
+    // Get all top-level menu links with submenus
+    const menuLinks = sidebar.querySelectorAll(
+        `${selectors.menu} > ${selectors.menuItem}.${classes.hasSub} > ${selectors.menuLink}`
+    );
+
+    menuLinks.forEach((link, index) => {
+        // Give each link an ID for tracking
+        if (!link.id) link.id = `sidebar-menu-link-${index}`;
+
+        link.addEventListener('mouseenter', function() {
+            // Only in minified mode on desktop
+            if (!document.body.classList.contains(classes.minified)) return;
+            if (window.innerWidth < config.mobileBreakpoint) return;
+
+            const menuItem = this.closest(`.${classes.hasSub}`);
+            const submenu = menuItem?.querySelector('.menu-submenu');
+            if (!submenu) return;
+
+            showFloatSubmenu(this, submenu);
+        });
+
+        link.addEventListener('mouseleave', function() {
+            if (!document.body.classList.contains(classes.minified)) return;
+
+            // Don't auto-close if submenu is pinned
+            if (floatSubmenuPinned) return;
+
+            floatSubmenuTimeout = setTimeout(() => {
+                const line = document.querySelector('#sidebar-float-submenu-line');
+                if (line) line.remove();
+            }, 250);
+        });
+    });
+
+    // Hide on minify toggle
+    document.querySelectorAll(selectors.minifyToggle).forEach(btn => {
+        btn.addEventListener('click', hideFloatSubmenu);
+    });
+
+    // Hide on scroll
+    sidebar.addEventListener('scroll', hideFloatSubmenu);
+
+    // Hide on resize
+    window.addEventListener('resize', hideFloatSubmenu);
+};
+
+/**
  * Handle Sidebar Menu Toggle
  */
 const handleMenuToggle = (links, duration) => {
@@ -354,6 +696,16 @@ const initSidebarMenu = () => {
     const level3Selector = `${level2Selector} > ${selectors.menuSubmenu} > ${selectors.menuItem}.${classes.hasSub}`;
     const level3Links = document.querySelectorAll(`${level3Selector} > ${selectors.menuLink}`);
     if (level3Links.length) handleMenuToggle([...level3Links], duration);
+
+    // Level 4 menu items with submenu
+    const level4Selector = `${level3Selector} > ${selectors.menuSubmenu} > ${selectors.menuItem}.${classes.hasSub}`;
+    const level4Links = document.querySelectorAll(`${level4Selector} > ${selectors.menuLink}`);
+    if (level4Links.length) handleMenuToggle([...level4Links], duration);
+
+    // Level 5 menu items with submenu
+    const level5Selector = `${level4Selector} > ${selectors.menuSubmenu} > ${selectors.menuItem}.${classes.hasSub}`;
+    const level5Links = document.querySelectorAll(`${level5Selector} > ${selectors.menuLink}`);
+    if (level5Links.length) handleMenuToggle([...level5Links], duration);
 };
 
 /**
@@ -537,6 +889,7 @@ export const init = () => {
         initSidebarMenu();
         initMobileSidebarToggle();
         initSidebarMinify();
+        initFloatSubmenu();
         initScrollMemory();
         initMobileAriaState();
     };
