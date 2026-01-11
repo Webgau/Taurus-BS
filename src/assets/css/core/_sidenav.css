@@ -503,20 +503,21 @@
 
 .sidebar-logout-btn i {
     align-items: center;
-    background: var(--sidenav-active-bg);
-    border-radius: 8px;
+    border: 1.5px solid var(--sidenav-grid-color);
+    border-radius: 50%;
     display: flex;
     flex-shrink: 0;
     font-size: 1rem;
-    height: 32px;
+    height: 36px;
     justify-content: center;
-    transition: background 0.2s ease, transform 0.2s ease;
-    width: 32px;
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    width: 36px;
 }
 
 .sidebar-logout-btn:hover i {
-    background: var(--sidenav-minify-btn-bg);
-    transform: translateX(-3px);
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+    transform: scale(1.05);
 }
 
 .sidebar-logout-text {
@@ -541,7 +542,7 @@
 }
 
 .app-sidebar-minified .sidebar-logout-btn i {
-    background: transparent;
+    border-color: transparent;
 }
 
 .app-sidebar-minified .sidebar-logout-text {
