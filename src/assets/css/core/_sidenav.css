@@ -358,6 +358,7 @@
 
 /* Minified State */
 .app-sidebar-minified .layout-sidebar {
+    overflow-x: hidden !important;
     width: 60px !important;
 }
 
@@ -480,57 +481,63 @@
     line-height: 1.4;
 }
 
-/* Logout Button - modern minimal style */
+/* Logout Button - clean modern style */
 .sidebar-logout-btn {
     align-items: center;
     background: transparent;
     border-top: 1px solid var(--sidenav-grid-color);
     color: var(--sidenav-link-color);
     display: flex;
-    font-size: 0.8125rem;
+    font-size: 0.9375rem;
     font-weight: 400;
-    justify-content: space-between;
-    padding: 14px 20px;
+    gap: 14px;
+    padding: 16px 20px;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
     width: 100%;
 }
 
 .sidebar-logout-btn:hover,
 .sidebar-logout-btn:focus {
+    background: var(--sidenav-active-bg);
     color: var(--bs-body-color);
 }
 
 .sidebar-logout-btn i {
     align-items: center;
-    border: 1.5px solid var(--sidenav-grid-color);
-    border-radius: 50%;
     display: flex;
     flex-shrink: 0;
-    font-size: 1rem;
-    height: 36px;
+    font-size: 1.125rem;
+    height: 40px;
     justify-content: center;
-    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
-    width: 36px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+    width: 40px;
 }
 
 .sidebar-logout-btn:hover i {
-    border-color: var(--bs-primary);
-    color: var(--bs-primary);
-    transform: scale(1.05);
+    transform: translateX(-3px);
 }
 
 .sidebar-logout-text {
-    opacity: 0.7;
+    flex: 1;
     text-align: right;
     transition: opacity 0.2s ease;
 }
 
 .sidebar-logout-btn:hover .sidebar-logout-text {
-    opacity: 1;
+    opacity: 0.8;
 }
 
 /* Minified State: Hide info card and text */
+.app-sidebar-minified .sidebar-footer {
+    overflow: hidden;
+}
+
+.app-sidebar-minified .menu {
+    overflow-x: hidden;
+}
+
 .app-sidebar-minified .sidebar-info-card {
     display: none;
 }
@@ -538,11 +545,13 @@
 .app-sidebar-minified .sidebar-logout-btn {
     border-top: none;
     justify-content: center;
-    padding: 12px 10px;
+    padding: 14px 10px;
 }
 
 .app-sidebar-minified .sidebar-logout-btn i {
-    border-color: transparent;
+    height: auto;
+    margin: 0;
+    width: auto;
 }
 
 .app-sidebar-minified .sidebar-logout-text {
