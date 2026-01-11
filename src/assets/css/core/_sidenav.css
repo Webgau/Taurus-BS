@@ -339,11 +339,17 @@
     transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
 }
 
+/* Sidebar Cover - flex item, no shrink */
 .layout-sidebar .sidebar-cover {
-    max-height: 200px;
-    opacity: 1;
-    overflow: hidden;
+    flex-shrink: 0;
     transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
+}
+
+/* Navigation Menu - scrollable flex item */
+.layout-sidebar .menu {
+    flex: 1;
+    min-height: 0; /* Required for flex scroll to work */
+    overflow-y: auto;
 }
 
 .layout-sidebar .menu-caret {
@@ -387,6 +393,7 @@
     margin: 0;
     max-height: 0;
     opacity: 0;
+    overflow: hidden;
 }
 
 .app-sidebar-minified .layout-sidebar .menu-caret {
@@ -420,39 +427,38 @@
    ========================================================================== */
 
 .sidebar-footer {
-    border-top: 1px solid var(--sidenav-grid-color);
+    flex-shrink: 0;
     margin-top: auto;
-    padding: 15px;
 }
 
-/* Info Card */
+/* Info Card - subtle, theme-aware design */
 .sidebar-info-card {
-    background: linear-gradient(135deg, var(--bs-primary) 0%, color-mix(in srgb, var(--bs-primary) 70%, #000) 100%);
-    border-radius: 10px;
-    color: #fff;
+    background: var(--sidenav-active-bg);
+    border: 1px solid var(--sidenav-grid-color);
+    border-left: none;
+    border-right: none;
+    color: var(--bs-body-color);
     display: flex;
     gap: 12px;
-    margin-bottom: 12px;
-    padding: 14px;
+    padding: 12px 15px;
     position: relative;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: background 0.2s ease;
 }
 
 .sidebar-info-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
+    background: var(--sidenav-minify-btn-bg);
 }
 
 .sidebar-info-card-icon {
     align-items: center;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+    color: var(--sidenav-icon-color);
     display: flex;
     flex-shrink: 0;
     font-size: 1.25rem;
-    height: 40px;
+    height: 36px;
     justify-content: center;
-    width: 40px;
+    opacity: 0.7;
+    width: 36px;
 }
 
 .sidebar-info-card-body {
@@ -461,29 +467,31 @@
 }
 
 .sidebar-info-card-title {
-    font-size: 0.875rem;
+    color: var(--bs-body-color);
+    font-size: 0.8125rem;
     font-weight: 600;
     line-height: 1.3;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 }
 
 .sidebar-info-card-text {
-    font-size: 0.75rem;
+    color: var(--sidenav-link-color);
+    font-size: 0.6875rem;
     line-height: 1.4;
-    opacity: 0.85;
 }
 
-/* Logout Button */
+/* Logout Button - flush, subtle */
 .sidebar-logout-btn {
     align-items: center;
-    background: var(--sidenav-minify-btn-bg);
-    border-radius: 8px;
-    color: var(--bs-body-color);
+    background: transparent;
+    border-top: 1px solid var(--sidenav-grid-color);
+    color: var(--sidenav-link-color);
     display: flex;
+    font-size: 0.8125rem;
     font-weight: 500;
     gap: 10px;
     justify-content: center;
-    padding: 10px 15px;
+    padding: 12px 15px;
     text-decoration: none;
     transition: background 0.2s ease, color 0.2s ease;
     width: 100%;
@@ -491,24 +499,22 @@
 
 .sidebar-logout-btn:hover,
 .sidebar-logout-btn:focus {
-    background: var(--sidenav-minify-btn-hover-bg);
+    background: var(--sidenav-active-bg);
     color: var(--bs-body-color);
 }
 
 .sidebar-logout-btn i {
-    font-size: 1.125rem;
+    font-size: 1rem;
+    opacity: 0.7;
 }
 
 /* Minified State: Hide info card and text */
-.app-sidebar-minified .sidebar-footer {
-    padding: 10px;
-}
-
 .app-sidebar-minified .sidebar-info-card {
     display: none;
 }
 
 .app-sidebar-minified .sidebar-logout-btn {
+    border-top: none;
     padding: 10px;
 }
 
