@@ -53,6 +53,9 @@ body {
     width: var(--layout-sidebar-width);
     background-color: var(--bs-tertiary-bg);
     overflow-y: auto;
+    /* Flex layout for sticky footer */
+    display: flex;
+    flex-direction: column;
     /* Smooth transition for minify toggle (desktop only) */
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
