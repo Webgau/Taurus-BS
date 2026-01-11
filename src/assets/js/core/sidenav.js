@@ -40,8 +40,7 @@ const classes = {
     closed: 'closed',
     minified: 'app-sidebar-minified',
     mobileToggled: 'app-sidebar-mobile-toggled',
-    mobileClosed: 'app-sidebar-mobile-closed',
-    hide: 'd-none'
+    mobileClosed: 'app-sidebar-mobile-closed'
 };
 
 // State
@@ -678,34 +677,24 @@ const handleMenuToggle = (links, duration) => {
 
 /**
  * Initialize Sidebar Menu
+ * Supports up to 5 levels of nested submenus
  */
 const initSidebarMenu = () => {
     const duration = config.animationTime;
+    const maxLevels = 5;
+    const nestedPart = ` > ${selectors.menuSubmenu} > ${selectors.menuItem}.${classes.hasSub}`;
 
-    // Level 1 menu items with submenu
-    const level1Selector = `${selectors.sidebar} ${selectors.menu} > ${selectors.menuItem}.${classes.hasSub}`;
-    const level1Links = document.querySelectorAll(`${level1Selector} > ${selectors.menuLink}`);
-    if (level1Links.length) handleMenuToggle([...level1Links], duration);
+    // Build selector starting from level 1
+    let currentSelector = `${selectors.sidebar} ${selectors.menu} > ${selectors.menuItem}.${classes.hasSub}`;
 
-    // Level 2 menu items with submenu
-    const level2Selector = `${level1Selector} > ${selectors.menuSubmenu} > ${selectors.menuItem}.${classes.hasSub}`;
-    const level2Links = document.querySelectorAll(`${level2Selector} > ${selectors.menuLink}`);
-    if (level2Links.length) handleMenuToggle([...level2Links], duration);
-
-    // Level 3 menu items with submenu
-    const level3Selector = `${level2Selector} > ${selectors.menuSubmenu} > ${selectors.menuItem}.${classes.hasSub}`;
-    const level3Links = document.querySelectorAll(`${level3Selector} > ${selectors.menuLink}`);
-    if (level3Links.length) handleMenuToggle([...level3Links], duration);
-
-    // Level 4 menu items with submenu
-    const level4Selector = `${level3Selector} > ${selectors.menuSubmenu} > ${selectors.menuItem}.${classes.hasSub}`;
-    const level4Links = document.querySelectorAll(`${level4Selector} > ${selectors.menuLink}`);
-    if (level4Links.length) handleMenuToggle([...level4Links], duration);
-
-    // Level 5 menu items with submenu
-    const level5Selector = `${level4Selector} > ${selectors.menuSubmenu} > ${selectors.menuItem}.${classes.hasSub}`;
-    const level5Links = document.querySelectorAll(`${level5Selector} > ${selectors.menuLink}`);
-    if (level5Links.length) handleMenuToggle([...level5Links], duration);
+    for (let level = 1; level <= maxLevels; level++) {
+        const links = document.querySelectorAll(`${currentSelector} > ${selectors.menuLink}`);
+        if (links.length) {
+            handleMenuToggle([...links], duration);
+        }
+        // Extend selector for next level
+        currentSelector += nestedPart;
+    }
 };
 
 /**
