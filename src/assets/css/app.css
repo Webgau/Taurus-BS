@@ -6,6 +6,7 @@
 /* Core */
 @import "core/_theme.css";
 @import "core/_layout.css";
+@import "core/_header.css";
 @import "core/_sidenav.css";
 @import "core/_dev-panel.css";
 

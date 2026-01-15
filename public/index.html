@@ -8,7 +8,7 @@
     <link rel="preload" href="assets/img/coverImage.webp" as="image" fetchpriority="high">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/app.min.css?v=20260112g">
+    <link rel="stylesheet" href="assets/css/app.min.css?v=20260112q">
 </head>
 <body data-layout="4" class="no-transition">
     <script src="assets/js/init.js"></script>
@@ -276,51 +276,209 @@
 
         <header class="layout-header">
             <div class="layout-header-inner">
-                <nav class="navbar py-1">
-    <div class="container-fluid px-0">
+                <nav class="navbar">
+    <div class="container-fluid">
         <!-- Mobile Sidebar Toggle -->
-        <button type="button" class="btn btn-link nav-link d-lg-none me-2" data-toggle="sidebar-mobile" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="sidebar">
-            <i class="bi bi-list fs-4" aria-hidden="true"></i>
+        <button type="button" class="header-mobile-toggle" data-toggle="sidebar-mobile" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="sidebar">
+            <i class="bi bi-list" aria-hidden="true"></i>
         </button>
 
+        <!-- Brand -->
         <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-            <i class="bi bi-bullseye"></i> Taurus
+            <i class="bi bi-bullseye"></i>
+            <span class="d-none d-sm-inline">Taurus</span>
         </a>
 
-        <!-- Toolbar Icons (immer sichtbar, rechts) -->
-        <ul class="navbar-nav flex-row ms-auto align-items-center gap-1">
-            <li class="nav-item dropdown">
-                <button class="btn btn-link nav-link dropdown-toggle" id="themeToggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Theme umschalten">
-                    <i class="bi bi-sun-fill theme-icon-active"></i>
+        <!-- Spacer -->
+        <div class="flex-grow-1"></div>
+
+        <!-- Icon Toolbar -->
+        <div class="header-toolbar">
+            <!-- Expandable Search -->
+            <div class="header-search-expandable">
+                <button type="button" class="header-toolbar-btn header-search-toggle" aria-label="Suche öffnen" aria-expanded="false">
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                </button>
+                <div class="header-search-field">
+                    <input type="search" class="header-search-input" placeholder="Suchen..." aria-label="Suchen">
+                    <button type="button" class="header-search-close" aria-label="Suche schließen">
+                        <i class="bi bi-x-lg" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Calendar -->
+            <div class="header-dropdown dropdown">
+                <button type="button" class="header-toolbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Kalender">
+                    <i class="bi bi-calendar3" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <div class="header-dropdown-header">
+                        <h6 class="header-dropdown-title">Termine heute</h6>
+                        <a href="#" class="header-dropdown-action">Kalender öffnen</a>
+                    </div>
+                    <div class="header-dropdown-body">
+                        <a href="#" class="header-dropdown-item">
+                            <div class="header-dropdown-icon bg-primary-subtle">
+                                <i class="bi bi-camera-video"></i>
+                            </div>
+                            <div class="header-dropdown-content">
+                                <p class="header-dropdown-text"><strong>Team Meeting</strong></p>
+                                <span class="header-dropdown-meta">10:00 – 11:00 Uhr</span>
+                            </div>
+                        </a>
+                        <a href="#" class="header-dropdown-item">
+                            <div class="header-dropdown-icon bg-success-subtle">
+                                <i class="bi bi-person"></i>
+                            </div>
+                            <div class="header-dropdown-content">
+                                <p class="header-dropdown-text"><strong>1:1 mit Sarah</strong></p>
+                                <span class="header-dropdown-meta">14:00 – 14:30 Uhr</span>
+                            </div>
+                        </a>
+                        <a href="#" class="header-dropdown-item">
+                            <div class="header-dropdown-icon bg-warning-subtle">
+                                <i class="bi bi-clipboard-check"></i>
+                            </div>
+                            <div class="header-dropdown-content">
+                                <p class="header-dropdown-text"><strong>Sprint Review</strong></p>
+                                <span class="header-dropdown-meta">16:00 – 17:00 Uhr</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="header-dropdown-footer">
+                        <a href="#">Alle Termine anzeigen</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div class="header-dropdown dropdown">
+                <button type="button" class="header-toolbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Nachrichten">
+                    <i class="bi bi-chat-dots" aria-hidden="true"></i>
+                    <span class="header-toolbar-badge badge-dot"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <div class="header-dropdown-header">
+                        <h6 class="header-dropdown-title">Nachrichten</h6>
+                        <a href="#" class="header-dropdown-action">Alle lesen</a>
+                    </div>
+                    <div class="header-dropdown-body">
+                        <a href="#" class="header-dropdown-item unread">
+                            <img src="https://i.pravatar.cc/80?img=1" alt="" class="header-dropdown-avatar">
+                            <div class="header-dropdown-content">
+                                <p class="header-dropdown-text"><strong>Anna Schmidt</strong> hat dir eine Nachricht gesendet</p>
+                                <span class="header-dropdown-meta">vor 5 Minuten</span>
+                            </div>
+                        </a>
+                        <a href="#" class="header-dropdown-item">
+                            <img src="https://i.pravatar.cc/80?img=3" alt="" class="header-dropdown-avatar">
+                            <div class="header-dropdown-content">
+                                <p class="header-dropdown-text"><strong>Max Müller:</strong> Kannst du dir das mal ansehen?</p>
+                                <span class="header-dropdown-meta">vor 2 Stunden</span>
+                            </div>
+                        </a>
+                        <a href="#" class="header-dropdown-item">
+                            <img src="https://i.pravatar.cc/80?img=5" alt="" class="header-dropdown-avatar">
+                            <div class="header-dropdown-content">
+                                <p class="header-dropdown-text"><strong>Lisa Weber:</strong> Das Meeting wurde verschoben</p>
+                                <span class="header-dropdown-meta">gestern</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="header-dropdown-footer">
+                        <a href="#">Alle Nachrichten</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="header-dropdown dropdown">
+                <button type="button" class="header-toolbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Benachrichtigungen">
+                    <i class="bi bi-bell" aria-hidden="true"></i>
+                    <span class="header-toolbar-badge">3</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <div class="header-dropdown-header">
+                        <h6 class="header-dropdown-title">Benachrichtigungen</h6>
+                        <a href="#" class="header-dropdown-action">Alle lesen</a>
+                    </div>
+                    <div class="header-dropdown-body">
+                        <a href="#" class="header-dropdown-item unread">
+                            <div class="header-dropdown-icon bg-success-subtle">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div class="header-dropdown-content">
+                                <p class="header-dropdown-text">Dein <strong>Export</strong> wurde erfolgreich abgeschlossen</p>
+                                <span class="header-dropdown-meta">vor 10 Minuten</span>
+                            </div>
+                        </a>
+                        <a href="#" class="header-dropdown-item unread">
+                            <div class="header-dropdown-icon bg-info-subtle">
+                                <i class="bi bi-person-plus"></i>
+                            </div>
+                            <div class="header-dropdown-content">
+                                <p class="header-dropdown-text"><strong>Thomas Klein</strong> ist dem Team beigetreten</p>
+                                <span class="header-dropdown-meta">vor 1 Stunde</span>
+                            </div>
+                        </a>
+                        <a href="#" class="header-dropdown-item unread">
+                            <div class="header-dropdown-icon bg-warning-subtle">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                            <div class="header-dropdown-content">
+                                <p class="header-dropdown-text">Speicherplatz fast voll – <strong>85% belegt</strong></p>
+                                <span class="header-dropdown-meta">vor 3 Stunden</span>
+                            </div>
+                        </a>
+                        <a href="#" class="header-dropdown-item">
+                            <div class="header-dropdown-icon bg-primary-subtle">
+                                <i class="bi bi-arrow-up-circle"></i>
+                            </div>
+                            <div class="header-dropdown-content">
+                                <p class="header-dropdown-text">System-Update <strong>v2.4.0</strong> verfügbar</p>
+                                <span class="header-dropdown-meta">gestern</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="header-dropdown-footer">
+                        <a href="#">Alle Benachrichtigungen</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="header-toolbar-divider"></div>
+
+            <!-- Theme Toggle -->
+            <div class="header-theme-dropdown dropdown">
+                <button type="button" class="header-toolbar-btn dropdown-toggle" id="themeToggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Theme umschalten">
+                    <i class="bi bi-sun-fill theme-icon-active" aria-hidden="true"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="themeToggle">
                     <li>
-                        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light">
-                            <i class="bi bi-sun-fill me-2"></i> Hell
+                        <button type="button" class="dropdown-item" data-bs-theme-value="light">
+                            <i class="bi bi-sun-fill"></i>
+                            <span>Hell</span>
                             <i class="bi bi-check2 ms-auto d-none"></i>
                         </button>
                     </li>
                     <li>
-                        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark">
-                            <i class="bi bi-moon-stars-fill me-2"></i> Dunkel
+                        <button type="button" class="dropdown-item" data-bs-theme-value="dark">
+                            <i class="bi bi-moon-stars-fill"></i>
+                            <span>Dunkel</span>
                             <i class="bi bi-check2 ms-auto d-none"></i>
                         </button>
                     </li>
                     <li>
-                        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto">
-                            <i class="bi bi-circle-half me-2"></i> System
+                        <button type="button" class="dropdown-item" data-bs-theme-value="auto">
+                            <i class="bi bi-circle-half"></i>
+                            <span>System</span>
                             <i class="bi bi-check2 ms-auto d-none"></i>
                         </button>
                     </li>
                 </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" aria-label="Benachrichtigungen"><i class="bi bi-bell"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" aria-label="Profil"><i class="bi bi-person-circle"></i></a>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -418,6 +576,6 @@
 
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/app.min.js?v=20260112g"></script>
+    <script src="assets/js/app.min.js?v=20260112q"></script>
 </body>
 </html>

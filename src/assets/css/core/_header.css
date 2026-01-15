@@ -1,0 +1,528 @@
+/* ==========================================================================
+   HEADER / TOPNAV
+   Modern, minimal header with search and icon toolbar
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CSS Variables
+   -------------------------------------------------------------------------- */
+:root,
+[data-bs-theme="light"] {
+    --header-height: 56px;
+    --header-icon-color: #495057;
+    --header-icon-hover-bg: rgba(0, 0, 0, 0.06);
+    --header-icon-hover-color: #212529;
+    --header-search-bg: rgba(0, 0, 0, 0.04);
+    --header-search-focus-bg: #fff;
+    --header-search-border: rgba(0, 0, 0, 0.1);
+    --header-badge-bg: #dc3545;
+    --header-badge-color: #fff;
+}
+
+[data-bs-theme="dark"] {
+    --header-icon-color: rgba(255, 255, 255, 0.75);
+    --header-icon-hover-bg: rgba(255, 255, 255, 0.1);
+    --header-icon-hover-color: #fff;
+    --header-search-bg: rgba(255, 255, 255, 0.08);
+    --header-search-focus-bg: rgba(255, 255, 255, 0.12);
+    --header-search-border: rgba(255, 255, 255, 0.15);
+    --header-badge-bg: #dc3545;
+    --header-badge-color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Header Base
+   -------------------------------------------------------------------------- */
+.layout-header {
+    height: var(--header-height);
+    min-height: var(--header-height);
+}
+
+[data-layout="1"] .layout-header,
+[data-layout="2"] .layout-header {
+    box-shadow: var(--bs-box-shadow-lg);
+}
+
+.layout-header-inner {
+    height: 100%;
+}
+
+.layout-header .navbar {
+    height: 100%;
+    padding: 0;
+}
+
+.layout-header .navbar .container-fluid {
+    height: 100%;
+    gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Navbar Brand
+   -------------------------------------------------------------------------- */
+.layout-header .navbar-brand {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--bs-body-color);
+    padding: 0.5rem 0;
+    margin-right: 1rem;
+}
+
+.layout-header .navbar-brand:hover {
+    color: var(--bs-body-color);
+}
+
+.layout-header .navbar-brand i {
+    font-size: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Expandable Search
+   -------------------------------------------------------------------------- */
+.header-search-expandable {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.header-search-toggle {
+    z-index: 2;
+}
+
+.header-search-field {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
+
+.header-search-expandable.expanded .header-search-field {
+    width: 280px;
+    opacity: 1;
+}
+
+.header-search-expandable.expanded .header-search-toggle {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.header-search-input {
+    width: 100%;
+    height: 40px;
+    padding: 0 2.5rem 0 1rem;
+    font-size: 0.875rem;
+    color: var(--bs-body-color);
+    background-color: var(--header-search-bg);
+    border: 1px solid var(--header-search-border);
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.header-search-input::placeholder {
+    color: var(--header-icon-color);
+    opacity: 0.7;
+}
+
+.header-search-input:focus {
+    background-color: var(--header-search-focus-bg);
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.15);
+}
+
+.header-search-close {
+    position: absolute;
+    right: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    font-size: 0.875rem;
+    color: var(--header-icon-color);
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.header-search-close:hover {
+    color: var(--header-icon-hover-color);
+    background-color: var(--header-icon-hover-bg);
+}
+
+/* --------------------------------------------------------------------------
+   Icon Toolbar
+   -------------------------------------------------------------------------- */
+.header-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: auto;
+}
+
+.header-toolbar-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 1.125rem;
+    color: var(--header-icon-color);
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.header-toolbar-btn:hover {
+    color: var(--header-icon-hover-color);
+    background-color: var(--header-icon-hover-bg);
+}
+
+.header-toolbar-btn:focus {
+    outline: none;
+}
+
+.header-toolbar-btn:focus-visible {
+    box-shadow: 0 0 0 2px rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Remove dropdown arrow */
+.header-toolbar-btn.dropdown-toggle::after {
+    display: none;
+}
+
+/* Active state for dropdowns */
+.header-toolbar-btn[aria-expanded="true"] {
+    color: var(--header-icon-hover-color);
+    background-color: var(--header-icon-hover-bg);
+}
+
+/* --------------------------------------------------------------------------
+   Notification Badge
+   -------------------------------------------------------------------------- */
+.header-toolbar-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: center;
+    color: var(--header-badge-color);
+    background-color: var(--header-badge-bg);
+    border-radius: 9px;
+}
+
+/* Dot-only badge (no number) */
+.header-toolbar-badge.badge-dot {
+    min-width: 8px;
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    top: 8px;
+    right: 8px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Header Dropdown Base
+   -------------------------------------------------------------------------- */
+.header-dropdown {
+    position: relative;
+}
+
+.header-dropdown .dropdown-menu {
+    min-width: 300px;
+    max-width: 340px;
+    padding: 0.5rem;
+    border: 1px solid var(--bs-border-color-translucent);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    background: var(--bs-body-bg);
+}
+
+[data-bs-theme="dark"] .header-dropdown .dropdown-menu {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Dropdown Header */
+.header-dropdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0.75rem 0.5rem;
+}
+
+.header-dropdown-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--bs-secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin: 0;
+}
+
+.header-dropdown-action {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--bs-secondary-color);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.header-dropdown-action:hover {
+    color: var(--bs-body-color);
+}
+
+/* Dropdown Body */
+.header-dropdown-body {
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.header-dropdown-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.header-dropdown-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.header-dropdown-body::-webkit-scrollbar-thumb {
+    background-color: var(--bs-border-color);
+    border-radius: 3px;
+}
+
+.header-dropdown-body::-webkit-scrollbar-thumb:hover {
+    background-color: var(--bs-secondary-color);
+}
+
+/* Dropdown Item */
+.header-dropdown-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    text-decoration: none;
+    color: var(--bs-body-color);
+    border-radius: 10px;
+    transition: background-color 0.15s ease;
+}
+
+.header-dropdown-item:hover {
+    background-color: var(--bs-tertiary-bg);
+    color: var(--bs-body-color);
+}
+
+.header-dropdown-item.unread {
+    background-color: rgba(var(--bs-primary-rgb), 0.04);
+}
+
+.header-dropdown-item.unread:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.08);
+}
+
+/* Item Avatar/Icon */
+.header-dropdown-avatar {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.header-dropdown-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 0.9375rem;
+}
+
+.header-dropdown-icon.bg-primary-subtle {
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    color: var(--bs-primary);
+}
+
+.header-dropdown-icon.bg-success-subtle {
+    background-color: rgba(var(--bs-success-rgb), 0.1);
+    color: var(--bs-success);
+}
+
+.header-dropdown-icon.bg-warning-subtle {
+    background-color: rgba(var(--bs-warning-rgb), 0.1);
+    color: var(--bs-warning);
+}
+
+.header-dropdown-icon.bg-danger-subtle {
+    background-color: rgba(var(--bs-danger-rgb), 0.1);
+    color: var(--bs-danger);
+}
+
+.header-dropdown-icon.bg-info-subtle {
+    background-color: rgba(var(--bs-info-rgb), 0.15);
+    color: var(--bs-info);
+}
+
+/* Item Content */
+.header-dropdown-content {
+    flex: 1;
+    min-width: 0;
+    padding-top: 0.125rem;
+}
+
+.header-dropdown-text {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.header-dropdown-text strong {
+    font-weight: 500;
+}
+
+.header-dropdown-meta {
+    font-size: 0.6875rem;
+    color: var(--bs-secondary-color);
+    margin-top: 0.125rem;
+}
+
+/* Dropdown Footer */
+.header-dropdown-footer {
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+}
+
+.header-dropdown-footer a {
+    display: block;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--bs-secondary-color);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.15s;
+}
+
+.header-dropdown-footer a:hover {
+    background-color: var(--bs-tertiary-bg);
+    color: var(--bs-body-color);
+}
+
+/* Empty State */
+.header-dropdown-empty {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--bs-secondary-color);
+}
+
+.header-dropdown-empty i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+}
+
+.header-dropdown-empty p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* --------------------------------------------------------------------------
+   Theme Dropdown
+   -------------------------------------------------------------------------- */
+.header-theme-dropdown {
+    position: relative;
+}
+
+.header-theme-dropdown .dropdown-menu {
+    min-width: 140px;
+    padding: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+[data-bs-theme="dark"] .header-theme-dropdown .dropdown-menu {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.header-theme-dropdown .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    transition: background-color 0.15s ease;
+}
+
+.header-theme-dropdown .dropdown-item i {
+    font-size: 1rem;
+    width: 1.25rem;
+    text-align: center;
+}
+
+.header-theme-dropdown .dropdown-item .bi-check2 {
+    margin-left: auto;
+    color: var(--bs-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Toggle
+   -------------------------------------------------------------------------- */
+.header-mobile-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 1.375rem;
+    color: var(--header-icon-color);
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.header-mobile-toggle:hover {
+    color: var(--header-icon-hover-color);
+    background-color: var(--header-icon-hover-bg);
+}
+
+@media (max-width: 991.98px) {
+    .header-mobile-toggle {
+        display: flex;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Divider
+   -------------------------------------------------------------------------- */
+.header-toolbar-divider {
+    width: 1px;
+    height: 24px;
+    margin: 0 0.5rem;
+    background-color: var(--header-search-border);
+}

@@ -9,6 +9,7 @@ import * as ThemeSwitcher from './core/theme-switcher.js';
 import * as DevPanel from './core/dev-panel.js';
 import * as CursorGlow from './core/cursor-glow.js';
 import * as Sidenav from './core/sidenav.js';
+import * as Header from './core/header.js';
 
 // Initialize theme switcher immediately (before DOMContentLoaded to prevent flash)
 ThemeSwitcher.init();
@@ -22,9 +23,12 @@ CursorGlow.init();
 // Initialize sidenav menu
 Sidenav.init();
 
+// Initialize header (expandable search)
+Header.init();
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Taurus App initialized');
 });
 
 // Export for potential external use
-export { ThemeSwitcher, DevPanel, CursorGlow, Sidenav };
+export { ThemeSwitcher, DevPanel, CursorGlow, Sidenav, Header };
