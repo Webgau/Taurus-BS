@@ -243,15 +243,46 @@
         <a href="#" class="sidebar-info-card-btn">Upgrade Now</a>
     </div>
 
-    <!-- User Profile / Logout -->
-    <a href="logout.html" class="sidebar-user-btn">
-        <img src="assets/img/avatar.webp" alt="Avatar" class="sidebar-user-avatar" width="40" height="40">
-        <div class="sidebar-user-info">
-            <div class="sidebar-user-name">Mirko Schwarz</div>
-            <div class="sidebar-user-email">mirko@example.com</div>
+    <!-- User Menu -->
+    <div class="sidebar-user-menu dropup">
+        <button type="button" class="sidebar-user-btn" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/img/avatar.webp" alt="Avatar" class="sidebar-user-avatar" width="40" height="40">
+            <div class="sidebar-user-info">
+                <div class="sidebar-user-name">Mirko Schwarz</div>
+                <div class="sidebar-user-email">mirko@example.com</div>
+            </div>
+            <span class="sidebar-user-chevron" aria-hidden="true">
+                <i class="bi bi-chevron-up"></i>
+            </span>
+        </button>
+        <div class="dropdown-menu">
+            <div class="sidebar-user-menu-header">
+                <img src="assets/img/avatar.webp" alt="Avatar" width="48" height="48">
+                <div>
+                    <div class="sidebar-user-menu-name">Mirko Schwarz</div>
+                    <div class="sidebar-user-menu-email">mirko@example.com</div>
+                </div>
+            </div>
+            <div class="sidebar-user-menu-body">
+                <a href="profile.html" class="sidebar-user-menu-item">
+                    <i class="bi bi-person"></i>
+                    <span>Mein Profil</span>
+                </a>
+                <a href="settings.html" class="sidebar-user-menu-item">
+                    <i class="bi bi-gear"></i>
+                    <span>Einstellungen</span>
+                </a>
+                <a href="billing.html" class="sidebar-user-menu-item">
+                    <i class="bi bi-credit-card"></i>
+                    <span>Abrechnung</span>
+                </a>
+            </div>
+            <div class="sidebar-user-menu-footer">
+                <a href="logout.html" class="sidebar-user-menu-logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Abmelden</span>
+                </a>
+            </div>
         </div>
-        <span class="sidebar-user-logout" aria-hidden="true">
-            <i class="bi bi-box-arrow-right"></i>
-        </span>
-    </a>
+    </div>
 </div>
