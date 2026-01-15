@@ -37,7 +37,7 @@
     --sidenav-header-color: #495057;
     --sidenav-link-color: #495057;
     --sidenav-link-hover-color: #20252a;
-    --sidenav-link-font-weight: 600;
+    --sidenav-link-font-weight: 400;
     --sidenav-icon-color: #343a40;
     --sidenav-badge-bg: #dee2e6;
     --sidenav-badge-color: #2d353c;
@@ -78,6 +78,10 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.25);
+}
+
+.cover-m5 {
+    margin: 0.75rem;
 }
 
 .sidebar-cover::before {
@@ -182,7 +186,7 @@
     align-items: center;
     color: var(--sidenav-header-color);
     display: flex;
-    font-size: 11px;
+    font-size: 0.75rem;
     font-weight: 600;
     gap: 12px;
     letter-spacing: 0.5px;
@@ -255,7 +259,7 @@
     background: var(--sidenav-badge-bg);
     border-radius: 12px;
     color: var(--sidenav-badge-color);
-    font-size: 10px;
+    font-size: 0.6875rem;
     font-weight: 700;
     line-height: 1.6;
     padding: 0 0.75em;
@@ -272,7 +276,7 @@
 }
 
 .layout-sidebar .menu .menu-caret {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     margin-left: auto;
     transition: transform 0.2s linear;
     width: 20px;
@@ -551,10 +555,16 @@
     background: var(--sidenav-active-bg);
     border: 1px solid var(--sidenav-grid-color);
     border-radius: var(--layout-radius, 8px);
-    display: flex;
+    display: none;
     flex-direction: column;
     margin-bottom: 12px;
     padding: 14px;
+}
+
+@media (min-width: 1200px) {
+    .sidebar-info-card {
+        display: flex;
+    }
 }
 
 .sidebar-info-card-header {
@@ -757,7 +767,7 @@
     content: "\F285";
     display: block;
     font-family: "bootstrap-icons";
-    font-size: 10px;
+    font-size: 0.6875rem;
     text-align: center;
     opacity: .5;
     transition: opacity 0.2s linear, transform 0.2s linear;

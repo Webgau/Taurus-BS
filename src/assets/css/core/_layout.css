@@ -27,11 +27,13 @@
    Base Styles (alle Layouts)
    -------------------------------------------------------------------------- */
 body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
     background-image:
         linear-gradient(var(--layout-grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--layout-grid-color) 1px, transparent 1px);
     background-size: var(--layout-grid-size) var(--layout-grid-size);
-    background-attachment: fixed;
 }
 
 /* --------------------------------------------------------------------------
