@@ -84,6 +84,19 @@ CSS Grid-based in `_layout.css`. Mobile: sidebar becomes offcanvas drawer.
 - **Module:** `ThemeSwitcher` in app.js
 - **Variables:** `_theme.css` defines all Bootstrap CSS variables for both modes
 
+## Browser Testing (WICHTIG)
+
+**Cache-Busting:** Nach CSS/JS-Änderungen MUSS vor dem Browser-Test der Cache-Busting-Parameter in `src/layouts/base.html` hochgezählt werden:
+
+```html
+<!-- Zeile 11 + 38 anpassen: -->
+<link rel="stylesheet" href="assets/css/app.min.css?v=20260111w">
+<script src="assets/js/app.min.js?v=20260111w"></script>
+<!-- Bei nächster Änderung: v=20260111x, dann y, z, dann 20260112a usw. -->
+```
+
+Danach `npm run build:html` ausführen und Seite neu laden.
+
 ## Key Conventions
 
 - CSS partials: prefix with `_` (e.g., `_theme.css`)

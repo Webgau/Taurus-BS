@@ -8,7 +8,7 @@
     <link rel="preload" href="assets/img/coverImage.webp" as="image" fetchpriority="high">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/app.min.css?v=20260111v">
+    <link rel="stylesheet" href="assets/css/app.min.css?v=20260112g">
 </head>
 <body data-layout="4" class="no-transition">
     <script src="assets/js/init.js"></script>
@@ -73,7 +73,7 @@
 
     <!-- UI Components with Submenu -->
     <div class="menu-item has-sub">
-        <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-ui">
+        <a href="#" class="menu-link" aria-expanded="false" aria-controls="submenu-ui">
             <span class="menu-icon" aria-hidden="true"><i class="bi bi-palette"></i></span>
             <span class="menu-text">UI Components</span>
             <span class="menu-caret" aria-hidden="true"></span>
@@ -104,7 +104,7 @@
 
     <!-- Forms with Submenu -->
     <div class="menu-item has-sub">
-        <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-forms">
+        <a href="#" class="menu-link" aria-expanded="false" aria-controls="submenu-forms">
             <span class="menu-icon" aria-hidden="true"><i class="bi bi-ui-checks"></i></span>
             <span class="menu-text">Forms</span>
             <span class="menu-caret" aria-hidden="true"></span>
@@ -148,28 +148,28 @@
 
     <!-- Pages with Nested Submenu -->
     <div class="menu-item has-sub">
-        <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-pages">
+        <a href="#" class="menu-link" aria-expanded="false" aria-controls="submenu-pages">
             <span class="menu-icon" aria-hidden="true"><i class="bi bi-file-earmark"></i></span>
             <span class="menu-text">Pages</span>
             <span class="menu-caret" aria-hidden="true"></span>
         </a>
         <div class="menu-submenu" id="submenu-pages" role="group" aria-label="Pages Untermenü">
             <div class="menu-item has-sub">
-                <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-auth">
+                <a href="#" class="menu-link" aria-expanded="false" aria-controls="submenu-auth">
                     <span class="menu-text">Authentication</span>
                     <span class="menu-caret" aria-hidden="true"></span>
                 </a>
                 <div class="menu-submenu" id="submenu-auth" role="group" aria-label="Authentication Untermenü">
                     <!-- Level 4: Login with nested submenu -->
                     <div class="menu-item has-sub">
-                        <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-login">
+                        <a href="#" class="menu-link" aria-expanded="false" aria-controls="submenu-login">
                             <span class="menu-text">Login</span>
                             <span class="menu-caret" aria-hidden="true"></span>
                         </a>
                         <div class="menu-submenu" id="submenu-login" role="group" aria-label="Login Untermenü">
                             <!-- Level 5: Social with nested submenu -->
                             <div class="menu-item has-sub">
-                                <a href="javascript:;" class="menu-link" aria-expanded="false" aria-controls="submenu-social">
+                                <a href="#" class="menu-link" aria-expanded="false" aria-controls="submenu-social">
                                     <span class="menu-text">Social</span>
                                     <span class="menu-caret" aria-hidden="true"></span>
                                 </a>
@@ -245,22 +245,30 @@
 
 <!-- Sidebar Footer -->
 <div class="sidebar-footer">
-    <!-- Optional Info Card (remove this block if not needed) -->
+    <!-- Info Card -->
     <div class="sidebar-info-card">
-        <div class="sidebar-info-card-icon">
-            <i class="bi bi-lightning-charge-fill" aria-hidden="true"></i>
+        <div class="sidebar-info-card-header">
+            <div class="sidebar-info-card-icon">
+                <i class="bi bi-lightning-charge-fill" aria-hidden="true"></i>
+            </div>
+            <div class="sidebar-info-card-body">
+                <div class="sidebar-info-card-title">Upgrade to Premium</div>
+                <div class="sidebar-info-card-text">Unbegrenzte Projekte, Tasks & Teammitglieder</div>
+            </div>
         </div>
-        <div class="sidebar-info-card-body">
-            <div class="sidebar-info-card-title">Pro Features</div>
-            <div class="sidebar-info-card-text">Schalte erweiterte Funktionen frei</div>
-        </div>
-        <a href="#" class="stretched-link" aria-label="Mehr erfahren"></a>
+        <a href="#" class="sidebar-info-card-btn">Upgrade Now</a>
     </div>
 
-    <!-- Logout Button -->
-    <a href="logout.html" class="sidebar-logout-btn">
-        <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
-        <span class="sidebar-logout-text">Abmelden</span>
+    <!-- User Profile / Logout -->
+    <a href="logout.html" class="sidebar-user-btn">
+        <img src="assets/img/avatar.webp" alt="Avatar" class="sidebar-user-avatar" width="40" height="40">
+        <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Mirko Schwarz</div>
+            <div class="sidebar-user-email">mirko@example.com</div>
+        </div>
+        <span class="sidebar-user-logout" aria-hidden="true">
+            <i class="bi bi-box-arrow-right"></i>
+        </span>
     </a>
 </div>
 
@@ -777,37 +785,37 @@
         <div class="dev-section">
             <h6 class="dev-section-title">Layout</h6>
             <div class="dev-layout-grid">
-                <button type="button" class="dev-layout-btn" data-layout="1" title="Sidebar links, Card-Style">
-                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                <button type="button" class="dev-layout-btn" data-layout="1" title="Sidebar links, Card-Style" aria-label="Layout 1: Sidebar links, Card-Style">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon" aria-hidden="true">
                         <rect x="2" y="2" width="10" height="26" rx="2" class="dev-layout-sidebar"/>
                         <rect x="14" y="2" width="24" height="8" rx="2" class="dev-layout-header"/>
                         <rect x="14" y="12" width="24" height="16" rx="2" class="dev-layout-main"/>
                     </svg>
-                    <span>1</span>
+                    <span aria-hidden="true">1</span>
                 </button>
-                <button type="button" class="dev-layout-btn" data-layout="2" title="Header oben, Card-Style">
-                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                <button type="button" class="dev-layout-btn" data-layout="2" title="Header oben, Card-Style" aria-label="Layout 2: Header oben, Card-Style">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon" aria-hidden="true">
                         <rect x="2" y="2" width="36" height="6" rx="2" class="dev-layout-header"/>
                         <rect x="2" y="10" width="10" height="18" rx="2" class="dev-layout-sidebar"/>
                         <rect x="14" y="10" width="24" height="18" rx="2" class="dev-layout-main"/>
                     </svg>
-                    <span>2</span>
+                    <span aria-hidden="true">2</span>
                 </button>
-                <button type="button" class="dev-layout-btn" data-layout="3" title="Sidebar links, Flush">
-                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                <button type="button" class="dev-layout-btn" data-layout="3" title="Sidebar links, Flush" aria-label="Layout 3: Sidebar links, Flush">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon" aria-hidden="true">
                         <rect x="0" y="0" width="12" height="30" class="dev-layout-sidebar"/>
                         <rect x="12" y="0" width="28" height="8" class="dev-layout-header"/>
                         <rect x="12" y="8" width="28" height="22" class="dev-layout-main"/>
                     </svg>
-                    <span>3</span>
+                    <span aria-hidden="true">3</span>
                 </button>
-                <button type="button" class="dev-layout-btn" data-layout="4" title="Header oben, Flush">
-                    <svg viewBox="0 0 40 30" class="dev-layout-icon">
+                <button type="button" class="dev-layout-btn" data-layout="4" title="Header oben, Flush" aria-label="Layout 4: Header oben, Flush">
+                    <svg viewBox="0 0 40 30" class="dev-layout-icon" aria-hidden="true">
                         <rect x="0" y="0" width="40" height="6" class="dev-layout-header"/>
                         <rect x="0" y="6" width="12" height="24" class="dev-layout-sidebar"/>
                         <rect x="12" y="6" width="28" height="24" class="dev-layout-main"/>
                     </svg>
-                    <span>4</span>
+                    <span aria-hidden="true">4</span>
                 </button>
             </div>
         </div>
@@ -824,6 +832,6 @@
 
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/app.min.js?v=20260111v"></script>
+    <script src="assets/js/app.min.js?v=20260112g"></script>
 </body>
 </html>
