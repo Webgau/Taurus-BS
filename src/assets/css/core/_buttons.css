@@ -1,0 +1,448 @@
+/* ==========================================================================
+   CUSTOM BUTTONS
+   Stylish buttons matching the card designs
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base Variables
+   -------------------------------------------------------------------------- */
+:root,
+[data-bs-theme="light"] {
+    --btn-glass-bg: rgba(255, 255, 255, 0.2);
+    --btn-glass-border: rgba(255, 255, 255, 0.3);
+    --btn-glass-hover-bg: rgba(255, 255, 255, 0.35);
+    --btn-neu-bg: #e8eef4;
+    --btn-brutal-bg: #ffd60a;
+    --btn-brutal-color: #000;
+}
+
+[data-bs-theme="dark"] {
+    --btn-glass-bg: rgba(255, 255, 255, 0.1);
+    --btn-glass-border: rgba(255, 255, 255, 0.15);
+    --btn-glass-hover-bg: rgba(255, 255, 255, 0.2);
+    --btn-neu-bg: #2d353c;
+    --btn-brutal-bg: #f72585;
+    --btn-brutal-color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Shared Button Base
+   -------------------------------------------------------------------------- */
+.btn-styled {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.btn-styled:focus {
+    outline: none;
+}
+
+.btn-styled:focus-visible {
+    box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   1. GLASSMORPHISM BUTTON
+   -------------------------------------------------------------------------- */
+.btn-glass {
+    background: var(--btn-glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--btn-glass-border);
+    border-radius: 12px;
+    color: var(--card-title-color);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.btn-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    border-radius: 12px 12px 0 0;
+    pointer-events: none;
+}
+
+.btn-glass:hover {
+    background: var(--btn-glass-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    color: var(--card-title-color);
+}
+
+.btn-glass:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   2. NEUMORPHISM BUTTON
+   -------------------------------------------------------------------------- */
+.btn-neu {
+    background: var(--btn-neu-bg);
+    border: none;
+    border-radius: 12px;
+    color: var(--card-text-color);
+    box-shadow:
+        -4px -4px 10px rgba(255, 255, 255, 0.5),
+        4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="dark"] .btn-neu {
+    box-shadow:
+        -4px -4px 10px rgba(255, 255, 255, 0.03),
+        4px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.btn-neu:hover {
+    box-shadow:
+        -2px -2px 6px rgba(255, 255, 255, 0.5),
+        2px 2px 6px rgba(0, 0, 0, 0.1);
+    color: var(--card-text-color);
+}
+
+[data-bs-theme="dark"] .btn-neu:hover {
+    box-shadow:
+        -2px -2px 6px rgba(255, 255, 255, 0.02),
+        2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-neu:active {
+    box-shadow:
+        inset -2px -2px 6px rgba(255, 255, 255, 0.5),
+        inset 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+[data-bs-theme="dark"] .btn-neu:active {
+    box-shadow:
+        inset -2px -2px 6px rgba(255, 255, 255, 0.02),
+        inset 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   3. GRADIENT BUTTON
+   -------------------------------------------------------------------------- */
+.btn-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
+    color: #fff;
+    animation-duration: 1s;
+}
+
+.btn-gradient:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   4. FLOATING/ELEVATED BUTTON
+   -------------------------------------------------------------------------- */
+.btn-elevated {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow:
+        0 4px 6px -1px rgba(16, 185, 129, 0.3),
+        0 2px 4px -1px rgba(16, 185, 129, 0.2);
+}
+
+.btn-elevated:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 10px 20px -5px rgba(16, 185, 129, 0.4),
+        0 4px 6px -2px rgba(16, 185, 129, 0.2);
+    color: #fff;
+}
+
+.btn-elevated:active {
+    transform: translateY(-1px);
+    box-shadow:
+        0 4px 8px -2px rgba(16, 185, 129, 0.3),
+        0 2px 4px -1px rgba(16, 185, 129, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   5. GLOW/NEON BUTTON
+   -------------------------------------------------------------------------- */
+.btn-glow {
+    background: transparent;
+    border: 2px solid #6366f1;
+    border-radius: 12px;
+    color: #6366f1;
+    box-shadow: 0 0 0 transparent;
+}
+
+.btn-glow:hover {
+    background: #6366f1;
+    color: #fff;
+    box-shadow:
+        0 0 20px rgba(99, 102, 241, 0.5),
+        0 0 40px rgba(99, 102, 241, 0.3),
+        0 0 60px rgba(99, 102, 241, 0.1);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.btn-glow:active {
+    box-shadow:
+        0 0 10px rgba(99, 102, 241, 0.5),
+        0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+/* Animated glow variant */
+.btn-glow-pulse {
+    animation: btn-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes btn-glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(99, 102, 241, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   6. NEUBRUTALISM BUTTON
+   -------------------------------------------------------------------------- */
+.btn-brutal {
+    background: var(--btn-brutal-bg);
+    border: 3px solid var(--card-brutal-border);
+    border-radius: 0;
+    color: var(--btn-brutal-color);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 4px 4px 0 var(--card-brutal-border);
+}
+
+.btn-brutal:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--card-brutal-border);
+    color: var(--btn-brutal-color);
+}
+
+.btn-brutal:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--card-brutal-border);
+}
+
+/* --------------------------------------------------------------------------
+   7. 3D BUTTON
+   -------------------------------------------------------------------------- */
+.btn-3d {
+    background: linear-gradient(180deg, #ec4899 0%, #db2777 100%);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow:
+        0 6px 0 #9d174d,
+        0 8px 16px rgba(236, 72, 153, 0.3);
+    transform: translateY(0);
+}
+
+.btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 0 #9d174d,
+        0 12px 24px rgba(236, 72, 153, 0.4);
+    color: #fff;
+}
+
+.btn-3d:active {
+    transform: translateY(4px);
+    box-shadow:
+        0 2px 0 #9d174d,
+        0 4px 8px rgba(236, 72, 153, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   8. AURORA BUTTON
+   -------------------------------------------------------------------------- */
+.btn-aurora {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background-size: 200% 200%;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(118, 75, 162, 0.4);
+    animation: aurora-btn 4s ease infinite;
+}
+
+@keyframes aurora-btn {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.btn-aurora:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(118, 75, 162, 0.5);
+    animation-duration: 1.5s;
+    color: #fff;
+}
+
+.btn-aurora:active {
+    transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   9. MINIMAL/OUTLINE BUTTON
+   -------------------------------------------------------------------------- */
+.btn-minimal {
+    background: transparent;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 10px;
+    color: var(--card-text-color);
+}
+
+.btn-minimal:hover {
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+    background: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+.btn-minimal:active {
+    background: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+/* Animated border on hover */
+.btn-minimal::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 10px;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--bs-primary), transparent, var(--bs-primary));
+    background-size: 200% 200%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-minimal:hover::after {
+    opacity: 1;
+    animation: gradient-rotate 2s linear infinite;
+}
+
+/* --------------------------------------------------------------------------
+   10. METALLIC/SHIMMER BUTTON
+   -------------------------------------------------------------------------- */
+.btn-metallic {
+    background: linear-gradient(135deg, #374151 0%, #1f2937 50%, #374151 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+[data-bs-theme="light"] .btn-metallic {
+    background: linear-gradient(135deg, #9ca3af 0%, #6b7280 50%, #9ca3af 100%);
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-metallic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    transition: left 0.5s ease;
+}
+
+.btn-metallic:hover {
+    color: #fff;
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.btn-metallic:hover::before {
+    left: 100%;
+}
+
+.btn-metallic:active {
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   Button Sizes
+   -------------------------------------------------------------------------- */
+.btn-styled.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+}
+
+.btn-styled.btn-lg {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9375rem;
+}
+
+/* --------------------------------------------------------------------------
+   Button with Icon
+   -------------------------------------------------------------------------- */
+.btn-styled i {
+    font-size: 1em;
+}
+
+.btn-styled.btn-icon-only {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+}
+
+.btn-styled.btn-icon-only.btn-sm {
+    width: 36px;
+    height: 36px;
+}
+
+.btn-styled.btn-icon-only.btn-lg {
+    width: 52px;
+    height: 52px;
+}

@@ -1,0 +1,766 @@
+/* ==========================================================================
+   CARD SHOWCASE
+   10 Modern Card Designs for Dashboard Testing
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base Variables
+   -------------------------------------------------------------------------- */
+:root,
+[data-bs-theme="light"] {
+    /* Card Text Colors - Light Mode */
+    --card-text-color: #111111;
+    --card-text-muted: #1f2937;
+    --card-title-color: #000000;
+
+    /* Glassmorphism */
+    --card-glass-bg: rgba(255, 255, 255, 0.25);
+    --card-glass-border: rgba(255, 255, 255, 0.3);
+    --card-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+    /* Neumorphism */
+    --card-neu-bg: #e8eef4;
+    --card-neu-shadow-light: -6px -6px 14px rgba(255, 255, 255, 0.7);
+    --card-neu-shadow-dark: 6px 6px 14px rgba(0, 0, 0, 0.15);
+    --card-neu-inset-light: inset -3px -3px 7px rgba(255, 255, 255, 0.8);
+    --card-neu-inset-dark: inset 3px 3px 7px rgba(0, 0, 0, 0.1);
+
+    /* Neubrutalism */
+    --card-brutal-bg: #fff;
+    --card-brutal-border: #000;
+    --card-brutal-shadow: 4px 4px 0 #000;
+    --card-brutal-accent: #ffd60a;
+
+    /* Aurora */
+    --card-aurora-1: rgba(120, 119, 198, 0.3);
+    --card-aurora-2: rgba(76, 201, 240, 0.3);
+    --card-aurora-3: rgba(67, 97, 238, 0.3);
+
+    /* Glow */
+    --card-glow-color: rgba(99, 102, 241, 0.4);
+
+    /* Metallic */
+    --card-metallic-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --card-metallic-shine: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+}
+
+[data-bs-theme="dark"] {
+    /* Card Text Colors - Dark Mode */
+    --card-text-color: #ffffff;
+    --card-text-muted: #e5e7eb;
+    --card-title-color: #ffffff;
+
+    /* Glassmorphism */
+    --card-glass-bg: rgba(255, 255, 255, 0.08);
+    --card-glass-border: rgba(255, 255, 255, 0.12);
+    --card-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    /* Neumorphism */
+    --card-neu-bg: #2d353c;
+    --card-neu-shadow-light: -6px -6px 14px rgba(255, 255, 255, 0.03);
+    --card-neu-shadow-dark: 6px 6px 14px rgba(0, 0, 0, 0.4);
+    --card-neu-inset-light: inset -3px -3px 7px rgba(255, 255, 255, 0.03);
+    --card-neu-inset-dark: inset 3px 3px 7px rgba(0, 0, 0, 0.3);
+
+    /* Neubrutalism */
+    --card-brutal-bg: #1a1a2e;
+    --card-brutal-border: #fff;
+    --card-brutal-shadow: 4px 4px 0 #fff;
+    --card-brutal-accent: #f72585;
+
+    /* Aurora */
+    --card-aurora-1: rgba(120, 119, 198, 0.2);
+    --card-aurora-2: rgba(76, 201, 240, 0.2);
+    --card-aurora-3: rgba(67, 97, 238, 0.2);
+
+    /* Glow */
+    --card-glow-color: rgba(139, 92, 246, 0.5);
+
+    /* Metallic */
+    --card-metallic-bg: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    --card-metallic-shine: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+}
+
+/* --------------------------------------------------------------------------
+   Card Showcase Grid
+   -------------------------------------------------------------------------- */
+.card-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.card-showcase-item {
+    transition: transform 0.2s ease;
+}
+
+.card-showcase-item.sortable-ghost {
+    opacity: 0.4;
+}
+
+.card-showcase-item.sortable-chosen {
+    transform: scale(1.02);
+}
+
+/* --------------------------------------------------------------------------
+   Shared Card Styles
+   -------------------------------------------------------------------------- */
+.showcase-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--card-text-color);
+}
+
+.showcase-card .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    border-bottom: none;
+    background: transparent;
+}
+
+.showcase-card .card-header .card-title {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--card-title-color);
+}
+
+.showcase-card .card-header .card-badge {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 50px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.showcase-card .card-body {
+    flex: 1;
+    padding: 1.25rem;
+}
+
+.showcase-card .card-body .card-text {
+    color: var(--card-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.showcase-card .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1.25rem;
+    background: transparent;
+    border-top: none;
+}
+
+/* Override Bootstrap text-secondary in cards */
+.showcase-card .text-secondary {
+    color: var(--card-text-muted) !important;
+}
+
+.showcase-card .small {
+    color: var(--card-text-muted);
+}
+
+.showcase-card .card-footer .btn {
+    font-size: 0.8125rem;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+
+.showcase-card .card-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Drag Handle */
+.card-drag-handle {
+    cursor: grab;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.card-drag-handle:hover {
+    opacity: 1;
+}
+
+.card-drag-handle:active {
+    cursor: grabbing;
+}
+
+/* --------------------------------------------------------------------------
+   1. GLASSMORPHISM CARD
+   -------------------------------------------------------------------------- */
+.card-glass {
+    background: var(--card-glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-glass-border);
+    border-radius: 20px;
+    box-shadow: var(--card-glass-shadow);
+}
+
+.card-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+}
+
+.card-glass:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-glass .card-header {
+    border-bottom: 1px solid var(--card-glass-border);
+}
+
+.card-glass .card-footer {
+    border-top: 1px solid var(--card-glass-border);
+}
+
+.card-glass .card-badge {
+    background: rgba(99, 102, 241, 0.2);
+    color: #818cf8;
+}
+
+.card-glass .card-icon {
+    background: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+}
+
+/* --------------------------------------------------------------------------
+   2. NEUMORPHISM CARD
+   -------------------------------------------------------------------------- */
+.card-neumorphism {
+    background: var(--card-neu-bg);
+    border-radius: 24px;
+    border: none;
+    box-shadow: var(--card-neu-shadow-light), var(--card-neu-shadow-dark);
+}
+
+.card-neumorphism:hover {
+    box-shadow: var(--card-neu-inset-light), var(--card-neu-inset-dark);
+}
+
+.card-neumorphism .card-header {
+    padding-bottom: 0.5rem;
+}
+
+.card-neumorphism .card-badge {
+    background: var(--card-neu-bg);
+    color: var(--bs-body-color);
+    box-shadow: -2px -2px 5px rgba(255,255,255,0.5), 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+[data-bs-theme="dark"] .card-neumorphism .card-badge {
+    box-shadow: -2px -2px 5px rgba(255,255,255,0.02), 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.card-neumorphism .card-icon {
+    background: var(--card-neu-bg);
+    color: var(--bs-primary);
+    box-shadow: var(--card-neu-inset-light), var(--card-neu-inset-dark);
+}
+
+.card-neumorphism .btn-neu {
+    background: var(--card-neu-bg);
+    border: none;
+    color: var(--bs-body-color);
+    box-shadow: -3px -3px 7px rgba(255,255,255,0.5), 3px 3px 7px rgba(0,0,0,0.12);
+    transition: all 0.2s ease;
+}
+
+.card-neumorphism .btn-neu:hover {
+    box-shadow: -1px -1px 3px rgba(255,255,255,0.5), 1px 1px 3px rgba(0,0,0,0.12);
+}
+
+.card-neumorphism .btn-neu:active {
+    box-shadow: inset -2px -2px 5px rgba(255,255,255,0.5), inset 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+[data-bs-theme="dark"] .card-neumorphism .btn-neu {
+    box-shadow: -3px -3px 7px rgba(255,255,255,0.02), 3px 3px 7px rgba(0,0,0,0.4);
+}
+
+/* --------------------------------------------------------------------------
+   3. GRADIENT BORDER CARD
+   -------------------------------------------------------------------------- */
+.card-gradient-border {
+    background: var(--bs-body-bg);
+    border-radius: 16px;
+    border: none;
+    position: relative;
+    z-index: 1;
+}
+
+.card-gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+    background-size: 300% 300%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: gradient-rotate 4s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradient-rotate {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.card-gradient-border:hover::before {
+    animation-duration: 1.5s;
+}
+
+.card-gradient-border .card-header {
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.card-gradient-border .card-footer {
+    border-top: 1px solid var(--bs-border-color-translucent);
+}
+
+.card-gradient-border .card-badge {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+}
+
+.card-gradient-border .card-icon {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   4. FLOATING CARD
+   -------------------------------------------------------------------------- */
+.card-floating {
+    background: var(--bs-body-bg);
+    border-radius: 16px;
+    border: 1px solid var(--bs-border-color-translucent);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card-floating:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.card-floating .card-header {
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.card-floating .card-footer {
+    border-top: 1px solid var(--bs-border-color-translucent);
+}
+
+.card-floating .card-badge {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.card-floating .card-icon {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+/* --------------------------------------------------------------------------
+   5. GLOW CARD
+   -------------------------------------------------------------------------- */
+.card-glow {
+    background: var(--bs-body-bg);
+    border-radius: 16px;
+    border: 1px solid var(--bs-border-color-translucent);
+    box-shadow: 0 0 0 transparent;
+    transition: all 0.4s ease;
+}
+
+.card-glow:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow:
+        0 0 20px var(--card-glow-color),
+        0 0 40px var(--card-glow-color),
+        0 0 60px rgba(99, 102, 241, 0.1);
+}
+
+.card-glow .card-header {
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.card-glow .card-footer {
+    border-top: 1px solid var(--bs-border-color-translucent);
+}
+
+.card-glow .card-badge {
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366f1;
+}
+
+.card-glow .card-icon {
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366f1;
+    transition: all 0.3s ease;
+}
+
+.card-glow:hover .card-icon {
+    box-shadow: 0 0 20px var(--card-glow-color);
+}
+
+/* --------------------------------------------------------------------------
+   6. NEUBRUTALISM CARD
+   -------------------------------------------------------------------------- */
+.card-brutal {
+    background: var(--card-brutal-bg);
+    border-radius: 0;
+    border: 3px solid var(--card-brutal-border);
+    box-shadow: var(--card-brutal-shadow);
+    transition: all 0.15s ease;
+}
+
+.card-brutal:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--card-brutal-border);
+}
+
+.card-brutal:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--card-brutal-border);
+}
+
+.card-brutal .card-header {
+    border-bottom: 3px solid var(--card-brutal-border);
+    background: var(--card-brutal-accent);
+}
+
+[data-bs-theme="light"] .card-brutal .card-header {
+    color: #000;
+}
+
+.card-brutal .card-footer {
+    border-top: 3px solid var(--card-brutal-border);
+}
+
+.card-brutal .card-badge {
+    background: var(--card-brutal-border);
+    color: var(--card-brutal-bg);
+    border-radius: 0;
+    font-weight: 700;
+}
+
+.card-brutal .card-icon {
+    background: var(--card-brutal-accent);
+    color: #000;
+    border-radius: 0;
+    border: 2px solid var(--card-brutal-border);
+}
+
+.card-brutal .btn-brutal {
+    background: var(--card-brutal-bg);
+    border: 2px solid var(--card-brutal-border);
+    border-radius: 0;
+    font-weight: 700;
+    box-shadow: 3px 3px 0 var(--card-brutal-border);
+    transition: all 0.1s ease;
+}
+
+.card-brutal .btn-brutal:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--card-brutal-border);
+}
+
+.card-brutal .btn-brutal:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--card-brutal-border);
+}
+
+/* --------------------------------------------------------------------------
+   7. 3D TILT CARD
+   -------------------------------------------------------------------------- */
+.card-tilt {
+    background: var(--bs-body-bg);
+    border-radius: 16px;
+    border: 1px solid var(--bs-border-color-translucent);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card-tilt .card-tilt-inner {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease;
+}
+
+.card-tilt .card-tilt-shine {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.15) 0%, transparent 60%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-tilt:hover .card-tilt-shine {
+    opacity: 1;
+}
+
+.card-tilt .card-header {
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.card-tilt .card-footer {
+    border-top: 1px solid var(--bs-border-color-translucent);
+}
+
+.card-tilt .card-badge {
+    background: rgba(236, 72, 153, 0.1);
+    color: #ec4899;
+}
+
+.card-tilt .card-icon {
+    background: rgba(236, 72, 153, 0.1);
+    color: #ec4899;
+    transform: translateZ(30px);
+}
+
+.card-tilt .card-title {
+    transform: translateZ(20px);
+}
+
+/* --------------------------------------------------------------------------
+   8. AURORA CARD
+   -------------------------------------------------------------------------- */
+.card-aurora {
+    background: var(--bs-body-bg);
+    border-radius: 20px;
+    border: 1px solid var(--bs-border-color-translucent);
+    overflow: hidden;
+    position: relative;
+}
+
+.card-aurora::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(circle at 20% 80%, var(--card-aurora-1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--card-aurora-2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, var(--card-aurora-3) 0%, transparent 50%);
+    animation: aurora-shift 8s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes aurora-shift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(5%, 5%) rotate(5deg); }
+    50% { transform: translate(-5%, 10%) rotate(-5deg); }
+    75% { transform: translate(10%, -5%) rotate(3deg); }
+}
+
+.card-aurora .card-header,
+.card-aurora .card-body,
+.card-aurora .card-footer {
+    position: relative;
+    z-index: 1;
+}
+
+.card-aurora .card-header {
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.card-aurora .card-footer {
+    border-top: 1px solid var(--bs-border-color-translucent);
+}
+
+.card-aurora .card-badge {
+    background: rgba(139, 92, 246, 0.15);
+    color: #8b5cf6;
+}
+
+.card-aurora .card-icon {
+    background: rgba(139, 92, 246, 0.15);
+    color: #8b5cf6;
+}
+
+.card-aurora:hover::before {
+    animation-duration: 3s;
+}
+
+/* --------------------------------------------------------------------------
+   9. MINIMAL OUTLINE CARD
+   -------------------------------------------------------------------------- */
+.card-minimal {
+    background: transparent;
+    border-radius: 12px;
+    border: 1px solid var(--bs-border-color);
+    transition: all 0.3s ease;
+}
+
+.card-minimal:hover {
+    border-color: var(--bs-primary);
+    background: rgba(var(--bs-primary-rgb), 0.02);
+}
+
+.card-minimal .card-header {
+    border-bottom: 1px solid var(--bs-border-color);
+    transition: border-color 0.3s ease;
+}
+
+.card-minimal:hover .card-header {
+    border-color: var(--bs-primary);
+}
+
+.card-minimal .card-footer {
+    border-top: 1px solid var(--bs-border-color);
+    transition: border-color 0.3s ease;
+}
+
+.card-minimal:hover .card-footer {
+    border-color: var(--bs-primary);
+}
+
+.card-minimal .card-badge {
+    background: transparent;
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-secondary-color);
+    transition: all 0.3s ease;
+}
+
+.card-minimal:hover .card-badge {
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+}
+
+.card-minimal .card-icon {
+    background: transparent;
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-secondary-color);
+    transition: all 0.3s ease;
+}
+
+.card-minimal:hover .card-icon {
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+}
+
+.card-minimal .btn-outline-minimal {
+    background: transparent;
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-body-color);
+}
+
+.card-minimal .btn-outline-minimal:hover {
+    border-color: var(--bs-primary);
+    color: var(--bs-primary);
+    background: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   10. METALLIC SHIMMER CARD
+   -------------------------------------------------------------------------- */
+.card-metallic {
+    background: var(--card-metallic-bg);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+
+.card-metallic::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--card-metallic-shine);
+    transition: left 0.5s ease;
+}
+
+.card-metallic:hover::after {
+    left: 100%;
+}
+
+.card-metallic .card-header,
+.card-metallic .card-body,
+.card-metallic .card-footer {
+    position: relative;
+    z-index: 1;
+}
+
+.card-metallic .card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.card-metallic .card-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.card-metallic .card-badge {
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--bs-body-color);
+}
+
+.card-metallic .card-icon {
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--bs-body-color);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 575.98px) {
+    .card-showcase {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .showcase-card {
+        min-height: 240px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Animation Utilities
+   -------------------------------------------------------------------------- */
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px var(--card-glow-color); }
+    50% { box-shadow: 0 0 40px var(--card-glow-color); }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}

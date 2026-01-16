@@ -2,4 +2,248 @@
 title: Dashboard - Taurus
 -->
 
-<h1 class="mb-4">Dashboard</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">Card Showcase</h1>
+    <div class="d-flex gap-2">
+        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="CardShowcase.resetOrder()">
+            <i class="bi bi-arrow-counterclockwise me-1"></i>Reset Order
+        </button>
+    </div>
+</div>
+
+<p class="text-secondary mb-4">10 moderne Card-Designs zum Testen. Per Drag & Drop sortierbar.</p>
+
+<div class="card-showcase">
+
+    <!-- 1. Glassmorphism Card -->
+    <div class="card-showcase-item" data-card-id="glass">
+        <div class="showcase-card card-glass">
+            <div class="card-header">
+                <span class="card-title">Glassmorphism</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="card-badge">Trend 2025</span>
+                    <i class="bi bi-grip-vertical card-drag-handle"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <i class="bi bi-droplet-half"></i>
+                </div>
+                <p class="card-text">Frosted glass effect mit backdrop-filter blur. Perfekt bei bunten Hintergründen oder Bildern. Apple's "Liquid Glass" Design.</p>
+            </div>
+            <div class="card-footer">
+                <span class="text-secondary small">backdrop-filter: blur()</span>
+                <button type="button" class="btn-styled btn-glass btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Neumorphism Card -->
+    <div class="card-showcase-item" data-card-id="neumorphism">
+        <div class="showcase-card card-neumorphism">
+            <div class="card-header">
+                <span class="card-title">Neumorphism</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="card-badge">Soft UI</span>
+                    <i class="bi bi-grip-vertical card-drag-handle"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <i class="bi bi-layers"></i>
+                </div>
+                <p class="card-text">Soft UI mit subtilen Schatten. Elemente wirken wie aus dem Hintergrund herausgedrückt. Taktiles, minimalistisches Gefühl.</p>
+            </div>
+            <div class="card-footer">
+                <span class="text-secondary small">Dual shadow technique</span>
+                <button type="button" class="btn-styled btn-neu btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Gradient Border Card -->
+    <div class="card-showcase-item" data-card-id="gradient-border">
+        <div class="showcase-card card-gradient-border">
+            <div class="card-header">
+                <span class="card-title">Gradient Border</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="card-badge">Animated</span>
+                    <i class="bi bi-grip-vertical card-drag-handle"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <i class="bi bi-palette"></i>
+                </div>
+                <p class="card-text">Animierte Gradient-Border mit CSS mask. Eye-catching ohne überladen zu wirken. Ideal für Premium-Features.</p>
+            </div>
+            <div class="card-footer">
+                <span class="text-secondary small">CSS mask-composite</span>
+                <button type="button" class="btn-styled btn-gradient btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Floating Card -->
+    <div class="card-showcase-item" data-card-id="floating">
+        <div class="showcase-card card-floating">
+            <div class="card-header">
+                <span class="card-title">Floating</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="card-badge">Classic</span>
+                    <i class="bi bi-grip-vertical card-drag-handle"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <i class="bi bi-cloud"></i>
+                </div>
+                <p class="card-text">Klassischer Lift-on-Hover Effekt. Subtile Elevation-Änderung signalisiert Interaktivität. Bewährtes Pattern.</p>
+            </div>
+            <div class="card-footer">
+                <span class="text-secondary small">translateY + shadow</span>
+                <button type="button" class="btn-styled btn-elevated btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Glow Card -->
+    <div class="card-showcase-item" data-card-id="glow">
+        <div class="showcase-card card-glow">
+            <div class="card-header">
+                <span class="card-title">Glow Effect</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="card-badge">Neon</span>
+                    <i class="bi bi-grip-vertical card-drag-handle"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <i class="bi bi-lightbulb"></i>
+                </div>
+                <p class="card-text">Neon-artiger Glow-Effekt bei Hover. Perfekt für Dark Mode Interfaces. Gaming & Tech Aesthetic.</p>
+            </div>
+            <div class="card-footer">
+                <span class="text-secondary small">Multi-layer box-shadow</span>
+                <button type="button" class="btn-styled btn-glow btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Neubrutalism Card -->
+    <div class="card-showcase-item" data-card-id="brutal">
+        <div class="showcase-card card-brutal">
+            <div class="card-header">
+                <span class="card-title">Neubrutalism</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="card-badge">Bold</span>
+                    <i class="bi bi-grip-vertical card-drag-handle"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <i class="bi bi-lightning-charge"></i>
+                </div>
+                <p class="card-text">Bold, kontrastreich, keine Rundungen. Harte Schatten und kräftige Farben. Anti-Establishment Design.</p>
+            </div>
+            <div class="card-footer">
+                <span class="text-secondary small">Hard shadows, no radius</span>
+                <button type="button" class="btn-styled btn-brutal btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. 3D Tilt Card -->
+    <div class="card-showcase-item" data-card-id="tilt">
+        <div class="showcase-card card-tilt">
+            <div class="card-tilt-shine"></div>
+            <div class="card-header">
+                <span class="card-title">3D Tilt</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="card-badge">Interactive</span>
+                    <i class="bi bi-grip-vertical card-drag-handle"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <i class="bi bi-badge-3d"></i>
+                </div>
+                <p class="card-text">Interaktiver 3D-Tilt folgt der Mausposition. Mit Shine-Effekt für Tiefe. Immersive User Experience.</p>
+            </div>
+            <div class="card-footer">
+                <span class="text-secondary small">CSS perspective + JS</span>
+                <button type="button" class="btn-styled btn-3d btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Aurora Card -->
+    <div class="card-showcase-item" data-card-id="aurora">
+        <div class="showcase-card card-aurora">
+            <div class="card-header">
+                <span class="card-title">Aurora</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="card-badge">Animated</span>
+                    <i class="bi bi-grip-vertical card-drag-handle"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <i class="bi bi-stars"></i>
+                </div>
+                <p class="card-text">Animierte Farbverläufe im Hintergrund. Nordlicht-Effekt für atmosphärische Interfaces. Subtle & magical.</p>
+            </div>
+            <div class="card-footer">
+                <span class="text-secondary small">Animated radial gradients</span>
+                <button type="button" class="btn-styled btn-aurora btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 9. Minimal Outline Card -->
+    <div class="card-showcase-item" data-card-id="minimal">
+        <div class="showcase-card card-minimal">
+            <div class="card-header">
+                <span class="card-title">Minimal Outline</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="card-badge">Clean</span>
+                    <i class="bi bi-grip-vertical card-drag-handle"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <i class="bi bi-layout-text-window"></i>
+                </div>
+                <p class="card-text">Nur Border, kein Background. Schwebt über dem Content. Maximale Klarheit und Lesbarkeit.</p>
+            </div>
+            <div class="card-footer">
+                <span class="text-secondary small">Border-only design</span>
+                <button type="button" class="btn-styled btn-minimal btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 10. Metallic Shimmer Card -->
+    <div class="card-showcase-item" data-card-id="metallic">
+        <div class="showcase-card card-metallic">
+            <div class="card-header">
+                <span class="card-title">Metallic Shimmer</span>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="card-badge">Premium</span>
+                    <i class="bi bi-grip-vertical card-drag-handle"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <i class="bi bi-gem"></i>
+                </div>
+                <p class="card-text">Metallischer Glanz-Effekt bei Hover. Lichtstrahl wandert über die Oberfläche. Premium & luxuriös.</p>
+            </div>
+            <div class="card-footer">
+                <span class="text-secondary small">CSS pseudo-element shine</span>
+                <button type="button" class="btn-styled btn-metallic btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+</div>
